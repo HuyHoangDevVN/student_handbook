@@ -1,7 +1,7 @@
 # =============================================================================
 # Student IT Handbook - PDF build configuration
-# Purpose: keep the default site build lightweight while providing
-# a dedicated config for handbook PDF export.
+# Purpose: build a single print-friendly handbook page, then render it with
+# Chromium via Playwright.
 # =============================================================================
 
 site_name: Student IT Handbook
@@ -18,17 +18,6 @@ edit_uri: edit/main/docs/
 theme:
   name: mkdocs
 
-plugins:
-  - with-pdf:
-      author: DNU Education Team
-      copyright: "© 2026 DNU Education"
-      cover: true
-      cover_title: Student IT Handbook
-      cover_subtitle: FIT_DNU handbook cho sinh vien Cong nghe thong tin
-      cover_logo: assets/images/fit-dnu-full.png
-      output_path: pdf/student-it-handbook.pdf
-      enabled_if_env: ENABLE_PDF_EXPORT
-
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -42,7 +31,6 @@ markdown_extensions:
       line_spans: __span
       pygments_lang_class: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tasklist:
@@ -60,88 +48,12 @@ markdown_extensions:
   - attr_list
   - md_in_html
 
-extra:
-  version: 1.1-draft
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/<github-org>/student-it-handbook
-  generator: false
-
 extra_css:
   - assets/css/pdf.css
 
+validation:
+  nav:
+    omitted_files: ignore
+
 nav:
-  - Trang chủ: index.md
-
-  - Bắt đầu:
-      - Start Here: getting-started/start-here.md
-      - Quickstart: getting-started/quickstart.md
-      - Sample project: getting-started/sample-project.md
-      - Checklist sinh viên mới: getting-started/checklist.md
-
-  - Môi trường làm việc:
-      - Terminal & Shell:
-          - Tổng quan: environment/terminal.md
-          - Điều hướng terminal: environment/terminal-navigation.md
-          - Quản lý file: environment/terminal-files.md
-          - Pipe và redirect: environment/terminal-pipes-redirects.md
-          - Tìm kiếm và biến môi trường: environment/terminal-search-env.md
-      - Linux (WSL/Ubuntu):
-          - Tổng quan: environment/linux.md
-          - Cài đặt WSL: environment/linux-wsl.md
-          - Package và permissions: environment/linux-packages-permissions.md
-          - Process và network: environment/linux-process-network.md
-          - Systemd và services: environment/linux-services.md
-      - VS Code: environment/vscode.md
-
-  - Quản lý mã nguồn:
-      - Git cơ bản:
-          - Tổng quan: vcs/git-basics.md
-          - Git fundamentals: vcs/git-fundamentals.md
-          - Branching, merge, rebase: vcs/git-branching.md
-          - Undo và recovery: vcs/git-recovery.md
-      - GitHub Workflow: vcs/github-workflow.md
-
-  - Ngôn ngữ & Framework:
-      - Python & Anaconda: programming/python-anaconda.md
-      - Node.js & npm: programming/nodejs.md
-      - Quản lý Dependencies: programming/dependency-management.md
-
-  - Backend:
-      - HTTP & REST API: backend/http-rest.md
-      - API Testing: backend/api-testing.md
-
-  - Cơ sở dữ liệu:
-      - SQL & PostgreSQL:
-          - Tổng quan: databases/sql-postgres.md
-          - Cài đặt PostgreSQL: databases/postgres-setup.md
-          - SQL CRUD cơ bản: databases/sql-crud.md
-          - Index, transaction, tối ưu: databases/sql-advanced.md
-      - MongoDB & Redis: databases/mongodb-redis.md
-
-  - Containers:
-      - Docker cơ bản:
-          - Tổng quan: containers/docker.md
-          - Docker runtime: containers/docker-runtime.md
-          - Debug, logs, storage: containers/docker-debug-storage.md
-          - Dockerfile và build workflow: containers/dockerfile-workflow.md
-      - Docker Compose: containers/docker-compose.md
-
-  - DevOps:
-      - CI/CD - GitHub Actions:
-          - Tổng quan: devops/cicd-github-actions.md
-          - CI/CD fundamentals: devops/ci-basics.md
-          - CI cho Node.js và Python: devops/ci-node-python.md
-          - Secrets, release, debug: devops/ci-release-debug.md
-      - Deployment cơ bản: devops/deployment-basics.md
-      - Logging & Monitoring: devops/logging-monitoring.md
-      - Bảo mật cơ bản: devops/security-basics.md
-
-  - Xử lý lỗi:
-      - Lỗi thường gặp: troubleshooting/common-errors.md
-
-  - Cheat Sheets:
-      - Linux: cheatsheets/linux.md
-      - Git: cheatsheets/git.md
-      - Docker: cheatsheets/docker.md
-      - SQL: cheatsheets/sql.md
+  - Student IT Handbook: _generated/handbook-pdf.md

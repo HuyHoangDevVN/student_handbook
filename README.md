@@ -149,35 +149,51 @@ mkdocs build --strict
 
 ## Xuất PDF
 
-PDF dùng profile riêng là `mkdocs-pdf.yml`. Profile này không cố giữ toàn bộ giao diện web, mà ưu tiên build ổn định cho handbook in/export.
+PDF dùng profile riêng là `mkdocs-pdf.yml`.
+Toolchain hiện tại là:
+
+1. generate một trang handbook tổng hợp
+2. build HTML bằng `mkdocs-pdf.yml`
+3. render PDF bằng Chromium headless qua Playwright
+
+Cách này ổn định hơn cho local và CI.
 
 ### Linux / macOS / Bash
 
 ```bash
-ENABLE_PDF_EXPORT=1 mkdocs build --strict -f mkdocs-pdf.yml
+python scripts/generate_pdf_bundle.py
+mkdocs build --strict -f mkdocs-pdf.yml
+python scripts/render_pdf.py --site-dir site --page _generated/handbook-pdf/ --output site/pdf/student-it-handbook.pdf
 ```
 
 ### Windows PowerShell
 
 ```powershell
-$env:ENABLE_PDF_EXPORT = "1"
-mkdocs build --strict -f mkdocs-pdf.yml
+./scripts/export-pdf.ps1
 ```
 
-Trên Windows, nếu thiếu GTK/Pango cho WeasyPrint, dùng:
+Nếu chạy local lần đầu, cài browser cho Playwright:
 
-- `./scripts/export-pdf.ps1`
-- hoặc workflow `.github/workflows/pdf-handbook.yml`
+```bash
+python -m playwright install chromium
+```
+
+PDF artifact cuối cùng nằm ở:
+
+```text
+site/pdf/student-it-handbook.pdf
+```
 
 ### GitHub Actions
 
-Day la duong on dinh nhat cho PDF:
+Đây là đường ổn định nhất cho PDF:
 
-1. push code len GitHub
-2. vao tab `Actions`
-3. chon workflow `Build PDF Handbook`
-4. chay `Run workflow`
-5. tai artifact `student-it-handbook-pdf`
+1. push code lên GitHub
+2. vào tab `Actions`
+3. chọn workflow `Build PDF Handbook`
+4. chạy `Run workflow`
+5. tải artifact `student-it-handbook-pdf`
+
 
 ## Đóng góp
 

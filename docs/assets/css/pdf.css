@@ -4,10 +4,35 @@
    ============================================================================= */
 
 @media print {
+  .navbar,
+  .bs-sidebar,
+  .col-md-3,
+  .wm-page-toc,
+  .wm-toc-pane,
+  .wm-sidebar,
+  .wm-top-tool,
+  .wm-page-nav-frame,
+  .wm-page-nav-toggle,
+  footer,
+  .modal,
+  .btn-close {
+    display: none !important;
+  }
+
   body,
   .content,
-  .md-content {
+  .md-content,
+  .container,
+  .container-fluid,
+  main,
+  .col-md-9,
+  .wm-page-content,
+  .wm-content-pane,
+  .bs-component {
     max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   .headerlink,
@@ -21,57 +46,19 @@
     display: none !important;
   }
 
-  article#doc-cover {
-    position: relative;
-    color: #0b1f47;
-    background:
-      radial-gradient(circle at top right, rgba(244, 122, 32, 0.24), transparent 25%),
-      linear-gradient(160deg, rgba(20, 61, 141, 0.08), rgba(255, 255, 255, 0.96));
-  }
-
-  article#doc-cover::before {
-    content: "";
-    position: absolute;
-    inset: 1.2cm;
-    border: 2px solid rgba(244, 122, 32, 0.45);
-    border-radius: 24px;
-  }
-
-  article#doc-cover > .wrapper.upper {
-    max-height: 34vh;
-    padding-top: 2.2cm;
-  }
-
-  article#doc-cover > .wrapper.upper > .logo {
-    background-position: center;
-    background-size: contain;
-  }
-
-  article#doc-cover > .wrapper h1 {
-    margin-top: 0.6cm;
-    color: #102f6b;
-    font-size: 30pt;
-    font-weight: 800;
-    page-break-before: auto;
-  }
-
-  article#doc-cover > .wrapper h2 {
-    color: #f47a20;
-    font-size: 16pt;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
-
-  article#doc-cover > .properties {
-    padding: 0 2.4cm 1.6cm;
-    color: #102f6b;
+  body {
+    color: #111827;
+    background: #ffffff;
+    font-size: 11pt;
+    line-height: 1.55;
   }
 
   h1 {
     page-break-before: always;
-    color: #143d8d;
-    border-bottom: 3px solid rgba(244, 122, 32, 0.28);
-    padding-bottom: 0.25rem;
+    color: #111827;
+    border-bottom: 1px solid #d1d5db;
+    padding-bottom: 0.2rem;
+    margin-top: 0;
   }
 
   h1:first-of-type {
@@ -81,7 +68,7 @@
   h2,
   h3 {
     page-break-after: avoid;
-    color: #102f6b;
+    color: #111827;
   }
 
   pre,
@@ -117,31 +104,18 @@
 
   .admonition,
   details {
-    border: 1px solid rgba(20, 61, 141, 0.16);
-    border-radius: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
     box-shadow: none;
-  }
-
-  .md-button,
-  .button {
-    display: inline-block;
-    padding: 0.35rem 0.9rem;
-    border: 1px solid rgba(20, 61, 141, 0.18);
-    border-radius: 999px;
-    text-decoration: none;
-    color: #143d8d;
-    font-weight: 700;
+    background: #fafafa;
   }
 
   .handbook-hero {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    margin: 0 0 1.6rem;
-    padding: 1rem 1.1rem;
-    border: 1px solid rgba(20, 61, 141, 0.14);
-    border-radius: 18px;
-    background: #fff;
+    display: block;
+    margin: 0 0 1rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
   }
 
   .handbook-kicker {
@@ -160,20 +134,11 @@
   }
 
   .handbook-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.65rem;
-    margin: 1rem 0 0;
+    display: none;
   }
 
   .handbook-hero__panel {
-    display: grid;
-    gap: 0.6rem;
-    justify-items: center;
-    padding: 0.85rem 1rem;
-    border: 1px solid rgba(20, 61, 141, 0.12);
-    border-radius: 14px;
-    background: #f7f9fd;
+    display: none;
   }
 
   .handbook-hero__panel img {
@@ -189,23 +154,16 @@
 
   .handbook-steps,
   .handbook-quickstart {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.85rem;
+    display: block;
     margin: 1rem 0 1.4rem;
   }
 
   .handbook-step,
   .handbook-quickstart__item {
-    display: grid;
-    gap: 0.35rem;
-    padding: 0.9rem 1rem;
-    border: 1px solid rgba(20, 61, 141, 0.12);
-    border-radius: 14px;
-    background: #fff;
-    color: inherit;
-    text-decoration: none;
-    box-shadow: none;
+    display: block;
+    padding: 0.6rem 0;
+    border: 0;
+    background: transparent;
   }
 
   .handbook-step__index {
@@ -220,17 +178,24 @@
   .handbook-step h3,
   .handbook-quickstart__item strong {
     margin: 0;
-    color: #143d8d;
+    color: #111827;
   }
 
   .handbook-step p,
   .handbook-quickstart__item span {
     margin: 0;
-    color: rgba(11, 31, 71, 0.78);
+    color: #374151;
   }
 
   img {
-    max-width: 100%;
-    height: auto;
+    display: none;
+  }
+
+  .pdf-page-break {
+    page-break-before: always;
+  }
+
+  pre.mermaid {
+    display: none;
   }
 }

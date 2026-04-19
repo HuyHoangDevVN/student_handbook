@@ -3,37 +3,43 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+$PythonExe = Join-Path $PSScriptRoot "..\.venv\Scripts\python.exe"
+
+if (-not (Test-Path $PythonExe)) {
+    $PythonExe = "python"
+}
 
 if (-not (Test-Path $ConfigFile)) {
     throw "Khong tim thay file cau hinh PDF: $ConfigFile"
 }
 
-$env:ENABLE_PDF_EXPORT = "1"
+Write-Host "Generating PDF bundle ..."
+& $PythonExe ./scripts/generate_pdf_bundle.py
 
-Write-Host "Building PDF handbook with config $ConfigFile ..."
+Write-Host "Building PDF site with config $ConfigFile ..."
+& $PythonExe -m mkdocs build -f $ConfigFile
+if ($LASTEXITCODE -ne 0) {
+    throw "PDF site build failed."
+}
+
+Write-Host "Rendering PDF with Chromium ..."
 try {
-    mkdocs build --strict -f $ConfigFile
+    & $PythonExe ./scripts/render_pdf.py --site-dir site --page _generated/handbook-pdf/ --output site/pdf/student-it-handbook.pdf
 
     if ($LASTEXITCODE -ne 0) {
-        throw "PDF build failed."
+        throw "PDF render failed."
     }
 }
 catch {
     Write-Host ""
     Write-Host "PDF build failed."
-    if ($env:GITHUB_ACTIONS -eq "true") {
-        Write-Host "The PDF toolchain is available in CI, so this failure is likely caused by PDF content/config issues."
-        Write-Host "Check the build log for:"
-        Write-Host "  - broken links such as '#'"
-        Write-Host "  - HTML/CSS that works on web but not in mkdocs-with-pdf"
-        Write-Host "  - warnings promoted to errors by the PDF plugin"
-    }
-    else {
-        Write-Host "Likely cause on Windows: missing GTK/Pango libraries required by WeasyPrint."
-        Write-Host "Recommended paths:"
-        Write-Host "  1. Run the build inside WSL/Ubuntu"
-        Write-Host "  2. Use GitHub Actions workflow '.github/workflows/pdf-handbook.yml'"
-    }
+    Write-Host "Likely causes:"
+    Write-Host "  - Playwright is not installed in the Python environment"
+    Write-Host "  - Chromium browser for Playwright has not been installed yet"
+    Write-Host "Recommended fixes:"
+    Write-Host "  1. pip install -r requirements.txt"
+    Write-Host "  2. python -m playwright install chromium"
+    Write-Host "  3. rerun ./scripts/export-pdf.ps1"
     throw
 }
 
