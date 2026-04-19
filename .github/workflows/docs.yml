@@ -1,4 +1,4 @@
-name: Deploy Docs
+name: Deploy Docs To Server
 
 on:
   push:
@@ -7,11 +7,23 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: deploy-docs-to-server
+  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      SERVER_HOST: ${{ secrets.SERVER_HOST }}
+      SERVER_PORT: ${{ secrets.SERVER_PORT != '' && secrets.SERVER_PORT || '22' }}
+      SERVER_USER: ${{ secrets.SERVER_USER }}
+      SERVER_DEPLOY_PATH: ${{ secrets.SERVER_DEPLOY_PATH }}
+      HEALTHCHECK_URL: ${{ secrets.HEALTHCHECK_URL }}
+      HAS_SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY != '' && 'true' || '' }}
+      HAS_SERVER_SSH_KNOWN_HOSTS: ${{ secrets.SERVER_SSH_KNOWN_HOSTS != '' && 'true' || '' }}
 
     steps:
       - name: Checkout
@@ -27,5 +39,68 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
+      - name: Validate deploy inputs
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          require_value() {
+            local name="$1"
+            local value="$2"
+            if [[ -z "${value// }" ]]; then
+              echo "::error title=Missing required secret::${name} is required"
+              exit 1
+            fi
+          }
+
+          require_value "SERVER_HOST" "${SERVER_HOST}"
+          require_value "SERVER_USER" "${SERVER_USER}"
+          require_value "SERVER_DEPLOY_PATH" "${SERVER_DEPLOY_PATH}"
+          require_value "SERVER_SSH_KEY" "${HAS_SERVER_SSH_KEY}"
+          require_value "SERVER_SSH_KNOWN_HOSTS" "${HAS_SERVER_SSH_KNOWN_HOSTS}"
+
+      - name: Build docs
+        run: mkdocs build --strict
+
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
+
+      - name: Configure known_hosts
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.SERVER_SSH_KNOWN_HOSTS }}" | tr -d '\r' > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Create remote directory
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          ssh -p "${SERVER_PORT}" "${SERVER_USER}@${SERVER_HOST}" \
+            "mkdir -p '${SERVER_DEPLOY_PATH}'"
+
+      - name: Sync site to server
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          rsync -az --delete \
+            -e "ssh -p ${SERVER_PORT}" \
+            ./site/ \
+            "${SERVER_USER}@${SERVER_HOST}:${SERVER_DEPLOY_PATH}/"
+
+      - name: Verify deployed files
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          ssh -p "${SERVER_PORT}" "${SERVER_USER}@${SERVER_HOST}" \
+            "test -f '${SERVER_DEPLOY_PATH}/index.html'"
+
+      - name: Healthcheck
+        if: ${{ env.HEALTHCHECK_URL != '' }}
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          curl --fail --silent --show-error --location "${HEALTHCHECK_URL}"
