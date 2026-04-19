@@ -16,29 +16,9 @@ repo_url: https://github.com/<github-org>/student-it-handbook
 edit_uri: edit/main/docs/
 
 theme:
-  name: material
-  language: vi
-  favicon: assets/images/fit-dnu-full.png
-  palette:
-    - scheme: default
-      primary: blue
-      accent: orange
-    - scheme: slate
-      primary: blue
-      accent: orange
-  features:
-    - navigation.sections
-    - navigation.expand
-    - navigation.indexes
-    - content.code.copy
-    - content.code.annotate
-    - content.tabs.link
-  icon:
-    repo: fontawesome/brands/github
+  name: mkdocs
 
 plugins:
-  - search:
-      lang: vi
   - with-pdf:
       author: DNU Education Team
       copyright: "© 2026 DNU Education"

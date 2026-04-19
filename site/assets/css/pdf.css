@@ -4,6 +4,8 @@
    ============================================================================= */
 
 @media print {
+  body,
+  .content,
   .md-content {
     max-width: 100%;
   }
@@ -11,7 +13,11 @@
   .headerlink,
   .md-content__button,
   .md-top,
-  .md-source {
+  .md-source,
+  .searchbox,
+  .search-box,
+  .search,
+  .md-search {
     display: none !important;
   }
 
@@ -96,18 +102,28 @@
     word-break: break-word;
   }
 
-  .md-typeset table:not([class]) {
+  table {
     font-size: 0.75rem;
+    border-collapse: collapse;
+    width: 100%;
   }
 
-  .md-typeset .admonition,
-  .md-typeset details {
+  th,
+  td {
+    border: 1px solid rgba(20, 61, 141, 0.14);
+    padding: 0.4rem 0.5rem;
+    vertical-align: top;
+  }
+
+  .admonition,
+  details {
     border: 1px solid rgba(20, 61, 141, 0.16);
     border-radius: 0.75rem;
     box-shadow: none;
   }
 
-  .md-typeset .md-button {
+  .md-button,
+  .button {
     display: inline-block;
     padding: 0.35rem 0.9rem;
     border: 1px solid rgba(20, 61, 141, 0.18);
@@ -211,5 +227,10 @@
   .handbook-quickstart__item span {
     margin: 0;
     color: rgba(11, 31, 71, 0.78);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
