@@ -13,36 +13,34 @@ DOCS_DIR = ROOT / "docs"
 OUTPUT_FILE = DOCS_DIR / "_generated" / "handbook-pdf.md"
 
 
-def flatten_nav(nav: list) -> Iterable[str]:
+def flatten_nav(nav: list) -> Iterable[tuple[str, str]]:
     for item in nav:
         if isinstance(item, dict):
-            for value in item.values():
+            for key, value in item.items():
                 if isinstance(value, str):
-                    yield value
+                    yield key, value
                 elif isinstance(value, list):
                     yield from flatten_nav(value)
         elif isinstance(item, str):
-            yield item
+            yield Path(item).stem.replace("-", " ").title(), item
 
 
 def read_markdown_file(markdown_file: str) -> str:
     source = DOCS_DIR / markdown_file
     text = source.read_text(encoding="utf-8").strip()
-    text = sanitize_markdown(text)
-    return text
+    return sanitize_markdown(text)
 
 
 def sanitize_markdown(text: str) -> str:
-    # Keep PDF content focused on text and commands, not web-only diagrams/images.
     text = re.sub(
         r"```mermaid\s+.*?```",
-        "> So do duoc luoc bo trong ban PDF. Xem ban web neu can hinh minh hoa.",
+        "> Sơ đồ được lược bỏ trong bản PDF. Xem bản web nếu cần hình minh họa.",
         text,
         flags=re.DOTALL,
     )
     text = re.sub(
         r"!\[([^\]]*)\]\(([^)]+)\)",
-        lambda match: f"*Hinh minh hoa duoc luoc bo trong ban PDF: {match.group(1) or match.group(2)}.*",
+        lambda match: f"*Hình minh họa được lược bỏ trong bản PDF: {match.group(1) or match.group(2)}.*",
         text,
     )
     text = re.sub(r"\[([^\]]+)\]\(([^)]+\.md)\)", r"\1", text)
@@ -53,16 +51,29 @@ def sanitize_markdown(text: str) -> str:
     return text
 
 
-def build_bundle(markdown_files: list[str]) -> str:
+def build_bundle(markdown_pages: list[tuple[str, str]]) -> str:
+    toc_lines = [
+        "## Mục lục",
+        "",
+    ]
+    for index, (title, _) in enumerate(markdown_pages, start=1):
+        toc_lines.append(f"{index}. {title}")
+
     lines = [
         "# Student IT Handbook",
         "",
-        "> Ban PDF tong hop duoc tao tu toan bo handbook theo thu tu dieu huong chinh.",
-        "> File nay duoc generate tu `scripts/generate_pdf_bundle.py`. Khong sua truc tiep.",
+        "> Bản PDF tổng hợp được tạo từ toàn bộ handbook theo thứ tự điều hướng chính.",
+        "> File này được tạo tự động từ `scripts/generate_pdf_bundle.py`. Không sửa trực tiếp.",
+        "",
+        "Tài liệu này ưu tiên bản in gọn, dễ đọc và đủ nội dung cốt lõi cho việc tra cứu.",
+        "",
+        *toc_lines,
+        "",
+        '<div class="pdf-page-break"></div>',
         "",
     ]
 
-    for index, markdown_file in enumerate(markdown_files):
+    for index, (_, markdown_file) in enumerate(markdown_pages):
         if index > 0:
             lines.extend(["", '<div class="pdf-page-break"></div>', ""])
 
@@ -78,10 +89,10 @@ def main() -> None:
     config = yaml.unsafe_load(MKDOCS_CONFIG.read_text(encoding="utf-8"))
     nav = config.get("nav", [])
 
-    markdown_files: list[str] = []
+    markdown_pages: list[tuple[str, str]] = []
     seen: set[str] = set()
 
-    for page in flatten_nav(nav):
+    for title, page in flatten_nav(nav):
         if not page.endswith(".md"):
             continue
         if page in {"index.md", "_generated/handbook-pdf.md"}:
@@ -89,13 +100,13 @@ def main() -> None:
         if page in seen:
             continue
         seen.add(page)
-        markdown_files.append(page)
+        markdown_pages.append((title, page))
 
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_FILE.write_text(build_bundle(markdown_files), encoding="utf-8")
+    OUTPUT_FILE.write_text(build_bundle(markdown_pages), encoding="utf-8")
 
     print(f"Generated PDF bundle: {OUTPUT_FILE}")
-    print(f"Included {len(markdown_files)} markdown files.")
+    print(f"Included {len(markdown_pages)} markdown files.")
 
 
 if __name__ == "__main__":

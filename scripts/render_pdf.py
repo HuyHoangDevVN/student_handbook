@@ -63,7 +63,17 @@ def main() -> None:
             format="A4",
             print_background=False,
             prefer_css_page_size=True,
-            margin={"top": "0", "right": "0", "bottom": "0", "left": "0"},
+            display_header_footer=True,
+            header_template="<div></div>",
+            footer_template="""
+            <div style="width:100%; font-size:9px; color:#6b7280; padding:0 14mm; font-family:Segoe UI, Arial, sans-serif;">
+              <div style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+                <span>Student IT Handbook</span>
+                <span><span class="pageNumber"></span> / <span class="totalPages"></span></span>
+              </div>
+            </div>
+            """,
+            margin={"top": "10mm", "right": "0", "bottom": "16mm", "left": "0"},
         )
         browser.close()
 

@@ -1,6 +1,6 @@
 @page {
   size: A4;
-  margin: 16mm 14mm;
+  margin: 10mm 14mm 16mm;
 }
 
 html {
@@ -17,6 +17,7 @@ body {
 
 .pdf-document {
   max-width: none;
+  padding: 0 14mm;
 }
 
 *,
@@ -41,11 +42,6 @@ h1 {
   padding-bottom: 0.3rem;
   border-bottom: 1px solid #d1d5db;
   font-size: 1.8rem;
-  break-before: page;
-}
-
-h1:first-of-type {
-  break-before: auto;
 }
 
 h2 {
@@ -213,4 +209,8 @@ svg,
 
 .pdf-page-break {
   break-before: page;
+}
+
+.pdf-document > h1:first-of-type {
+  margin-top: 0.6rem;
 }
