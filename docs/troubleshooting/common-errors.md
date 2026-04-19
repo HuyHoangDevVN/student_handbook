@@ -1,115 +1,124 @@
-﻿# Lỗi thường gặp & Cách xử lý
+# Lỗi thường gặp & Cách xử lý
+
+Trang này không chỉ liệt kê error message. Mục tiêu của nó là giúp bạn debug có hệ thống và tránh thao tác phá hủy khi chưa hiểu vấn đề.
+
+---
 
 ## Mục tiêu
 
-Trang này tổng hợp các lỗi phổ biến nhất mà sinh viên gặp khi thực tập, kèm nguyên nhân và cách xử lý nhanh.
+Sau trang này, bạn cần:
+
+- biết đọc lỗi theo nhóm vấn đề
+- biết bắt đầu debug từ đâu
+- biết lệnh nào an toàn, lệnh nào cần thận trọng
+- biết khi nào cần hỏi mentor/teammate
+
+---
+
+## Quy tắc debug chung
+
+1. Đọc kỹ error message.
+2. Xác định đang lỗi gì: Git, Docker, DB, network, Python, CI.
+3. Reproduce bằng bước ngắn nhất có thể.
+4. Kiểm tra log, process, port, env.
+5. Chỉ chạy lệnh phá hủy khi đã biết tại sao mình cần chạy nó.
+
+---
+
+## Nhãn mức độ lệnh
+
+### An toàn
+
+- đọc log
+- xem process
+- chạy lệnh kiểm tra kết nối
+- chạy `SELECT 1;`
+
+### Cần thận trọng
+
+- `git rebase`
+- `docker compose down`
+- `docker compose down -v`
+- xóa cache dependency
+
+### Phá hủy / cảnh báo cao
+
+- `git reset --hard`
+- `git checkout -- .`
+- `docker system prune -a --volumes`
+- xóa volume/data mà chưa backup
+
+Nếu bạn chưa hiểu tác dụng, dừng lại và hỏi mentor/teammate.
 
 ---
 
 ## Git
 
-| #   | Lỗi                                              | Nguyên nhân                      | Cách sửa                                                                               |
-| --- | ------------------------------------------------ | -------------------------------- | -------------------------------------------------------------------------------------- |
-| 1   | `fatal: not a git repository`                    | Chưa `git init` hoặc sai thư mục | `cd` vào đúng thư mục chứa `.git`                                                      |
-| 2   | `error: failed to push some refs`                | Remote có commit bạn chưa pull   | `git pull --rebase origin main` rồi `git push`                                         |
-| 3   | `CONFLICT (content): Merge conflict in file.txt` | 2 người sửa cùng vị trí          | Mở file → sửa conflict thủ công → `git add` → `git commit`                             |
-| 4   | `Permission denied (publickey)`                  | SSH key chưa setup               | [Tạo SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) |
-| 5   | `detached HEAD state`                            | `git checkout` vào commit hash   | `git switch main` để quay lại branch                                                   |
-| 6   | Commit nhầm file lớn (>100MB)                    | File vượt giới hạn GitHub        | `git reset HEAD~1`, thêm vào `.gitignore`                                              |
-| 7   | Commit nhầm `.env` / secrets                     | Quên `.gitignore`                | Rotate secrets, dùng `git filter-branch` để xoá khỏi history                           |
+| Lỗi | Nguyên nhân thường gặp | Cách xử lý an toàn |
+| --- | --- | --- |
+| `fatal: not a git repository` | Sai thư mục | `cd` đúng repo, kiểm tra có `.git` không |
+| `failed to push some refs` | Remote mới hơn local | `git pull --rebase origin main`, đọc conflict nếu có |
+| `CONFLICT` khi merge/rebase | Hai thay đổi cùng chạm một chỗ | Đọc file conflict, sửa thủ công, commit tiếp |
+| `Permission denied (publickey)` | SSH key chưa setup | Kiểm tra auth với GitHub |
 
-### Script khôi phục Git
+### Guardrail
 
-```bash
-# Undo commit gần nhất (giữ code)
-git reset --soft HEAD~1
-
-# Undo tất cả thay đổi chưa commit (CẨN THẬN!)
-git checkout -- .
-
-# Xem lịch sử tất cả thao tác (kể cả đã reset)
-git reflog
-
-# Quay lại trạng thái bất kỳ
-git reset --hard HEAD@{3}
-```
+- Không dùng `git checkout -- .` để “cho nhanh” nếu bạn chưa chắc sẽ mất gì.
+- Không dùng `git reset --hard` trên branch có thay đổi chưa backup.
+- Trước lệnh rewrite history, chạy `git status` và `git log --oneline -5`.
 
 ---
 
 ## Docker
 
-| #   | Lỗi                                   | Nguyên nhân                      | Cách sửa                                       |
-| --- | ------------------------------------- | -------------------------------- | ---------------------------------------------- |
-| 1   | `Cannot connect to the Docker daemon` | Docker Desktop chưa chạy         | Mở Docker Desktop                              |
-| 2   | `port is already allocated`           | Port đã bị chiếm                 | `docker ps` → stop container cũ, hoặc đổi port |
-| 3   | `no space left on device`             | Docker dùng hết disk             | `docker system prune -a --volumes`             |
-| 4   | Container exit code 137               | Out of memory (OOM killed)       | Tăng RAM cho Docker Desktop                    |
-| 5   | Container exit ngay lập tức           | CMD/ENTRYPOINT lỗi               | `docker logs <name>` để xem lỗi                |
-| 6   | `exec format error`                   | Image build cho sai architecture | Thêm `--platform linux/amd64`                  |
-| 7   | Volume permission denied              | Container user khác host user    | `chown` hoặc dùng `user:` trong compose        |
+| Lỗi | Nguyên nhân thường gặp | Cách xử lý an toàn |
+| --- | --- | --- |
+| `Cannot connect to the Docker daemon` | Docker Desktop/service chưa chạy | Mở Docker Desktop hoặc start service |
+| `port is already allocated` | Port đang bị chiếm | `docker ps`, kiểm tra process đang dùng port |
+| Container exit ngay | CMD/ENTRYPOINT lỗi | `docker logs <name>` |
+| `depends on ... not healthy` | Service phụ thuộc chưa ready | kiểm tra healthcheck và logs của DB/cache |
 
-### Script dọn dẹp Docker
+### Guardrail
 
-```bash
-# Dọn tất cả (containers dừng, images orphan, volumes không dùng)
-docker system prune -a --volumes
-
-# Xem disk usage
-docker system df
-
-# Kill tất cả container đang chạy
-docker stop $(docker ps -q)
-
-# Xoá tất cả container
-docker rm $(docker ps -aq)
-```
+- `docker compose down -v` sẽ xóa volume và có thể mất data local.
+- `docker system prune -a --volumes` chỉ dùng khi bạn hiểu rõ mình đang mất cái gì.
+- Trước khi dọn dẹp Docker, ưu tiên `docker system df` để biết cái gì đang tốn disk.
 
 ---
 
-## Python
+## Python / Environment
 
-| #   | Lỗi                                                | Nguyên nhân                     | Cách sửa                                          |
-| --- | -------------------------------------------------- | ------------------------------- | ------------------------------------------------- |
-| 1   | `ModuleNotFoundError: No module named 'xxx'`       | Package chưa cài trong env đúng | `which python` → kiểm tra env → `pip install xxx` |
-| 2   | `command not found: python`                        | Python chưa cài hoặc alias sai  | Dùng `python3`, hoặc cài qua pyenv/conda          |
-| 3   | `pip install` bị permission denied                 | Cài global trên Linux           | Kích hoạt venv trước, hoặc dùng `--user`          |
-| 4   | `SyntaxError: invalid syntax`                      | Sai Python version (2 vs 3)     | Đảm bảo dùng Python 3.9+                          |
-| 5   | `UnicodeDecodeError`                               | File encoding không phải UTF-8  | `open(file, encoding='utf-8')`                    |
-| 6   | `IndentationError`                                 | Trộn tab và space               | Cấu hình editor dùng 4 spaces                     |
-| 7   | `RecursionError: maximum recursion depth exceeded` | Đệ quy vô hạn                   | Kiểm tra base case                                |
+| Lỗi | Nguyên nhân thường gặp | Cách xử lý |
+| --- | --- | --- |
+| `ModuleNotFoundError` | Sai env hoặc thiếu package | kiểm tra env đang active, cài đúng package |
+| `command not found: python` | Python chưa cài / alias sai | thử `python3`, kiểm tra PATH |
+| `pip install` bị permission denied | Đang cài global | dùng virtualenv |
+| `UnicodeDecodeError` | Encoding file không đúng | mở file với UTF-8 và kiểm tra encoding |
 
-### Debug nhanh Python
+### Lệnh kiểm tra hữu ích
 
 ```bash
-# Kiểm tra Python nào đang dùng
-which python
 python --version
-
-# Kiểm tra package đã cài chưa
-pip list | grep flask
-
-# Kiểm tra env đang dùng
-echo $VIRTUAL_ENV     # venv
-echo $CONDA_DEFAULT_ENV  # conda
+pip list
+echo $VIRTUAL_ENV
+echo $CONDA_DEFAULT_ENV
 ```
 
 ---
 
 ## Database (PostgreSQL)
 
-| #   | Lỗi                                              | Nguyên nhân                     | Cách sửa                                                     |
-| --- | ------------------------------------------------ | ------------------------------- | ------------------------------------------------------------ |
-| 1   | `Connection refused`                             | PostgreSQL chưa chạy            | `docker start postgres-dev`                                  |
-| 2   | `FATAL: password authentication failed`          | Sai password                    | Kiểm tra `POSTGRES_PASSWORD` trong docker env                |
-| 3   | `relation "table" does not exist`                | Chưa tạo bảng                   | Chạy migration hoặc `CREATE TABLE`                           |
-| 4   | `duplicate key value violates unique constraint` | Insert data trùng unique column | Kiểm tra data, dùng `ON CONFLICT`                            |
-| 5   | `too many connections`                           | Connection pool cạn             | Kiểm tra code không close connection, tăng `max_connections` |
+| Lỗi | Nguyên nhân thường gặp | Cách xử lý |
+| --- | --- | --- |
+| `Connection refused` | DB chưa lên | kiểm tra container/process database |
+| `password authentication failed` | Sai user/password/env | đối chiếu env và connection string |
+| `relation does not exist` | Chưa tạo bảng hoặc chưa load schema | chạy schema/migration |
+| `duplicate key` | Dữ liệu trùng unique constraint | kiểm tra data trước khi insert |
+
+### Lệnh verify cơ bản
 
 ```bash
-# Kiểm tra PostgreSQL đang chạy
-docker ps | grep postgres
-
-# Kết nối test
+docker ps
 docker exec -it postgres-dev psql -U dev -d internhub -c "SELECT 1;"
 ```
 
@@ -117,67 +126,56 @@ docker exec -it postgres-dev psql -U dev -d internhub -c "SELECT 1;"
 
 ## Network / API
 
-| #   | Lỗi                                   | Nguyên nhân                           | Cách sửa                                           |
-| --- | ------------------------------------- | ------------------------------------- | -------------------------------------------------- |
-| 1   | `ECONNREFUSED` / `Connection refused` | Server chưa chạy hoặc sai port        | Kiểm tra server, kiểm tra port                     |
-| 2   | `CORS error` (browser)                | Server chưa cho phép origin           | Thêm CORS middleware                               |
-| 3   | `EADDRINUSE: address already in use`  | Port đã bị chiếm                      | `lsof -i :PORT` → `kill PID`, hoặc đổi port        |
-| 4   | `ETIMEDOUT`                           | Server quá chậm hoặc không reach được | Kiểm tra network, firewall, DNS                    |
-| 5   | `SSL certificate problem`             | Self-signed cert hoặc cert expired    | Update cert, hoặc tạm tắt SSL verify (chỉ khi dev) |
+| Lỗi | Nguyên nhân thường gặp | Cách xử lý |
+| --- | --- | --- |
+| `ECONNREFUSED` | App chưa chạy hoặc sai port | kiểm tra service, process, port |
+| `404 Not Found` | Sai endpoint | đối chiếu path và method |
+| `401 Unauthorized` | Thiếu token / token sai | kiểm tra header |
+| `ETIMEDOUT` | Service chậm hoặc không reach được | kiểm tra network, DNS, firewall |
+
+### Lệnh verify cơ bản
 
 ```bash
-# Kiểm tra port đang mở
-lsof -i :3000          # macOS/Linux
-netstat -ano | findstr :3000  # Windows
-
-# Test connectivity
-curl -v http://localhost:3000/api/health
-
-# DNS check
-nslookup api.example.com
+curl -v http://localhost:3000/health
+curl -v http://localhost:3000/api/users
 ```
 
 ---
 
 ## WSL / Windows
 
-| #   | Lỗi                                    | Nguyên nhân                      | Cách sửa                                    |
-| --- | -------------------------------------- | -------------------------------- | ------------------------------------------- |
-| 1   | WSL rất chậm                           | Project nằm ở `/mnt/c/`          | Chuyển project sang `/home/user/` trong WSL |
-| 2   | Line ending warning Git                | CRLF vs LF                       | `git config --global core.autocrlf input`   |
-| 3   | Docker không chạy trong WSL            | Chưa bật WSL integration         | Docker Desktop → Settings → WSL Integration |
-| 4   | `chmod` không hoạt động trên `/mnt/c/` | Windows filesystem không support | Làm việc trong WSL filesystem (`/home/`)    |
+| Lỗi | Nguyên nhân thường gặp | Cách xử lý |
+| --- | --- | --- |
+| WSL rất chậm | Project nằm trong `/mnt/c/` | đưa project vào filesystem của WSL |
+| Docker không chạy trong WSL | Chưa bật integration | bật WSL integration trong Docker Desktop |
+| `chmod` không có tác dụng | Làm việc trên filesystem Windows | thao tác trong WSL filesystem |
 
 ---
 
-## Quy trình debug chung
+## Quy trình debug gợi ý
 
-```mermaid
-graph TB
-    A[Gặp lỗi] --> B{Đọc error message}
-    B --> C[Google / Stack Overflow]
-    B --> D[Kiểm tra logs]
-    D --> E{Tìm được nguyên nhân?}
-    C --> E
-    E -->|Có| F[Fix & Test]
-    E -->|Không| G[Hỏi đồng nghiệp / mentor]
-    F --> H{Fix thành công?}
-    H -->|Có| I[Ghi chú lại để lần sau]
-    H -->|Không| G
+```text
+Gặp lỗi
+-> đọc message
+-> xác định nhóm vấn đề
+-> reproduce
+-> xem log / port / process / env
+-> fix
+-> verify lại
+-> ghi chú
 ```
 
-**Tips debug:**
+### Khi nào cần hỏi người khác
 
-1. **Đọc kỹ error message** – 80% thông tin ở dòng cuối cùng.
-2. **Copy error message** → tìm Google/Stack Overflow.
-3. **Kiểm tra logs** – `docker logs`, server log, browser console.
-4. **Reproduce** – viết lại bước gây lỗi.
-5. **Isolate** – comment bớt code để tìm dòng gây lỗi.
-6. **Ghi chú** – viết lại cách fix để lần sau không mất thời gian.
+- Bạn đã reproduce được nhưng không xác định được nguyên nhân
+- Bạn sắp dùng lệnh phá hủy
+- Bạn nghĩ lỗi đến từ env chia sẻ, CI, staging hoặc production
+- Bạn không chắc done criteria của fix là gì
 
 ---
 
-## Tài liệu tham khảo
+## Bước tiếp theo
 
-- [Stack Overflow](https://stackoverflow.com/)
-- [DevDocs](https://devdocs.io/) – Documentation cho mọi ngôn ngữ
+- Đọc [Docker Compose](../containers/docker-compose.md) nếu bạn thường gặp lỗi stack local
+- Đọc [GitHub Workflow](../vcs/github-workflow.md) nếu vấn đề nằm ở branch/PR/review
+- Đọc [Logging & Monitoring](../devops/logging-monitoring.md) nếu muốn chuyển từ debug local sang tư duy vận hành

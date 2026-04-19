@@ -25,13 +25,16 @@ Sau bài này, bạn sẽ:
 | `ERROR` | Lỗi nhưng app vẫn chạy                | `ERROR: Failed to send email to user@test.com` |
 | `FATAL` | Lỗi nghiêm trọng, app phải dừng       | `FATAL: Database connection failed`            |
 
-!!! warning "Quy tắc" - **Production**: chỉ bật `INFO` trở lên. - **Development**: bật `DEBUG`. - **KHÔNG** log sensitive data (password, token, PII).
+!!! warning "Quy tắc"
+    - **Production**: chỉ bật `INFO` trở lên.
+    - **Development**: bật `DEBUG`.
+    - **KHÔNG** log sensitive data như password, token, hoặc PII.
 
 ---
 
 ## Structured Logging
 
-### âŒ Log không tốt
+### Log không tốt
 
 ```
 Error occurred while processing request
@@ -39,7 +42,7 @@ Something went wrong
 User login failed
 ```
 
-### ✅ Log có cấu trúc
+### Log có cấu trúc
 
 ```json
 {
@@ -111,7 +114,7 @@ docker compose logs -f web
 graph LR
     A[Your App] -->|metrics endpoint| B[Prometheus]
     B -->|query| C[Grafana]
-    C -->|dashboard| D[You đŸ‘€]
+    C -->|dashboard| D[You]
 ```
 
 | Tool              | Vai trò                                        |
@@ -185,7 +188,7 @@ docker compose -f docker-compose.monitoring.yml up -d
 
 ## Metrics cơ bản cần theo dõi
 
-| Metric             | Ă nghĩa                        |
+| Metric             | Ý nghĩa                        |
 | ------------------ | ------------------------------ |
 | **Request rate**   | Số request / giây              |
 | **Error rate**     | % request lỗi (4xx, 5xx)       |

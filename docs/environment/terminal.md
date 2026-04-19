@@ -1,7 +1,6 @@
 # Terminal & Shell cơ bản
 
-Trang này giờ đóng vai trò mục lục cho cụm bài về terminal. Nội dung chi tiết đã được tách nhỏ
-để học theo từng kỹ năng thay vì đọc một bài quá dài.
+Trang này đóng vai trò mục lục cho cụm bài về terminal. Nội dung chi tiết đã được tách nhỏ để bạn học theo từng kỹ năng thay vì phải đọc một bài quá dài.
 
 ---
 
@@ -26,9 +25,9 @@ Sau cụm bài này, bạn có thể:
 ## Lộ trình học
 
 1. [Điều hướng Terminal](terminal-navigation.md)
-2. [Quản lý File Trong Terminal](terminal-files.md)
-3. [Pipe Và Redirect](terminal-pipes-redirects.md)
-4. [Tìm Kiếm Và Biến Môi Trường](terminal-search-env.md)
+2. [Quản lý File trong Terminal](terminal-files.md)
+3. [Pipe và Redirect](terminal-pipes-redirects.md)
+4. [Tìm kiếm và Biến môi trường](terminal-search-env.md)
 
 ---
 
@@ -36,7 +35,7 @@ Sau cụm bài này, bạn có thể:
 
 - Học theo đúng thứ tự từ trên xuống dưới
 - Sau mỗi bài, mở terminal và tự gõ lại lệnh thay vì chỉ đọc
-- Nếu dùng Windows, ưu tiên Windows Terminal + WSL để kinh nghiệm sát với môi trường đi làm
+- Nếu dùng Windows, ưu tiên Windows Terminal + WSL để trải nghiệm sát với môi trường đi làm
 
 ---
 

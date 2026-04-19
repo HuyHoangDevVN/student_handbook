@@ -1,0 +1,92 @@
+name: Docs Quality
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build docs
+        run: mkdocs build --strict
+
+      - name: Markdown lint
+        uses: DavidAnson/markdownlint-cli2-action@v17
+        with:
+          config: .markdownlint.jsonc
+          globs: |
+            README.md
+            CONTRIBUTING.md
+            docs/**/*.md
+
+      - name: Check local markdown links
+        run: |
+          python - <<'PY'
+          import re
+          from pathlib import Path
+
+          root = Path(".").resolve()
+          files = [root / "README.md", root / "CONTRIBUTING.md", *sorted((root / "docs").rglob("*.md"))]
+          markdown_link = re.compile(r'\[[^\]]+\]\(([^)]+)\)')
+          html_link = re.compile(r'''(?:href|src)=["']([^"']+)["']''')
+
+          errors = []
+
+          def should_skip(target: str) -> bool:
+              return (
+                  not target
+                  or target.startswith(("http://", "https://", "mailto:", "#", "tel:"))
+                  or target.startswith("data:")
+              )
+
+          def candidate_paths(file: Path, target: str):
+              base = (file.parent / target).resolve()
+              yield base
+
+              if target.endswith("/"):
+                  trimmed = target.rstrip("/")
+                  yield (file.parent / f"{trimmed}.md").resolve()
+                  yield (file.parent / trimmed / "index.md").resolve()
+              elif not Path(target).suffix:
+                  yield (file.parent / f"{target}.md").resolve()
+                  yield (file.parent / target / "index.md").resolve()
+
+          for file in files:
+              text = file.read_text(encoding="utf-8")
+              targets = markdown_link.findall(text) + html_link.findall(text)
+              for raw in targets:
+                  target = raw.strip()
+                  if should_skip(target):
+                      continue
+                  target = target.split("#", 1)[0]
+                  if not target:
+                      continue
+                  if not any(path.exists() for path in candidate_paths(file, target)):
+                      errors.append(f"{file.relative_to(root)} -> {raw}")
+
+          if errors:
+              print("Broken local links:")
+              for item in errors:
+                  print(item)
+              raise SystemExit(1)
+          PY

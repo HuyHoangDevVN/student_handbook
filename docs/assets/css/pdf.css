@@ -8,8 +8,57 @@
     max-width: 100%;
   }
 
+  article#doc-cover {
+    position: relative;
+    color: #0b1f47;
+    background:
+      radial-gradient(circle at top right, rgba(244, 122, 32, 0.24), transparent 25%),
+      linear-gradient(160deg, rgba(20, 61, 141, 0.08), rgba(255, 255, 255, 0.96));
+  }
+
+  article#doc-cover::before {
+    content: "";
+    position: absolute;
+    inset: 1.2cm;
+    border: 2px solid rgba(244, 122, 32, 0.45);
+    border-radius: 24px;
+  }
+
+  article#doc-cover > .wrapper.upper {
+    max-height: 34vh;
+    padding-top: 2.2cm;
+  }
+
+  article#doc-cover > .wrapper.upper > .logo {
+    background-position: center;
+    background-size: contain;
+  }
+
+  article#doc-cover > .wrapper h1 {
+    margin-top: 0.6cm;
+    color: #102f6b;
+    font-size: 30pt;
+    font-weight: 800;
+    page-break-before: auto;
+  }
+
+  article#doc-cover > .wrapper h2 {
+    color: #f47a20;
+    font-size: 16pt;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  article#doc-cover > .properties {
+    padding: 0 2.4cm 1.6cm;
+    color: #102f6b;
+  }
+
   h1 {
     page-break-before: always;
+    color: #143d8d;
+    border-bottom: 3px solid rgba(244, 122, 32, 0.28);
+    padding-bottom: 0.25rem;
   }
 
   h1:first-of-type {
@@ -21,10 +70,16 @@
     page-break-after: avoid;
   }
 
+  h2 {
+    color: #102f6b;
+  }
+
   pre,
   table,
   img,
-  blockquote {
+  blockquote,
+  .handbook-card,
+  .handbook-timeline li {
     page-break-inside: avoid;
   }
 
@@ -36,5 +91,27 @@
 
   .md-typeset table:not([class]) {
     font-size: 0.75rem;
+  }
+
+  .handbook-hero {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 18px;
+  }
+
+  .handbook-hero__media img {
+    width: 240px;
+  }
+
+  .handbook-grid,
+  .handbook-highlights {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .handbook-card,
+  .handbook-highlights li,
+  .handbook-timeline li {
+    box-shadow: none;
   }
 }

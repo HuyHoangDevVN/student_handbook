@@ -1,7 +1,6 @@
 # CI/CD - GitHub Actions
 
-Trang này là mục lục cho cụm bài CI/CD. Nội dung đã được tách ra để người học đi từ khái niệm và
-quy tắc team, sang implementation cho Node/Python, rồi đến release và debugging.
+Trang này là mục lục cho cụm bài CI/CD. Nội dung đã được tách ra để người học đi từ khái niệm và quy tắc team, sang implementation cho Node/Python, rồi đến release và debugging.
 
 ---
 
@@ -26,8 +25,8 @@ Sau cụm bài này, bạn có thể:
 ## Lộ trình học
 
 1. [CI/CD Fundamentals](ci-basics.md)
-2. [CI Cho Node.js Và Python](ci-node-python.md)
-3. [Secrets, Release Và Debug Workflow](ci-release-debug.md)
+2. [CI cho Node.js và Python](ci-node-python.md)
+3. [Secrets, Release và Debug Workflow](ci-release-debug.md)
 
 ---
 
@@ -41,6 +40,6 @@ Sau cụm bài này, bạn có thể:
 
 ## Tài liệu liên quan
 
-- [Deployment co ban](deployment-basics.md)
-- [Bao mat co ban](security-basics.md)
+- [Deployment cơ bản](deployment-basics.md)
+- [Bảo mật cơ bản](security-basics.md)
 - [GitHub Workflow](../vcs/github-workflow.md)

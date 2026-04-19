@@ -1,7 +1,6 @@
 # Git cơ bản
 
-Trang này là điểm vào cho lộ trình Git. Nội dung đã được tách theo 3 nhóm kỹ năng: nền tảng,
-collaboration, và recovery.
+Trang này là điểm vào cho lộ trình Git. Nội dung đã được tách theo 3 nhóm kỹ năng: nền tảng, collaboration và recovery.
 
 ---
 
@@ -26,8 +25,8 @@ Sau cụm bài này, bạn có thể:
 ## Lộ trình học
 
 1. [Git Fundamentals](git-fundamentals.md)
-2. [Branching, Merge Và Rebase](git-branching.md)
-3. [Undo Và Recovery Trong Git](git-recovery.md)
+2. [Branching, Merge và Rebase](git-branching.md)
+3. [Undo và Recovery trong Git](git-recovery.md)
 
 ---
 
@@ -43,4 +42,4 @@ Sau cụm bài này, bạn có thể:
 
 - [GitHub Workflow](github-workflow.md)
 - [Git Cheat Sheet](../cheatsheets/git.md)
-- [Loi thuong gap](../troubleshooting/common-errors.md)
+- [Lỗi thường gặp](../troubleshooting/common-errors.md)

@@ -1,33 +1,112 @@
-# 📘 Student IT Handbook
+# Student IT Handbook
 
-> Tài liệu hướng dẫn thực hành IT dành cho sinh viên thực tập và đi làm.
-> Xây dựng bằng [MkDocs](https://www.mkdocs.org/) + [Material theme](https://squidfunk.github.io/mkdocs-material/).
+Handbook này được xây dựng để giúp sinh viên chuẩn bị thực tập, intern, fresher developer và người mới vào dự án hiểu được cách tiếp cận môi trường làm việc thật.
 
----
+Nó không cố gắng dạy mọi thứ. Mục tiêu của handbook là:
 
-## Mục lục
+- hệ thống hóa những gì sinh viên cần biết trước khi vào team
+- giải thích workflow làm việc phổ biến trong dự án backend/fullstack
+- cung cấp checklist, cheatsheet và runbook có thể dùng ngay
+- giữ một case study xuyên suốt để việc học không bị rời rạc: **InternHub API**
 
-- [Yêu cầu hệ thống](#yêu-cầu-hệ-thống)
-- [Cài đặt & Build local](#cài-đặt--build-local)
-- [Deploy GitHub Pages](#deploy-github-pages)
-- [Export PDF offline](#export-pdf-offline)
-- [Style Guide – Quy ước viết docs](#style-guide--quy-ước-viết-docs)
-- [Đóng góp](#đóng-góp)
+## Handbook này dành cho ai
 
----
+- Sinh viên sắp đi thực tập nhưng chưa từng làm việc trong repo thật.
+- Người đã biết code nhưng chưa quen workflow Git, PR, review, Docker, CI/CD.
+- Người muốn có một tài liệu tham khảo để tra cứu nhanh trong giai đoạn đầu vào dự án.
 
-## Yêu cầu hệ thống
+Handbook này **không** thay thế mentor, review thực tế hay tài liệu nội bộ của từng công ty. Nó đóng vai trò một tài liệu định hướng và hỗ trợ tiếp cận.
 
-| Công cụ         | Phiên bản tối thiểu | Ghi chú                |
-| --------------- | ------------------- | ---------------------- |
-| Python          | 3.9+                | Khuyên dùng 3.11+      |
-| pip             | 23+                 | Đi kèm Python          |
-| Git             | 2.30+               |                        |
-| WeasyPrint deps | —                   | Chỉ cần khi export PDF |
+## Handbook giúp gì
 
----
+Sau khi đi hết handbook, người học cần nắm được:
 
-## Cài đặt & Build local
+- cần chuẩn bị gì trước khi vào internship hoặc dự án mới
+- cách setup môi trường local ở mức tối thiểu và tự xác minh
+- cách đọc repo, tạo branch, mở Pull Request và phản hồi review
+- cách làm việc với PostgreSQL, HTTP API, Docker và Docker Compose
+- cách đọc log, xử lý lỗi cơ bản, và hiểu tư duy deploy, monitoring, security
+
+## Bắt đầu từ đâu
+
+Nếu bạn chưa biết đọc phần nào trước, đi theo thứ tự này:
+
+1. [Start Here](docs/getting-started/start-here.md)
+2. [Quickstart](docs/getting-started/quickstart.md)
+3. [Checklist sinh viên mới](docs/getting-started/checklist.md)
+4. [Sample Project: InternHub API](docs/getting-started/sample-project.md)
+5. [Terminal & Shell](docs/environment/terminal.md)
+6. [Git cơ bản](docs/vcs/git-basics.md)
+7. [GitHub Workflow](docs/vcs/github-workflow.md)
+8. [SQL & PostgreSQL](docs/databases/sql-postgres.md)
+9. [HTTP & REST API](docs/backend/http-rest.md)
+10. [API Testing](docs/backend/api-testing.md)
+11. [Docker cơ bản](docs/containers/docker.md)
+12. [Docker Compose](docs/containers/docker-compose.md)
+13. [CI/CD - GitHub Actions](docs/devops/cicd-github-actions.md)
+14. [Deployment cơ bản](docs/devops/deployment-basics.md)
+15. [Logging & Monitoring](docs/devops/logging-monitoring.md)
+16. [Bảo mật cơ bản](docs/devops/security-basics.md)
+17. [Lỗi thường gặp](docs/troubleshooting/common-errors.md)
+
+## Đọc handbook theo tình huống
+
+### Trước khi đi thực tập
+
+- [Start Here](docs/getting-started/start-here.md)
+- [Checklist sinh viên mới](docs/getting-started/checklist.md)
+- [Quickstart](docs/getting-started/quickstart.md)
+
+### Khi vừa vào team hoặc repo mới
+
+- [Sample Project: InternHub API](docs/getting-started/sample-project.md)
+- [Terminal & Shell](docs/environment/terminal.md)
+- [Git cơ bản](docs/vcs/git-basics.md)
+- [GitHub Workflow](docs/vcs/github-workflow.md)
+
+### Khi bắt đầu nhận task backend
+
+- [SQL & PostgreSQL](docs/databases/sql-postgres.md)
+- [HTTP & REST API](docs/backend/http-rest.md)
+- [API Testing](docs/backend/api-testing.md)
+- [Docker Compose](docs/containers/docker-compose.md)
+
+### Khi cần làm việc hiệu quả hơn
+
+- [Deployment cơ bản](docs/devops/deployment-basics.md)
+- [Logging & Monitoring](docs/devops/logging-monitoring.md)
+- [Bảo mật cơ bản](docs/devops/security-basics.md)
+- [Lỗi thường gặp](docs/troubleshooting/common-errors.md)
+- các mục trong `Cheat Sheets`
+
+## InternHub API dùng để làm gì
+
+Handbook này được xây quanh `InternHub API`, một case study mô phỏng cho một backend service quản lý user, post, comment và tag trong một team nội bộ. Case study này được dùng để:
+
+- giữ cho ví dụ SQL, API, Docker, CI/CD và deploy nối tiếp với nhau
+- giúp người học thấy một workflow liền mạch thay vì mỗi chương một ví dụ riêng
+- tạo bối cảnh để hiểu tại sao cần logs, monitoring, rollback và review workflow
+
+Tài liệu liên quan:
+
+- [Sample Project: InternHub API](docs/getting-started/sample-project.md)
+- `resources/database/sample-schema.sql`
+- `resources/docker/postgres-compose.yml`
+- `resources/docker/redis-compose.yml`
+- `resources/api/postman-collection.json`
+
+## Cấu trúc chính
+
+```text
+docs/           Nội dung handbook
+resources/      Schema SQL, docker compose, Postman collection
+mkdocs.yml      Cấu hình web docs
+mkdocs-pdf.yml  Cấu hình xuất PDF
+README.md       Entry point cho người học
+CONTRIBUTING.md Hướng dẫn cho contributor/maintainer
+```
+
+## Chạy docs local
 
 ### 1. Clone repo
 
@@ -36,19 +115,15 @@ git clone https://github.com/<github-org>/student-it-handbook.git
 cd student-it-handbook
 ```
 
-Thay `<github-org>` bằng GitHub organization hoặc username thực tế.
-
-### 2. Tạo virtual environment (khuyên dùng)
+### 2. Tạo virtual environment
 
 ```bash
-# Tạo venv
 python -m venv .venv
 
-# Kích hoạt
 # Linux / macOS
 source .venv/bin/activate
 
-# Windows (PowerShell)
+# Windows PowerShell
 .\.venv\Scripts\Activate.ps1
 ```
 
@@ -58,234 +133,37 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 4. Chạy dev server
+### 4. Chạy local
 
 ```bash
 mkdocs serve
 ```
 
-Truy cập [http://127.0.0.1:8000](http://127.0.0.1:8000) để xem docs.
+Mở `http://127.0.0.1:8000`.
 
 ### 5. Build static site
 
 ```bash
-mkdocs build
+mkdocs build --strict
 ```
 
-Output nằm trong folder `site/`.
-
----
-
-## Deploy GitHub Pages
-
-### Cách 1 – Lệnh thủ công
+## Xuất PDF
 
 ```bash
-mkdocs gh-deploy --force
-```
-
-Lệnh này sẽ build và push vào branch `gh-pages`.
-
-### Cách 2 – GitHub Actions (tự động)
-
-Tạo file `.github/workflows/docs.yml`:
-
-```yaml
-name: Deploy Docs
-
-on:
-  push:
-    branches: [main]
-
-permissions:
-  contents: write
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - run: pip install -r requirements.txt
-      - run: mkdocs gh-deploy --force
-```
-
-Sau khi push, vào **Settings → Pages → Source: Deploy from a branch → `gh-pages`**.
-
----
-
-## Export PDF offline
-
-Handbook dùng cấu hình riêng `mkdocs-pdf.yml` để export PDF. Cách này giữ cho
-luồng `mkdocs serve` và `mkdocs build` hằng ngày vẫn nhẹ, đồng thời tách riêng
-phần phụ thuộc native của WeasyPrint.
-
-### Cài đặt WeasyPrint (dependency của plugin)
-
-=== "Ubuntu / Debian"
-
-```bash
-sudo apt install -y libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 \
-  libffi-dev libcairo2 libgirepository1.0-dev
-```
-
-=== "macOS"
-
-```bash
-brew install pango gdk-pixbuf libffi cairo gobject-introspection
-```
-
-=== "Windows"
-
-```
-# Cách dễ nhất: dùng WSL (Ubuntu) rồi làm theo bước Ubuntu.
-# Hoặc cài GTK3 runtime: https://github.com/nickvdyck/weasyprint-win
-```
-
-### Build PDF
-
-```bash
-# Linux / macOS
 ENABLE_PDF_EXPORT=1 mkdocs build --strict -f mkdocs-pdf.yml
-
-# Windows (PowerShell)
-./scripts/export-pdf.ps1
 ```
 
-File PDF sẽ được tạo tại: **`site/pdf/student-it-handbook.pdf`**
+Trên Windows, nếu thiếu GTK/Pango cho WeasyPrint, dùng:
 
-> **Tip:** Nếu build PDF trên Windows bị lỗi GTK/Pango, hãy dùng WSL/Ubuntu
-> hoặc GitHub Actions workflow `pdf-handbook.yml` để lấy artifact PDF.
-
----
-
-## Style Guide – Quy ước viết docs
-
-### 1. Tiêu đề
-
-- H1 (`#`) – Chỉ **1 lần** đầu mỗi trang, là tên chủ đề.
-- H2 (`##`) – Các phần chính.
-- H3 (`###`) – Phần con.
-- **Không dùng** H4 trở xuống nếu không cần thiết.
-
-### 2. Code block
-
-- Luôn ghi **ngôn ngữ** sau triple backtick:
-
-````markdown
-```bash
-docker ps
-```
-
-```sql
-SELECT * FROM users WHERE active = true;
-```
-
-```json
-{ "name": "example" }
-```
-````
-
-- Với lệnh terminal: dùng `bash` (không dùng `shell` hay `console`).
-- Nếu lệnh khác nhau giữa OS, dùng **tab** (pymdownx.tabbed):
-
-````markdown
-=== "Linux / macOS"
-`bash
-    source .venv/bin/activate
-    `
-
-=== "Windows"
-`powershell
-    .\.venv\Scripts\Activate.ps1
-    `
-````
-
-### 3. Admonitions
-
-```markdown
-!!! tip "Mẹo"
-Nội dung mẹo ở đây.
-
-!!! warning "Cảnh báo"
-Nội dung cảnh báo.
-
-!!! danger "Nguy hiểm"
-Không bao giờ commit secret lên repo!
-
-!!! note "Ghi chú"
-Thông tin bổ sung.
-```
-
-### 4. Screenshot & Diagram
-
-- Đặt ảnh trong `docs/assets/images/<section>/`.
-- Đặt tên có nghĩa: `git-branch-workflow.png`, **không** dùng `img1.png`.
-- Dùng Mermaid cho sơ đồ đơn giản (đã tích hợp trong config).
-- Kích thước ảnh: tối đa **800px** chiều rộng.
-
-### 5. Quy tắc "1 trang = 1 kỹ năng"
-
-- Mỗi file `.md` chỉ nên dạy **một kỹ năng cụ thể**.
-- Nếu nội dung dài hơn 5 màn hình, hãy **tách** thành nhiều trang.
-
-### 6. Cấu trúc mỗi trang
-
-```markdown
-# Tiêu đề kỹ năng
-
-## Mục tiêu
-
-Sau bài này, bạn sẽ:
-
-- …
-- …
-
-## Prerequisites
-
-- Đã hoàn thành: [Tên bài trước](link)
-- Đã cài: …
-
-## Nội dung chính
-
-### Bước 1 – …
-
-### Bước 2 – …
-
-## Lỗi thường gặp
-
-| Lỗi | Nguyên nhân | Cách sửa |
-| --- | ----------- | -------- |
-| …   | …           | …        |
-
-## Bài tập
-
-1. …
-
-## Tài liệu tham khảo
-
-- [Link](url)
-```
-
-### 7. Version & Changelog
-
-- Mỗi release ghi rõ phiên bản trong `mkdocs.yml` → `extra.version`.
-- Cập nhật `CHANGELOG.md` (nếu có) khi thêm/sửa chương.
-
----
+- `./scripts/export-pdf.ps1`
+- hoặc workflow `.github/workflows/pdf-handbook.yml`
 
 ## Đóng góp
 
-1. Fork repo.
-2. Tạo branch: `docs/<tên-chủ-đề>`.
-3. Viết / sửa nội dung theo style guide ở trên.
-4. Chạy `mkdocs serve` để kiểm tra local.
-5. Tạo Pull Request, ghi mô tả rõ ràng.
+Contributor và maintainer nên đọc:
 
----
+- [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## License
 
-MIT License – Xem file [LICENSE](LICENSE).
+MIT License. Xem [LICENSE](LICENSE).

@@ -1,273 +1,90 @@
-﻿# Quickstart
+# Quickstart
 
-Thiết lập **môi trường phát triển cơ bản trong ~30 phút**.
+Quickstart này chỉ giải quyết một việc: giúp bạn có **môi trường tối thiểu** để đọc handbook và thực hành với case study `InternHub API`.
 
-Sau khi hoàn thành trang này, bạn sẽ có thể:
-
-- Cài đặt các công cụ phát triển cần thiết
-- Clone repository handbook
-- Chạy thử stack development cho sample app InternHub API
+Nó không cố gắng dạy đầy đủ Git, Python, Node.js hay Docker. Các chương chi tiết nằm ở những phần sau.
 
 ---
 
 ## Mục tiêu
 
-Sau bài này bạn sẽ:
+Sau bài này, bạn cần làm được 4 việc:
 
-- Cài đặt **Git**
-- Cài đặt **Docker**
-- Thiết lập **Python environment**
-- (Tuỳ chọn) cài **Node.js**
-- Chạy thử **Docker container**
-
-Case study xuyên suốt sau quickstart là [InternHub API](sample-project.md).
+- kiểm tra máy đã có Git và Docker
+- clone repo handbook
+- chạy PostgreSQL stack mẫu cho InternHub API
+- tự xác minh kết nối database thành công
 
 ---
 
-## Yêu cầu trước khi bắt đầu
+## Khi nào bạn cần bài này
 
-Bạn cần chuẩn bị:
-
-- Máy tính chạy
-  - **Windows 10/11**
-  - **macOS 12+**
-  - **Ubuntu 22.04+**
-
-- Kết nối Internet
-
-- Tài khoản **GitHub**
+- Bạn sắp đi thực tập và muốn kiểm tra lại môi trường.
+- Bạn mới vào repo và chưa chắc máy mình đã sẵn sàng.
+- Bạn muốn chạy được resource mẫu trước khi học SQL, API hoặc Docker Compose.
 
 ---
 
-## 1. Cài đặt Git
+## Prerequisites
 
-Git là công cụ **version control** dùng để quản lý source code.
+Bạn cần:
 
-### Windows
-
-```bash
-# Cài Git bằng winget
-winget install Git.Git
-```
-
-Hoặc tải từ:
-
-```
-https://git-scm.com/download/win
-```
+- máy Windows 10/11, macOS 12+, hoặc Ubuntu 22.04+
+- kết nối Internet
+- quyền cài tool trên máy của mình
 
 ---
 
-### macOS
-
-```bash
-# Cài Git bằng Xcode tools
-xcode-select --install
-
-# hoặc dùng Homebrew
-brew install git
-```
-
----
-
-### Ubuntu
-
-```bash
-sudo apt update
-sudo apt install -y git
-```
-
----
-
-### Kiểm tra cài đặt
+## 1. Kiểm tra Git
 
 ```bash
 git --version
 ```
 
-Ví dụ:
+Nếu lệnh chạy thành công, Git đã sẵn sàng.
 
-```
-git version 2.43.0
-```
+Nếu máy chưa có Git:
 
----
+- Windows: `winget install Git.Git`
+- macOS: `xcode-select --install` hoặc `brew install git`
+- Ubuntu: `sudo apt update && sudo apt install -y git`
 
-## Cấu hình Git lần đầu
-
-Thiết lập thông tin commit:
+### Cấu hình Git tối thiểu
 
 ```bash
 git config --global user.name "Tên của bạn"
 git config --global user.email "email@example.com"
-```
-
-Thiết lập branch mặc định:
-
-```bash
 git config --global init.defaultBranch main
 ```
 
-Thiết lập newline:
-
-```bash
-# macOS / Linux
-git config --global core.autocrlf input
-
-# Windows
-git config --global core.autocrlf true
-```
-
 ---
 
-## 2. Cài Docker
-
-Docker giúp chạy ứng dụng trong **container**.
-
----
-
-## Windows / macOS
-
-Tải Docker Desktop:
-
-```
-https://www.docker.com/products/docker-desktop
-```
-
-### Lưu ý (Windows)
-
-Bật **WSL 2 backend** trong Docker Desktop.
-
----
-
-## Ubuntu
-
-```bash
-sudo apt update
-sudo apt install -y docker.io docker-compose-plugin
-
-sudo usermod -aG docker $USER
-```
-
-Sau đó **logout và login lại**.
-
----
-
-### Kiểm tra Docker
+## 2. Kiểm tra Docker
 
 ```bash
 docker --version
 docker compose version
 ```
 
-Chạy container test:
+Nếu máy chưa có Docker:
+
+- Windows/macOS: cài Docker Desktop
+- Ubuntu: `sudo apt update && sudo apt install -y docker.io docker-compose-plugin`
+
+### Tự xác minh Docker
 
 ```bash
 docker run --rm hello-world
 ```
 
----
-
-## 3. Cài Python
-
-Python được dùng cho nhiều project backend và data.
+Nếu container chạy xong và in thông báo thành công, Docker đã sẵn sàng.
 
 ---
 
-## Cách 1 — Anaconda (khuyến nghị)
-
-Tải tại:
-
-```
-https://www.anaconda.com/download
-```
-
-Tạo môi trường:
-
-```bash
-conda create -n myproject python=3.11 -y
-conda activate myproject
-python --version
-```
-
----
-
-## Cách 2 — Python thuần
-
-Tải Python:
-
-```
-https://www.python.org/downloads/
-```
-
-Tạo virtual environment:
-
-```bash
-python -m venv .venv
-```
-
-Kích hoạt môi trường:
-
-### Linux / macOS
-
-```bash
-source .venv/bin/activate
-```
-
-### Windows
-
-```bash
-.\.venv\Scripts\Activate.ps1
-```
-
-Kiểm tra:
-
-```bash
-python --version
-```
-
----
-
-## 4. Cài Node.js (tuỳ chọn)
-
-Nếu bạn làm **frontend hoặc fullstack**, cần Node.js.
-
-Khuyên dùng **nvm** để quản lý phiên bản.
-
----
-
-## Linux / macOS
-
-```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-
-source ~/.bashrc
-
-nvm install 20
-nvm use 20
-
-node --version
-```
-
----
-
-## Windows
-
-Cài **nvm-windows**:
-
-```
-https://github.com/coreybutler/nvm-windows
-```
-
----
-
-## 5. Clone repository
-
-Clone repository của handbook để lấy toàn bộ docs và resources cho InternHub API:
+## 3. Clone repository handbook
 
 ```bash
 git clone https://github.com/<github-org>/student-it-handbook.git
-
 cd student-it-handbook
 ```
 
@@ -275,63 +92,79 @@ Thay `<github-org>` bằng organization hoặc username GitHub thực tế.
 
 ---
 
-## 6. Chạy thử ứng dụng mẫu
+## 4. Chạy PostgreSQL stack mẫu
 
-Chạy PostgreSQL stack cho InternHub API:
+Case study `InternHub API` dùng PostgreSQL làm datastore chính. Trong repo đã có stack mẫu để bạn thực hành.
 
 ```bash
 cd resources/docker
-
 docker compose -f postgres-compose.yml up -d
 ```
 
-Kiểm tra container:
+### Kiểm tra container đã lên chưa
 
 ```bash
 docker ps
 ```
 
-Kiểm tra kết nối database:
+Bạn cần thấy container `postgres-dev` đang chạy.
+
+---
+
+## 5. Kiểm tra kết nối database
 
 ```bash
 docker exec -it postgres-dev psql -U dev -d internhub -c "SELECT 1;"
 ```
 
-Nếu command này trả về `1`, môi trường database cho sample app đã sẵn sàng.
+### Expected result
+
+Bạn sẽ thấy output có giá trị `1`, ví dụ:
+
+```text
+ ?column?
+----------
+        1
+```
+
+Nếu bạn thấy kết quả này, môi trường tối thiểu cho handbook đã sẵn sàng.
 
 ---
 
-## Kiểm tra môi trường
+## 6. Bạn vừa setup xong gì
 
-Chạy các lệnh sau:
+Sau quickstart, bạn **chưa** học xong Git, Docker hay SQL. Bạn mới chỉ:
 
-```bash
-git --version
-docker --version
-python --version
-node --version
-```
-
-Nếu tất cả đều chạy thành công, môi trường đã sẵn sàng.
+- có repo handbook trên máy
+- có Docker chạy được
+- có PostgreSQL stack mẫu cho InternHub
+- có điểm bắt đầu để học những chương sau
 
 ---
 
 ## Lỗi thường gặp
 
-| Lỗi                                 | Nguyên nhân                      | Cách khắc phục                  |
-| ----------------------------------- | -------------------------------- | ------------------------------- |
-| `git: command not found`            | Git chưa cài hoặc chưa thêm PATH | Cài lại Git                     |
-| `docker: permission denied`         | User chưa thuộc group docker     | `sudo usermod -aG docker $USER` |
-| `conda: command not found`          | Chưa init conda                  | `conda init`                    |
-| Docker Desktop không chạy (Windows) | Chưa bật WSL2                    | Bật trong Windows Features      |
+| Lỗi | Nguyên nhân thường gặp | Cách xử lý |
+| --- | --- | --- |
+| `git: command not found` | Git chưa cài hoặc chưa có trong PATH | Cài lại Git, mở terminal mới |
+| `docker: permission denied` | User chưa thuộc docker group trên Linux | `sudo usermod -aG docker $USER`, đăng nhập lại |
+| Docker Desktop không lên | WSL2/backend chưa bật | Kiểm tra lại Docker Desktop settings |
+| `psql: could not connect` | Container chưa ready | `docker ps`, `docker logs postgres-dev` |
+
+---
+
+## Cách tự kiểm tra đã hoàn thành
+
+- [ ] `git --version` chạy được
+- [ ] `docker --version` và `docker compose version` chạy được
+- [ ] clone được repo handbook
+- [ ] `docker compose -f postgres-compose.yml up -d` chạy thành công
+- [ ] `SELECT 1;` trong `psql` trả về giá trị `1`
 
 ---
 
 ## Bước tiếp theo
 
-Sau khi setup xong môi trường:
-
-- Đọc **Sample Project: InternHub API**
-- Đọc **Checklist sinh viên mới**
-- Học **Terminal cơ bản**
-- Làm quen với **Git workflow**
+- Đọc [Start Here](start-here.md) nếu bạn muốn chọn đúng luồng đọc
+- Đọc [Checklist sinh viên mới](checklist.md) nếu bạn đang chuẩn bị đi thực tập
+- Đọc [Sample Project: InternHub API](sample-project.md) để hiểu case study xuyên suốt

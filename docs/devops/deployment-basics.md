@@ -1,59 +1,86 @@
-﻿# Deployment cơ bản
+# Deployment cơ bản
+
+Trang này giới thiệu deployment ở mức onboarding: hiểu staging/prod, hiểu pre-deploy và post-deploy verification, và hiểu rollback ở mức tư duy. Nó không cố gắng thay thế runbook nội bộ của từng công ty.
+
+---
 
 ## Mục tiêu
 
-Sau bài này, bạn sẽ:
+Sau bài này, bạn cần hiểu:
 
-- Hiểu các khái niệm deploy: staging, production, rollback.
-- Deploy ứng dụng đơn giản lên VPS hoặc PaaS.
-- Hiểu cơ bản về reverse proxy (Nginx).
+- khác nhau gì giữa local, staging và production
+- deploy lên VPS/PaaS ở mức cơ bản diễn ra như thế nào
+- cần kiểm tra gì trước và sau deploy
+- rollback đúng lúc và đúng cách quan trọng thế nào
+
+---
+
+## Khi nào bạn cần phần này
+
+- Bạn sắp nghe team nói về staging, prod, smoke test.
+- Bạn đã học Docker/CI và muốn biết luồng deploy cơ bản.
+- Bạn muốn hiểu production mindset trước khi động vào hệ thống thật.
+
+---
 
 ## Prerequisites
 
-- [Docker cơ bản](../containers/docker.md).
-- [CI/CD](cicd-github-actions.md).
+- [Docker cơ bản](../containers/docker.md)
+- [CI/CD - GitHub Actions](cicd-github-actions.md)
 
 ---
 
-## Môi trường Deploy
+## Môi trường deploy
 
-| Môi trường              | Mục đích                 | Ai truy cập |
-| ----------------------- | ------------------------ | ----------- |
-| **Development** (local) | Code + test trên máy     | Developer   |
-| **Staging**             | Test trước khi lên prod  | Team + QA   |
-| **Production**          | Người dùng thật truy cập | End users   |
+| Môi trường | Mục đích | Ai thường dùng |
+| --- | --- | --- |
+| Development | code và test local | developer |
+| Staging | verify trước khi lên production | team, QA |
+| Production | phục vụ người dùng thật | end users |
 
-!!! tip "Quy tắc vàng"
-Staging phải **giống production nhất có thể** (cùng OS, database version, config).
+### Nguyên tắc quan trọng
+
+Staging càng giống production thì deploy càng ít bất ngờ.
 
 ---
 
-## Deploy lên VPS (đơn giản)
+## Luồng deploy cơ bản
 
-### Bước 1 – SSH vào server
+```text
+Code merged -> CI xanh -> Build artifact/image -> Deploy staging -> Smoke test -> Approve -> Deploy production
+```
+
+Nếu handbook đang dùng case study `InternHub API`, bạn có thể hình dung:
+
+- image: `internhub-api:<tag>`
+- app cần database và env biến đúng
+- sau deploy cần verify endpoint chính, logs và metrics
+
+---
+
+## Ví dụ deploy lên VPS
 
 ```bash
 ssh user@your-server-ip
-```
-
-### Bước 2 – Clone repo + Docker Compose
-
-```bash
 git clone https://github.com/<github-org>/internhub-api.git
 cd internhub-api
-
-# Tạo .env cho production
 cp .env.example .env
-nano .env   # Sửa giá trị cho production
-
-# Chạy
 docker compose -f docker-compose.prod.yml up -d
 ```
 
-### Bước 3 – Cấu hình Nginx reverse proxy
+### Lưu ý
+
+Ví dụ trên chỉ để minh họa luồng thao tác. Repo handbook hiện không đóng gói sample app production-ready. Mục tiêu là hiểu:
+
+- artifact đến từ đâu
+- env nằm ở đâu
+- lệnh deploy đang làm gì
+
+---
+
+## Reverse proxy ở mức tối thiểu
 
 ```nginx
-# /etc/nginx/sites-available/internhub-api
 server {
     listen 80;
     server_name api.internhub.local;
@@ -68,59 +95,104 @@ server {
 }
 ```
 
-```bash
-sudo ln -s /etc/nginx/sites-available/internhub-api /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl reload nginx
-```
+Bạn cần nhớ:
+
+- app có thể chạy trên port nội bộ
+- reverse proxy tiếp nhận request công khai
+- HTTPS thường được xử lý tại proxy/load balancer
 
 ---
 
-## Deploy lên PaaS (đơn giản hơn)
+## Pre-deploy checklist
 
-### Railway / Render / Fly.io
-
-```bash
-# Ví dụ với Fly.io
-fly launch
-fly deploy
-```
-
-Các PaaS thường chỉ cần:
-
-- Dockerfile hoặc buildpack config.
-- Biến môi trường (set trên dashboard).
-- Git push → tự deploy.
+- [ ] CI xanh
+- [ ] Biết artifact/image nào sẽ được deploy
+- [ ] Env biến đã được xác nhận
+- [ ] Migration, nếu có, đã được đánh giá tác động
+- [ ] Có kế hoạch rollback
+- [ ] Biết ai là người xác nhận deploy
 
 ---
 
-## Rollback
+## Post-deploy verification
+
+Sau deploy, không được coi là xong chỉ vì container đã lên.
+
+Cần kiểm tra tối thiểu:
+
+- [ ] Service đang chạy
+- [ ] Health endpoint trả kết quả đúng
+- [ ] Endpoint chính không trả 5xx
+- [ ] Log không có spike lỗi rõ ràng
+- [ ] Metric có dấu hiệu bình thường tối thiểu
+
+### Smoke test gợi ý
 
 ```bash
-# Docker: quay lại image version cũ
-docker compose pull   # Pull latest
-docker compose up -d  # Update
+curl -v http://localhost:3000/health
+curl -v http://localhost:3000/api/users
+```
 
-# Rollback: chỉ định image tag cũ
-# Trong docker-compose.yml: image: internhub-api:v1.2.0
+### Expected result
+
+- health endpoint pass
+- endpoint chính trả response hợp lệ
+- không thấy log lỗi liên tục sau deploy
+
+---
+
+## Rollback mindset
+
+Rollback không phải là đầu hàng. Rollback là cách đưa hệ thống về trạng thái an toàn khi deploy mới có dấu hiệu gây lỗi.
+
+### Khi nào cần nghĩ đến rollback
+
+- endpoint chính 5xx ngay sau deploy
+- smoke test fail
+- logs lỗi tăng mạnh
+- metrics xấu rõ ràng và không tìm được cách fix nhanh
+
+### Ví dụ rollback bằng image tag cũ
+
+```bash
+# Trong docker-compose.yml
+# image: internhub-api:v1.2.0
+
 docker compose up -d
 ```
 
----
+### Guardrail
 
-## Checklist trước khi deploy Production
-
-- [ ] Tests pass (CI green).
-- [ ] Environment variables đã set đúng.
-- [ ] Database migration đã chạy.
-- [ ] Không có secrets trong code.
-- [ ] HTTPS đã cấu hình (Let's Encrypt).
-- [ ] Logs & monitoring đã setup.
-- [ ] Có kế hoạch rollback.
+- Không rollback mù trong production nếu chưa xác nhận symptom thật
+- Ghi lại lý do rollback và version đã rollback
+- Sau rollback vẫn phải verify lại hệ thống
 
 ---
 
-## Tài liệu tham khảo
+## Safe vs risky thao tác
 
-- [Nginx Docs](https://nginx.org/en/docs/)
-- [Docker Compose in Production](https://docs.docker.com/compose/production/)
+### Tương đối an toàn ở local/staging
+
+- kiểm tra logs
+- curl health endpoint
+- restart service khi đã hiểu lý do
+
+### Cần thận trọng
+
+- chạy migration
+- đổi env biến production
+- deploy image mới trong giờ cao điểm
+
+### Không được làm nếu chưa được hướng dẫn
+
+- sửa trực tiếp database production
+- xóa data để “thử xem có hết lỗi không”
+- restart hệ thống production hàng loạt khi chưa có người xác nhận
+
+---
+
+## Bước tiếp theo
+
+- Đọc [Logging & Monitoring](logging-monitoring.md) để hiểu cần xem gì sau deploy
+- Đọc [Bảo mật cơ bản](security-basics.md) để biết env và secrets cần được quản lý thế nào
+- Đọc [Lỗi thường gặp](../troubleshooting/common-errors.md) để biết cách xử lý local trước khi nghĩ đến production

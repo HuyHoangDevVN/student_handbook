@@ -56,7 +56,10 @@ API_KEY=your-api-key-here
 JWT_SECRET=your-secret-here
 ```
 
-!!! danger "Nếu lỡ commit secret" 1. **Rotate** (đổi) secret ngay lập tức. 2. Xoá khỏi Git history bằng `git filter-branch` hoặc BFG Repo Cleaner. 3. Thông báo team.
+!!! danger "Nếu lỡ commit secret"
+    1. **Rotate** (đổi) secret ngay lập tức.
+    2. Xóa khỏi Git history bằng `git filter-branch` hoặc BFG Repo Cleaner.
+    3. Thông báo team.
 
 ---
 
@@ -205,7 +208,11 @@ from datetime import datetime, timedelta
         print("Token không hợp lệ!")
     ```
 
-!!! warning "Lưu ý JWT" - JWT **không mã hoá** payload, chỉ **ký** (sign). Nội dung ai cũng đọc được trên [jwt.io](https://jwt.io). - **KHÔNG** lưu thông tin nhạy cảm trong payload (password, credit card). - Đặt thời gian hết hạn ngắn (1h cho access token). - Dùng **refresh token** để lấy access token mới.
+!!! warning "Lưu ý JWT"
+    - JWT **không mã hóa** payload, chỉ **ký** (sign). Nội dung ai cũng đọc được trên [jwt.io](https://jwt.io).
+    - **KHÔNG** lưu thông tin nhạy cảm trong payload như password hay credit card.
+    - Đặt thời gian hết hạn ngắn, ví dụ 1 giờ cho access token.
+    - Dùng **refresh token** để lấy access token mới.
 
 ---
 
@@ -213,7 +220,7 @@ from datetime import datetime, timedelta
 
 - [ ] Không hardcode secrets trong code.
 - [ ] `.env` đã thêm vào `.gitignore`.
-- [ ] Password được hash bằng bcrypt (salt rounds â‰¥ 12).
+- [ ] Password được hash bằng bcrypt (salt rounds >= 12).
 - [ ] JWT có expiry time.
 - [ ] Input validation cho tất cả API endpoints.
 - [ ] HTTPS trên production.

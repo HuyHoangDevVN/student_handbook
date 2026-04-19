@@ -1,177 +1,175 @@
-﻿# GitHub Workflow
+# GitHub Workflow
 
-GitHub Workflow mô tả cách các developer **làm việc nhóm với Git và GitHub**.
-
-Quy trình phổ biến:
-
-```text
-Task → Branch → Commit → Pull Request → Code Review → Merge
-```
+Trang này mô tả workflow làm việc nhóm phổ biến với Git và GitHub. Nó được viết cho sinh viên mới vào dự án, nên ưu tiên sự rõ ràng và tính an toàn hơn là dạy tất cả tính năng của GitHub.
 
 ---
 
 ## Mục tiêu
 
-Sau bài này bạn có thể:
+Sau bài này, bạn cần làm được:
 
-- tạo và quản lý **Pull Request**
-- thực hiện **Code Review**
-- sử dụng **GitHub Issues**
-- áp dụng **branching strategy trong team**
-
----
-
-## Yêu cầu
-
-Bạn cần:
-
-- hiểu **Git cơ bản**
-- có tài khoản **GitHub**
-- bật **2FA**
+- tạo branch riêng cho task
+- commit theo nhịp nhỏ và rõ ràng
+- mở Pull Request để reviewer đọc dễ dàng
+- đọc và phản hồi review comment
+- biết khi nào cần hỏi mentor hoặc reviewer
 
 ---
 
-## GitHub Flow (Branching Strategy)
+## Khi nào bạn cần phần này
 
-GitHub Flow là workflow phổ biến cho web application.
+- Bạn sắp tạo branch đầu tiên trong repo team.
+- Bạn vừa nhận task và cần mở PR.
+- Bạn đã mở PR nhưng chưa quen cách phản hồi review.
 
-```mermaid
-gitGraph
-    commit id: "init"
-    branch feature/user-api
-    commit id: "add model"
-    commit id: "add routes"
-    checkout main
-    merge feature/user-api id: "PR merged"
-    branch bugfix/login
-    commit id: "fix token validation"
-    checkout main
-    merge bugfix/login id: "PR merged"
+---
+
+## Prerequisites
+
+- [Git cơ bản](git-basics.md)
+- Có tài khoản GitHub
+- Đã bật 2FA nếu repo/team yêu cầu
+
+---
+
+## Workflow cơ bản
+
+```text
+Task -> Branch -> Commit -> Push -> Pull Request -> Review -> Merge
 ```
 
----
+Nguyên tắc nên nhớ:
 
-## Nguyên tắc
-
-1. `main` luôn **deployable**
-2. mỗi task → **một branch**
-3. push branch → tạo **Pull Request**
-4. **review trước khi merge**
-5. xoá branch sau khi merge
+1. `main` phải luôn ở trạng thái có thể release hoặc deploy.
+2. Mỗi task nên đi trên một branch riêng.
+3. PR càng nhỏ thì review càng dễ.
+4. Không merge khi chưa hiểu feedback.
 
 ---
 
-## Tạo Pull Request
-
----
-
-## 1. Tạo branch
+## 1. Tạo branch cho task
 
 ```bash
 git switch -c feature/user-profile
 ```
 
-Code xong:
+Tên branch nên nói rõ ý định:
+
+- `feature/...`
+- `fix/...`
+- `docs/...`
+- `chore/...`
+
+### Pitfall
+
+Không code trực tiếp trên `main` nếu repo đang dùng workflow review.
+
+---
+
+## 2. Commit nhỏ, có ý nghĩa
 
 ```bash
 git add .
-git commit -m "feat(user): add profile page"
+git commit -m "feat(user): add profile endpoint"
 ```
 
-Push:
+### Author checklist trước khi commit
+
+- [ ] Biết mình đang sửa vì task nào
+- [ ] Không commit file tạm, secret, log hoặc output build
+- [ ] Có thể giải thích nhanh thay đổi này dùng để làm gì
+
+---
+
+## 3. Push branch và mở Pull Request
 
 ```bash
 git push -u origin feature/user-profile
 ```
 
----
+Khi mở PR, người đọc cần hiểu ngay:
 
-## 2. Tạo PR trên GitHub
+- task này sửa cái gì
+- ảnh hưởng đến phần nào
+- đã tự test gì
+- reviewer cần tập trung check điểm nào
 
-Vào repo → **Pull requests → New Pull Request**
-
-Chọn:
-
-```text
-base: main
-compare: feature/user-profile
-```
-
----
-
-## Template Pull Request
+### Template PR tối thiểu
 
 ```markdown
 ## Mô tả
 
-Thêm trang profile cho user.
+Thêm endpoint profile cho user.
 
 ## Thay đổi
 
-- thêm UserProfile component
-- thêm API endpoint /users/profile
-- thêm test
+- thêm route `/api/users/profile`
+- thêm query lấy dữ liệu user
+- thêm test cơ bản
 
-## Checklist
+## Tự kiểm tra
 
-- [x] code đúng style
-- [x] tests pass
-- [x] docs cập nhật
-
-Closes #15
+- [x] test local đã chạy
+- [x] không còn debug log
+- [x] docs đã cập nhật nếu cần
 ```
+
+### Expected result
+
+PR mở ra có mô tả, có reviewer, và người khác có thể review mà không cần hỏi lại bạn task này là gì.
 
 ---
 
-## 3. Request Review
+## 4. Request review
 
 Sau khi tạo PR:
 
-- assign **reviewer**
-- thêm **labels**
-- link **issue**
+- assign reviewer nếu workflow team yêu cầu
+- link issue/task nếu có
+- nếu PR còn đang làm dở, để ở trạng thái draft
+
+### Khi nào nên mở draft PR
+
+- Bạn cần feedback sớm về hướng sửa
+- Logic đã rõ nhưng chưa xong test
+- Bạn muốn reviewer check approach trước khi viết tiếp
 
 ---
 
-## Code Review
+## 5. Cách review code
 
-Code review giúp:
+Code review không phải để “bắt lỗi cho vui”. Mục tiêu của nó là:
 
-- phát hiện bug
-- đảm bảo code quality
-- chia sẻ kiến thức trong team
+- bắt bug sớm
+- giữ code dễ đọc
+- giảm rủi ro trước khi merge
+- chia sẻ bối cảnh và kiến thức trong team
 
----
+### Reviewer checklist tối thiểu
 
-## Các loại review
+- [ ] Logic có đúng với task không
+- [ ] Có tác dụng phụ nào rõ ràng không
+- [ ] Có test hoặc cách verify không
+- [ ] Có security issue rõ ràng không
+- [ ] Có command/nguy cơ nào cần cảnh báo thêm không
 
-| Action          | Ă nghĩa |
-| --------------- | ------- |
-| Approve         | code OK |
-| Comment         | góp ý   |
-| Request changes | cần sửa |
+### Author checklist trước khi nhận review
 
----
-
-## Checklist review
-
-Khi review code:
-
-- [ ] logic đúng
-- [ ] không có security issue
-- [ ] có test cho feature mới
-- [ ] tên biến rõ ràng
-- [ ] không có `console.log` hoặc code thừa
+- [ ] PR không quá lớn đến mức reviewer không thể đọc được
+- [ ] Title/description dễ hiểu
+- [ ] Đã tự đọc lại diff của mình
+- [ ] Đã ghi rõ những chỗ còn mở hoặc cần reviewer xem kỹ
 
 ---
 
-## Khi nhận feedback
+## 6. Cách phản hồi review comment
 
-Khi reviewer comment:
+Khi reviewer để lại comment:
 
-1. đọc kỹ comment
-2. sửa code
-3. push commit mới
+1. Đọc kỹ để phân biệt đó là bug, concern hay style feedback.
+2. Nếu chưa hiểu, hỏi lại ngay trong thread.
+3. Sửa code và push commit mới.
+4. Reply ngắn gọn comment đã được xử lý như thế nào.
 
 ```bash
 git add .
@@ -179,200 +177,94 @@ git commit -m "fix: address review comments"
 git push
 ```
 
-GitHub sẽ **tự cập nhật Pull Request**.
+### Khi nào cần hỏi mentor
+
+- Bạn không hiểu reviewer đang nói về bug logic hay preference
+- Feedback làm thay đổi hướng implementation
+- Bạn cần thêm bối cảnh domain để quyết định
 
 ---
 
-## Conflict trên Pull Request
+## 7. Conflict và cập nhật branch
 
-Conflict xảy ra khi:
+Nếu branch của bạn đã cũ hơn `main`, có 2 cách phổ biến:
 
-```text
-branch của bạn quá cũ so với main
-```
-
----
-
-## Cách 1 – Rebase
+### Rebase
 
 ```bash
 git fetch origin
 git rebase origin/main
 ```
 
-Fix conflict nếu có:
+Nếu có conflict:
 
 ```bash
 git add .
 git rebase --continue
-```
-
-Push:
-
-```bash
 git push --force-with-lease
 ```
 
----
-
-## Cách 2 – Merge main
+### Merge main vào branch
 
 ```bash
+git fetch origin
 git merge origin/main
-```
-
-Sau đó:
-
-```bash
 git push
 ```
 
----
+### Guardrail
 
-!!! tip "Mẹo"
-Luôn dùng:
-
-```text
---force-with-lease
-```
-
-thay vì:
-
-```text
---force
-```
+- Ưu tiên `--force-with-lease`, không dùng `--force` nếu không thực sự hiểu tác dụng.
+- Nếu branch đang được nhiều người cùng sửa, cần thống nhất trước khi rewrite history.
 
 ---
 
-## GitHub Issues
+## 8. Issues và task intake
 
-Issue dùng để **track bug hoặc task**.
+Issue là nơi ghi rõ:
 
----
+- vấn đề là gì
+- cách reproduce
+- expected vs actual
+- mức ưu tiên
 
-## Ví dụ Issue
+### Example
 
 ```markdown
-Title: [BUG] Login fails with special characters
-
-## Mô tả
-
-Login lỗi khi password chứa ký tự đặc biệt.
+Title: [BUG] GET /api/users returns 500 after query change
 
 ## Steps to reproduce
-
-1. Vào /login
-2. nhập password chứa &
-3. click Login
+1. Start local stack
+2. Call GET /api/users
+3. Observe response
 
 ## Expected
-
-Login thành công.
+200 OK with users array
 
 ## Actual
-
-Server trả 500 error.
+500 Internal Server Error
 ```
 
----
+Nếu issue không đủ rõ:
 
-## Labels phổ biến
-
-| Label            | Ă nghĩa            |
-| ---------------- | ------------------ |
-| bug              | lỗi                |
-| feature          | tính năng          |
-| docs             | documentation      |
-| good first issue | task cho người mới |
-| priority: high   | ưu tiên cao        |
+- hỏi lại output mong đợi
+- hỏi lý do business
+- hỏi cách verify done
 
 ---
 
-## `.gitignore` cơ bản
+## Tự kiểm tra đã hiểu workflow này chưa
 
-```gitignore
-node_modules/
-.venv/
-__pycache__/
-
-.env
-.env.local
-
-.vscode/settings.json
-.idea/
-
-.DS_Store
-Thumbs.db
-
-dist/
-build/
-
-*.log
-```
+- [ ] Tạo được branch mới
+- [ ] Commit có message rõ ràng
+- [ ] Mở được PR có mô tả và checklist có nghĩa
+- [ ] Biết cách phản hồi review comment
+- [ ] Biết khi nào nên ping mentor hoặc reviewer
 
 ---
 
-!!! danger "Quan trọng"
-Không commit:
+## Bước tiếp theo
 
-- `.env`
-- password
-- API key
-- secret token
-
-Nếu lỡ commit, **phải rotate secret ngay lập tức**.
-
----
-
-## Lỗi thường gặp
-
-| Lỗi              | Nguyên nhân       | Cách sửa      |
-| ---------------- | ----------------- | ------------- |
-| PR bị conflict   | branch quá cũ     | rebase main   |
-| push bị reject   | remote khác local | pull rồi push |
-| commit nhầm main | quên tạo branch   | reset commit  |
-| PR quá lớn       | nhiều thay đổi    | chia nhỏ PR   |
-
----
-
-## Bài tập
-
-### Bài 1
-
-Fork repository handbook.
-
----
-
-### Bài 2
-
-Tạo branch:
-
-```text
-docs/fix-typo
-```
-
-Sửa 1 lỗi và tạo Pull Request.
-
----
-
-### Bài 3
-
-Review Pull Request của bạn khác.
-
----
-
-### Bài 4
-
-Tạo 1 Issue theo template.
-
----
-
-## Tài liệu tham khảo
-
-```text
-https://docs.github.com/en/get-started/using-github/github-flow
-```
-
-```text
-https://docs.github.com/en/pull-requests
-```
+- Nếu bạn chưa quen command line: đọc [Terminal & Shell](../environment/terminal.md)
+- Nếu bạn sắp nhận task backend: đọc [HTTP & REST API](../backend/http-rest.md)
+- Nếu bạn thường gặp lỗi local: đọc [Lỗi thường gặp](../troubleshooting/common-errors.md)

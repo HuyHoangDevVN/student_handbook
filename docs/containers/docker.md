@@ -1,7 +1,6 @@
 # Docker cơ bản
 
-Trang này giờ là mục lục cho cụm bài Docker. Nội dung được tách thành các bài nhỏ để người học đi
-từng bước từ runtime -> debug/storage -> Dockerfile/build.
+Trang này là mục lục cho cụm bài Docker. Nội dung được tách thành các bài nhỏ để người học đi từng bước từ runtime, sang debug/storage, rồi đến Dockerfile/build.
 
 ---
 
@@ -25,9 +24,9 @@ Sau cụm bài này, bạn có thể:
 
 ## Lộ trình học
 
-1. [Docker Runtime Cơ Bản](docker-runtime.md)
-2. [Debug, Logs Và Storage Trong Docker](docker-debug-storage.md)
-3. [Dockerfile Và Build Workflow](dockerfile-workflow.md)
+1. [Docker Runtime cơ bản](docker-runtime.md)
+2. [Debug, Logs và Storage trong Docker](docker-debug-storage.md)
+3. [Dockerfile và Build Workflow](dockerfile-workflow.md)
 4. [Docker Compose](docker-compose.md)
 
 ---
@@ -44,4 +43,4 @@ Sau cụm bài này, bạn có thể:
 
 - [Docker Compose](docker-compose.md)
 - [Docker Cheat Sheet](../cheatsheets/docker.md)
-- [Deployment co ban](../devops/deployment-basics.md)
+- [Deployment cơ bản](../devops/deployment-basics.md)

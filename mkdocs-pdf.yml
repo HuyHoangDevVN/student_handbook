@@ -18,24 +18,21 @@ edit_uri: edit/main/docs/
 theme:
   name: material
   language: vi
-  logo: assets/images/logo.png
-  favicon: assets/images/logo.png
+  favicon: assets/images/fit-dnu-full.png
   palette:
     - scheme: default
-      primary: indigo
-      accent: teal
+      primary: blue
+      accent: orange
       toggle:
         icon: material/brightness-7
         name: Chuyen sang Dark mode
     - scheme: slate
-      primary: indigo
-      accent: teal
+      primary: blue
+      accent: orange
       toggle:
         icon: material/brightness-4
         name: Chuyen sang Light mode
   features:
-    - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
     - navigation.top
@@ -56,7 +53,8 @@ plugins:
       copyright: "© 2026 DNU Education"
       cover: true
       cover_title: Student IT Handbook
-      cover_subtitle: Handbook thuc hanh cho sinh vien IT
+      cover_subtitle: FIT_DNU handbook cho sinh vien Cong nghe thong tin
+      cover_logo: assets/images/fit-dnu-full.png
       output_path: pdf/student-it-handbook.pdf
       enabled_if_env: ENABLE_PDF_EXPORT
 
@@ -106,7 +104,8 @@ nav:
   - Trang chủ: index.md
 
   - Bắt đầu:
-      - Quickstart (30 phút): getting-started/quickstart.md
+      - Start Here: getting-started/start-here.md
+      - Quickstart: getting-started/quickstart.md
       - Sample project: getting-started/sample-project.md
       - Checklist sinh viên mới: getting-started/checklist.md
 

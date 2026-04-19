@@ -22,28 +22,25 @@ edit_uri: edit/main/docs/
 theme:
   name: material
   language: vi
-  logo: assets/images/logo.png
-  favicon: assets/images/logo.png
+  favicon: assets/images/fit-dnu-full.png
 
   palette:
     # Light mode
     - scheme: default
-      primary: indigo
-      accent: teal
+      primary: blue
+      accent: orange
       toggle:
         icon: material/brightness-7
         name: Chuyển sang Dark mode
     # Dark mode
     - scheme: slate
-      primary: indigo
-      accent: teal
+      primary: blue
+      accent: orange
       toggle:
         icon: material/brightness-4
         name: Chuyển sang Light mode
 
   features:
-    - navigation.tabs            # Tab ngang trên top bar
-    - navigation.tabs.sticky     # Giữ tab khi scroll
     - navigation.sections        # Mở rộng section trong sidebar
     - navigation.expand          # Tự mở rộng sidebar
     - navigation.top             # Nút "Back to top"
@@ -139,7 +136,8 @@ nav:
   - Trang chủ: index.md
 
   - Bắt đầu:
-      - Quickstart (30 phút): getting-started/quickstart.md
+      - Start Here: getting-started/start-here.md
+      - Quickstart: getting-started/quickstart.md
       - Sample project: getting-started/sample-project.md
       - Checklist sinh viên mới: getting-started/checklist.md
 

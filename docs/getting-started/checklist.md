@@ -1,194 +1,131 @@
-﻿# Checklist sinh viên mới
+# Checklist sinh viên mới
 
-Checklist này giúp bạn kiểm tra xem mình đã **sẵn sàng tham gia vào một team phát triển phần mềm** hay chưa.
-
-Danh sách được chia thành 3 giai đoạn:
-
-- Trước ngày đầu tiên
-- Ngày đầu tiên
-- Tuần đầu tiên
+Checklist này không phải để bạn tick cho vui. Nó được viết để giúp bạn không bỏ sót những việc quan trọng khi chuẩn bị đi thực tập, khi mới vào team, và khi bắt đầu nhận task thật.
 
 ---
 
-## Trước ngày đầu tiên
+## Mục tiêu
 
-Hãy hoàn thành các bước sau trước khi bắt đầu internship hoặc dự án.
+Sau trang này, bạn biết:
 
-### Tài khoản & truy cập
-
-- [ ] Tạo tài khoản **GitHub**
-- [ ] Bật **Two-Factor Authentication (2FA)** cho GitHub
-- [ ] Cài đặt **SSH key** cho GitHub (khuyến nghị)
-
----
-
-### Công cụ phát triển
-
-- [ ] Cài đặt **Git**
-- [ ] Cấu hình `user.name` và `user.email`
-- [ ] Cài đặt **Docker Desktop**
-- [ ] Cài đặt **VS Code**
-
-Extensions nên cài:
-
-- GitLens
-- Docker
-- Python
-- ESLint / Prettier
+- cần chuẩn bị gì trước khi vào team
+- ngày đầu tiên nên ưu tiên việc gì
+- task đầu tiên cần tự kiểm tra những điểm nào
+- khi nào nên hỏi mentor thay vì tự loay hoay quá lâu
 
 ---
 
-### Môi trường lập trình
+## 1. Trước khi vào team
 
-- [ ] Cài **Python 3.11+** hoặc **Anaconda**
-- [ ] Cài **Node.js 20+** (nếu dự án sử dụng)
-- [ ] Kiểm tra các lệnh sau chạy được:
+### Tài khoản và truy cập
 
-```bash
-git --version
-docker --version
-python --version
-node --version
-```
+- [ ] Có tài khoản GitHub dùng tên thật hoặc dễ nhận diện rõ ràng
+- [ ] Bật **2FA** cho GitHub
+- [ ] Có SSH key hoặc đã biết đăng nhập bằng HTTPS
 
----
+### Công cụ tối thiểu
 
-### Đọc tài liệu
+- [ ] Git chạy được
+- [ ] Docker chạy được
+- [ ] VS Code hoặc editor chính đã sẵn sàng
+- [ ] Đã đọc [Quickstart](quickstart.md)
 
-- [ ] Đọc phần **Quickstart**
-- [ ] Hiểu cách **clone repo và chạy project**
+### Tự xác minh môi trường
 
----
-
-## Ngày đầu tiên
-
-Mục tiêu của ngày đầu tiên là **setup môi trường và hiểu workflow của team**.
-
-### Truy cập hệ thống
-
-- [ ] Nhận invite vào **GitHub Organization**
-- [ ] Nhận quyền truy cập repository
+- [ ] `git --version` chạy được
+- [ ] `docker --version` chạy được
+- [ ] `docker compose version` chạy được
+- [ ] Chạy được PostgreSQL stack mẫu cho InternHub
 
 ---
 
-### Setup dự án
+## 2. Trong ngày đầu tiên
 
-- [ ] Clone repository chính
+### Hiểu bối cảnh trước khi sửa code
 
-```bash
-git clone <repo-url>
-```
+- [ ] Đọc [Start Here](start-here.md)
+- [ ] Đọc [Sample Project: InternHub API](sample-project.md)
+- [ ] Biết repo này đang mô tả case study nào
+- [ ] Biết mình đang ở phần nào của handbook: setup, Git, DB, API, Docker hay debug
 
-- [ ] Chạy được project trên local
+### Hiểu workflow team
 
-Ví dụ:
+- [ ] Biết branch naming convention
+- [ ] Biết cách mở Pull Request
+- [ ] Biết CI có phải điều kiện bắt buộc trước khi merge không
+- [ ] Biết khi nào cần ping mentor/teammate
 
-```bash
-docker compose up
-```
+### Ghi chú local
 
----
-
-### Kiểm tra workflow Git
-
-Tạo branch test:
-
-```bash
-git checkout -b feature/your-name-hello
-```
-
-Sau đó:
-
-- [ ] Commit thay đổi
-- [ ] Push branch
-- [ ] Tạo Pull Request
+- [ ] Tạo file ghi chú riêng (`notes.md` hoặc app notes của bạn)
+- [ ] Ghi lại command setup, port đang dùng, env biến quan trọng
+- [ ] Ghi lại lỗi đã gặp và cách fix
 
 ---
 
-### Làm quen với team
+## 3. Khi nhận task đầu tiên
 
-- [ ] Gặp **mentor / tech lead**
-- [ ] Hỏi về **workflow code review**
-- [ ] Hỏi về **quy trình deploy**
+### Trước khi code
 
----
+- [ ] Đọc yêu cầu và có thể nói lại task bằng lời của mình
+- [ ] Xác định done criteria có gì: output, API, query, test, UI, docs
+- [ ] Biết task này liên quan đến phần nào của InternHub
 
-## Tuần đầu tiên
+### Trong khi làm
 
-Trong tuần đầu, mục tiêu là **hiểu codebase và workflow làm việc**.
+- [ ] Làm trên branch riêng
+- [ ] Commit nhỏ, nội dung rõ ràng
+- [ ] Tự chạy lại command / test / query liên quan
+- [ ] Nếu gặp lỗi, thử reproduce và ghi lại các bước
 
-### Hiểu dự án
+### Trước khi mở PR
 
-- [ ] Hiểu cấu trúc folder
-- [ ] Đọc `README.md`
-- [ ] Đọc `CONTRIBUTING.md`
-
----
-
-### Chạy test
-
-- [ ] Chạy test suite
-
-Ví dụ:
-
-```bash
-npm test
-```
-
-hoặc
-
-```bash
-pytest
-```
+- [ ] Tự review lại thay đổi của mình
+- [ ] Xóa debug log thừa
+- [ ] Cập nhật docs nếu workflow thay đổi
+- [ ] Viết mô tả PR rõ ràng: đã đổi gì, test gì, cần reviewer check gì
 
 ---
 
-### Hoàn thành task đầu tiên
+## 4. Khi nào cần hỏi mentor
 
-Một task nhỏ có thể là:
+Bạn nên hỏi sớm nếu gặp một trong các dấu hiệu sau:
 
-- sửa typo
-- cập nhật documentation
-- fix bug nhỏ
-
-Mục tiêu: **hoàn thành ít nhất 1 Pull Request**.
-
----
-
-### Tham gia hoạt động của team
-
-- [ ] Tham gia **daily standup**
-- [ ] Theo dõi **issue tracker**
-- [ ] Hiểu **task board (Jira / GitHub Projects)**
+- Bạn không hiểu task đang yêu cầu đầu ra gì
+- Bạn không biết phần nào của hệ thống bị ảnh hưởng
+- Bạn đã thử reproduce và debug nhưng vẫn không xác định được nguyên nhân
+- Bạn sắp chạy lệnh phá hủy mà không chắc tác dụng
+- Bạn không biết review comment đang yêu cầu sửa logic hay chỉ style
 
 ---
 
-## Kỹ năng cần nắm trong tháng đầu
+## 5. Tài liệu nên đọc tiếp theo theo tình huống
 
-| Kỹ năng          | Mục tiêu             | Tài liệu                                               |
-| ---------------- | -------------------- | ------------------------------------------------------ |
-| Terminal / Shell | Sử dụng thành thạo   | [Terminal](../environment/terminal.md)                 |
-| Git branching    | Hiểu workflow branch | [Git](../vcs/git-basics.md)                            |
-| Docker           | Chạy container       | [Docker](../containers/docker.md)                      |
-| SQL cơ bản       | Viết query           | [SQL](../databases/sql-postgres.md)                    |
-| Debug & logs     | Tìm lỗi cơ bản       | [Troubleshooting](../troubleshooting/common-errors.md) |
+| Tình huống | Tài liệu nên đọc |
+| --- | --- |
+| Chưa quen command line | [Terminal & Shell](../environment/terminal.md) |
+| Sắp tạo PR đầu tiên | [GitHub Workflow](../vcs/github-workflow.md) |
+| Bắt đầu làm việc với DB | [SQL & PostgreSQL](../databases/sql-postgres.md) |
+| Cần chạy stack local | [Docker Compose](../containers/docker-compose.md) |
+| Gặp lỗi local / Docker / Git | [Lỗi thường gặp](../troubleshooting/common-errors.md) |
 
 ---
 
-## Mẹo cho ngày đầu
+## Definition of done cho giai đoạn onboard
 
-!!! tip "Lời khuyên"
-Đừng ngại hỏi khi chưa hiểu.
-Ghi chép lại các hướng dẫn của mentor.
+Bạn có thể coi mình đã đạt mức tối thiểu khi:
 
-Bạn nên tạo một file riêng:
+- [ ] setup được môi trường local
+- [ ] đọc được README và biết handbook này dùng để làm gì
+- [ ] biết `InternHub API` là case study xuyên suốt
+- [ ] tạo được branch và mở được PR nhỏ
+- [ ] gọi được một API hoặc chạy được một query có kết quả rõ ràng
+- [ ] biết mở phần troubleshooting và tự kiểm tra trước khi hỏi
 
-```bash
-notes.md
-```
+---
 
-để ghi lại:
+## Bước tiếp theo
 
-- các lệnh thường dùng
-- workflow của team
-- các lỗi thường gặp
+- Nếu bạn chưa setup máy: quay lại [Quickstart](quickstart.md)
+- Nếu bạn muốn hiểu dự án mẫu: đọc [Sample Project: InternHub API](sample-project.md)
+- Nếu bạn sắp vào workflow team: đọc [GitHub Workflow](../vcs/github-workflow.md)

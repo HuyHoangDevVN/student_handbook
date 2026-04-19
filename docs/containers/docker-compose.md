@@ -7,7 +7,7 @@ Sau bài này, bạn sẽ:
 - Viết file `docker-compose.yml` cho multi-container app.
 - Quản lý stack: web + database + cache.
 - Sử dụng networks, volumes, environment variables.
-- Ăp dụng cho môi trường development.
+- Áp dụng cho môi trường development.
 
 ## Prerequisites
 

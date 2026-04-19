@@ -1,7 +1,6 @@
 # SQL & PostgreSQL
 
-Trang này là mục lục cho cụm bài SQL/PostgreSQL. Nội dung đã được tách thành 3 bài để phân biệt
-rõ setup, CRUD và tối ưu/cơ chế giao dịch.
+Trang này là mục lục cho cụm bài SQL/PostgreSQL. Nội dung đã được tách thành 3 bài để phân biệt rõ setup, CRUD và tối ưu/cơ chế giao dịch.
 
 ---
 
@@ -24,9 +23,9 @@ Sau cụm bài này, bạn có thể:
 
 ## Lộ trình học
 
-1. [Cài Đặt Và Kết Nối PostgreSQL](postgres-setup.md)
-2. [SQL CRUD Cơ Bản](sql-crud.md)
-3. [Index, Transaction Và Tối Ưu SQL](sql-advanced.md)
+1. [Cài đặt và Kết nối PostgreSQL](postgres-setup.md)
+2. [SQL CRUD cơ bản](sql-crud.md)
+3. [Index, Transaction và Tối ưu SQL](sql-advanced.md)
 
 ---
 

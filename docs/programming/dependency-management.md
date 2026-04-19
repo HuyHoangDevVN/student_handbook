@@ -90,7 +90,7 @@ Ví dụ:
 
 ---
 
-## Ă nghĩa version
+## Ý nghĩa version
 
 | Phần  | Khi nào tăng     |
 | ----- | ---------------- |
@@ -114,7 +114,7 @@ Ví dụ:
 
 Trong `package.json` thường thấy:
 
-| Ký hiệu  | Ă nghĩa                |
+| Ký hiệu  | Ý nghĩa                |
 | -------- | ---------------------- |
 | `^1.2.3` | cho phép upgrade minor |
 | `~1.2.3` | chỉ upgrade patch      |
