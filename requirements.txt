@@ -1,0 +1,18 @@
+# =============================================================================
+# Student IT Handbook – Python Dependencies
+# Install: pip install -r requirements.txt
+# =============================================================================
+
+# Core
+mkdocs>=1.6.0,<2.0
+mkdocs-material>=9.5,<10.0
+
+# PDF export
+mkdocs-with-pdf>=0.9.3
+
+# PDF engine (cần cài thêm hệ thống: weasyprint hoặc wkhtmltopdf)
+# Xem README.md để biết cách cài đặt.
+
+# Optional – các plugin hữu ích
+mkdocs-minify-plugin>=0.8.0      # Minify HTML output
+mkdocs-git-revision-date-localized-plugin>=1.2  # Hiện ngày sửa cuối
