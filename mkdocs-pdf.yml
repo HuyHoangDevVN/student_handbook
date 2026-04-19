@@ -23,22 +23,13 @@ theme:
     - scheme: default
       primary: blue
       accent: orange
-      toggle:
-        icon: material/brightness-7
-        name: Chuyen sang Dark mode
     - scheme: slate
       primary: blue
       accent: orange
-      toggle:
-        icon: material/brightness-4
-        name: Chuyen sang Light mode
   features:
     - navigation.sections
     - navigation.expand
-    - navigation.top
     - navigation.indexes
-    - search.suggest
-    - search.highlight
     - content.code.copy
     - content.code.annotate
     - content.tabs.link
@@ -82,7 +73,7 @@ markdown_extensions:
   - pymdownx.tilde
   - pymdownx.smartsymbols
   - toc:
-      permalink: true
+      permalink: false
       toc_depth: 3
   - tables
   - footnotes
@@ -97,7 +88,6 @@ extra:
   generator: false
 
 extra_css:
-  - assets/css/custom.css
   - assets/css/pdf.css
 
 nav:

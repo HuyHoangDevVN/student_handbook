@@ -21,10 +21,19 @@ try {
 catch {
     Write-Host ""
     Write-Host "PDF build failed."
-    Write-Host "Likely cause on Windows: missing GTK/Pango libraries required by WeasyPrint."
-    Write-Host "Recommended paths:"
-    Write-Host "  1. Run the build inside WSL/Ubuntu"
-    Write-Host "  2. Use GitHub Actions workflow '.github/workflows/pdf-handbook.yml'"
+    if ($env:GITHUB_ACTIONS -eq "true") {
+        Write-Host "The PDF toolchain is available in CI, so this failure is likely caused by PDF content/config issues."
+        Write-Host "Check the build log for:"
+        Write-Host "  - broken links such as '#'"
+        Write-Host "  - HTML/CSS that works on web but not in mkdocs-with-pdf"
+        Write-Host "  - warnings promoted to errors by the PDF plugin"
+    }
+    else {
+        Write-Host "Likely cause on Windows: missing GTK/Pango libraries required by WeasyPrint."
+        Write-Host "Recommended paths:"
+        Write-Host "  1. Run the build inside WSL/Ubuntu"
+        Write-Host "  2. Use GitHub Actions workflow '.github/workflows/pdf-handbook.yml'"
+    }
     throw
 }
 

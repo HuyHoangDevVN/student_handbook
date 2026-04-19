@@ -149,14 +149,35 @@ mkdocs build --strict
 
 ## Xuất PDF
 
+PDF dùng profile riêng là `mkdocs-pdf.yml`. Profile này không cố giữ toàn bộ giao diện web, mà ưu tiên build ổn định cho handbook in/export.
+
+### Linux / macOS / Bash
+
 ```bash
 ENABLE_PDF_EXPORT=1 mkdocs build --strict -f mkdocs-pdf.yml
+```
+
+### Windows PowerShell
+
+```powershell
+$env:ENABLE_PDF_EXPORT = "1"
+mkdocs build --strict -f mkdocs-pdf.yml
 ```
 
 Trên Windows, nếu thiếu GTK/Pango cho WeasyPrint, dùng:
 
 - `./scripts/export-pdf.ps1`
 - hoặc workflow `.github/workflows/pdf-handbook.yml`
+
+### GitHub Actions
+
+Day la duong on dinh nhat cho PDF:
+
+1. push code len GitHub
+2. vao tab `Actions`
+3. chon workflow `Build PDF Handbook`
+4. chay `Run workflow`
+5. tai artifact `student-it-handbook-pdf`
 
 ## Đóng góp
 
