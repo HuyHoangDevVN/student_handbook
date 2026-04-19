@@ -1,0 +1,312 @@
+/* ==========================================================================
+   Student IT Handbook - FIT DNU theme
+   ========================================================================== */
+
+/* Theme tokens */
+:root {
+  --fit-blue-700: #143d8d;
+  --fit-blue-900: #0b1f47;
+  --fit-orange-500: #f47a20;
+  --fit-border: rgba(20, 61, 141, 0.12);
+  --fit-surface: #ffffff;
+  --fit-surface-soft: #f5f7fc;
+  --fit-text-soft: rgba(11, 31, 71, 0.72);
+  --fit-shadow-soft: 0 12px 28px rgba(11, 31, 71, 0.08);
+}
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #133776;
+  --md-primary-fg-color--light: #35579b;
+  --md-primary-fg-color--dark: #0b1f47;
+  --md-accent-fg-color: var(--fit-orange-500);
+  --md-default-bg-color: #f8fafd;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #102852;
+  --md-primary-fg-color--light: #173d82;
+  --md-primary-fg-color--dark: #08152c;
+  --md-accent-fg-color: #ff9a3d;
+  --md-default-bg-color: #0d1324;
+  --fit-border: rgba(255, 255, 255, 0.08);
+  --fit-surface: rgba(255, 255, 255, 0.05);
+  --fit-surface-soft: rgba(255, 255, 255, 0.03);
+  --fit-text-soft: rgba(220, 230, 255, 0.82);
+  --fit-shadow-soft: 0 18px 36px rgba(0, 0, 0, 0.24);
+}
+
+/* Shell */
+.md-header {
+  background: linear-gradient(90deg, #0b1f47, #143d8d);
+  box-shadow: 0 8px 18px rgba(9, 22, 47, 0.16);
+}
+
+.md-tabs {
+  background: rgba(11, 31, 71, 0.94);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.md-header__title {
+  margin-left: 0;
+}
+
+.md-header__button.md-logo {
+  padding: 0;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.md-header__topic:first-child {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.md-main__inner {
+  margin-top: 1rem;
+}
+
+.md-content {
+  max-width: 1040px;
+}
+
+/* Shared content */
+.md-typeset h1 {
+  color: var(--fit-blue-700);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+[data-md-color-scheme="slate"] .md-typeset h1 {
+  color: #dce6ff;
+}
+
+.md-typeset h2 {
+  margin-top: 2.2rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(20, 61, 141, 0.12);
+}
+
+[data-md-color-scheme="slate"] .md-typeset h2 {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.md-typeset a {
+  text-decoration-thickness: 0.08em;
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  border: 1px solid var(--fit-border);
+  border-radius: 1rem;
+  box-shadow: var(--fit-shadow-soft);
+}
+
+.md-typeset .admonition.tip {
+  border-left-color: var(--fit-orange-500);
+}
+
+.md-typeset code {
+  border-radius: 0.45rem;
+}
+
+.highlight code {
+  font-size: 0.85rem;
+}
+
+.md-typeset table:not([class]) {
+  overflow: hidden;
+  border-radius: 0.85rem;
+  font-size: 0.82rem;
+}
+
+.md-typeset .md-button {
+  padding-inline: 1rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.md-typeset .md-button--primary {
+  border-color: transparent;
+  background: var(--fit-blue-700);
+  color: #fff;
+  box-shadow: none;
+}
+
+/* Homepage */
+.handbook-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+  gap: 2rem;
+  align-items: center;
+  margin: 0 0 2.25rem;
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  border: 1px solid var(--fit-border);
+  border-radius: 1.5rem;
+  background: var(--fit-surface);
+  box-shadow: var(--fit-shadow-soft);
+}
+
+.handbook-kicker {
+  margin: 0 0 0.8rem;
+  color: var(--fit-orange-500);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.handbook-hero h1 {
+  max-width: 11ch;
+  margin: 0 0 0.9rem;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.03;
+}
+
+.handbook-lead {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--fit-text-soft);
+  font-size: 1.02rem;
+  line-height: 1.72;
+}
+
+.handbook-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 1.4rem 0 0;
+}
+
+.handbook-hero__panel {
+  display: grid;
+  gap: 0.8rem;
+  justify-items: center;
+  padding: 1.15rem;
+  border: 1px solid var(--fit-border);
+  border-radius: 1.25rem;
+  background: var(--fit-surface-soft);
+}
+
+.handbook-hero__panel img {
+  width: min(100%, 380px);
+  height: auto;
+}
+
+.handbook-hero__panel p {
+  margin: 0;
+  color: var(--fit-text-soft);
+  text-align: center;
+}
+
+.handbook-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.handbook-step {
+  padding: 1rem 1rem 1.1rem;
+  border-top: 2px solid var(--fit-blue-700);
+  background: transparent;
+}
+
+.handbook-step__index {
+  display: block;
+  margin-bottom: 0.55rem;
+  color: rgba(20, 61, 141, 0.42);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+[data-md-color-scheme="slate"] .handbook-step__index {
+  color: rgba(220, 230, 255, 0.4);
+}
+
+.handbook-step h3 {
+  margin: 0 0 0.4rem;
+  color: var(--fit-blue-700);
+  font-size: 1.05rem;
+}
+
+[data-md-color-scheme="slate"] .handbook-step h3 {
+  color: #fff;
+}
+
+.handbook-step p {
+  margin: 0;
+  color: var(--fit-text-soft);
+}
+
+.handbook-quickstart {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 0;
+}
+
+.handbook-quickstart__item {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem 1rem 1.1rem;
+  border: 1px solid var(--fit-border);
+  border-radius: 1rem;
+  background: var(--fit-surface);
+  box-shadow: var(--fit-shadow-soft);
+  color: inherit;
+  text-decoration: none;
+}
+
+.handbook-quickstart__item strong {
+  color: var(--fit-blue-700);
+  font-size: 1rem;
+}
+
+[data-md-color-scheme="slate"] .handbook-quickstart__item strong {
+  color: #fff;
+}
+
+.handbook-quickstart__item span {
+  color: var(--fit-text-soft);
+}
+
+.handbook-quickstart__item[href]:hover {
+  border-color: rgba(20, 61, 141, 0.24);
+  transform: translateY(-1px);
+}
+
+@media screen and (max-width: 1100px) {
+  .handbook-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .handbook-quickstart {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .handbook-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .handbook-hero__panel {
+    order: -1;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .md-header__button.md-logo {
+    font-size: 0.92rem;
+  }
+
+  .handbook-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .handbook-steps {
+    grid-template-columns: 1fr;
+  }
+}
