@@ -1,36 +1,36 @@
-﻿# Lá»—i thÆ°á»ng gáº·p & CĂ¡ch xá»­ lĂ½
+﻿# Lỗi thường gặp & Cách xử lý
 
-## Má»¥c tiĂªu
+## Mục tiêu
 
-Trang nĂ y tá»•ng há»£p cĂ¡c lá»—i phá»• biáº¿n nháº¥t mĂ  sinh viĂªn gáº·p khi thá»±c táº­p, kĂ¨m nguyĂªn nhĂ¢n vĂ  cĂ¡ch xá»­ lĂ½ nhanh.
+Trang này tổng hợp các lỗi phổ biến nhất mà sinh viên gặp khi thực tập, kèm nguyên nhân và cách xử lý nhanh.
 
 ---
 
 ## Git
 
-| #   | Lá»—i                                              | NguyĂªn nhĂ¢n                      | CĂ¡ch sá»­a                                                                               |
+| #   | Lỗi                                              | Nguyên nhân                      | Cách sửa                                                                               |
 | --- | ------------------------------------------------ | -------------------------------- | -------------------------------------------------------------------------------------- |
-| 1   | `fatal: not a git repository`                    | ChÆ°a `git init` hoáº·c sai thÆ° má»¥c | `cd` vĂ o Ä‘Ăºng thÆ° má»¥c chá»©a `.git`                                                      |
-| 2   | `error: failed to push some refs`                | Remote cĂ³ commit báº¡n chÆ°a pull   | `git pull --rebase origin main` rá»“i `git push`                                         |
-| 3   | `CONFLICT (content): Merge conflict in file.txt` | 2 ngÆ°á»i sá»­a cĂ¹ng vá»‹ trĂ­          | Má»Ÿ file â†’ sá»­a conflict thá»§ cĂ´ng â†’ `git add` â†’ `git commit`                             |
-| 4   | `Permission denied (publickey)`                  | SSH key chÆ°a setup               | [Táº¡o SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) |
-| 5   | `detached HEAD state`                            | `git checkout` vĂ o commit hash   | `git switch main` Ä‘á»ƒ quay láº¡i branch                                                   |
-| 6   | Commit nháº§m file lá»›n (>100MB)                    | File vÆ°á»£t giá»›i háº¡n GitHub        | `git reset HEAD~1`, thĂªm vĂ o `.gitignore`                                              |
-| 7   | Commit nháº§m `.env` / secrets                     | QuĂªn `.gitignore`                | Rotate secrets, dĂ¹ng `git filter-branch` Ä‘á»ƒ xoĂ¡ khá»i history                           |
+| 1   | `fatal: not a git repository`                    | Chưa `git init` hoặc sai thư mục | `cd` vào đúng thư mục chứa `.git`                                                      |
+| 2   | `error: failed to push some refs`                | Remote có commit bạn chưa pull   | `git pull --rebase origin main` rồi `git push`                                         |
+| 3   | `CONFLICT (content): Merge conflict in file.txt` | 2 người sửa cùng vị trí          | Mở file → sửa conflict thủ công → `git add` → `git commit`                             |
+| 4   | `Permission denied (publickey)`                  | SSH key chưa setup               | [Tạo SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) |
+| 5   | `detached HEAD state`                            | `git checkout` vào commit hash   | `git switch main` để quay lại branch                                                   |
+| 6   | Commit nhầm file lớn (>100MB)                    | File vượt giới hạn GitHub        | `git reset HEAD~1`, thêm vào `.gitignore`                                              |
+| 7   | Commit nhầm `.env` / secrets                     | Quên `.gitignore`                | Rotate secrets, dùng `git filter-branch` để xoá khỏi history                           |
 
-### Script khĂ´i phá»¥c Git
+### Script khôi phục Git
 
 ```bash
-# Undo commit gáº§n nháº¥t (giá»¯ code)
+# Undo commit gần nhất (giữ code)
 git reset --soft HEAD~1
 
-# Undo táº¥t cáº£ thay Ä‘á»•i chÆ°a commit (Cáº¨N THáº¬N!)
+# Undo tất cả thay đổi chưa commit (CẨN THẬN!)
 git checkout -- .
 
-# Xem lá»‹ch sá»­ táº¥t cáº£ thao tĂ¡c (ká»ƒ cáº£ Ä‘Ă£ reset)
+# Xem lịch sử tất cả thao tác (kể cả đã reset)
 git reflog
 
-# Quay láº¡i tráº¡ng thĂ¡i báº¥t ká»³
+# Quay lại trạng thái bất kỳ
 git reset --hard HEAD@{3}
 ```
 
@@ -38,29 +38,29 @@ git reset --hard HEAD@{3}
 
 ## Docker
 
-| #   | Lá»—i                                   | NguyĂªn nhĂ¢n                      | CĂ¡ch sá»­a                                       |
+| #   | Lỗi                                   | Nguyên nhân                      | Cách sửa                                       |
 | --- | ------------------------------------- | -------------------------------- | ---------------------------------------------- |
-| 1   | `Cannot connect to the Docker daemon` | Docker Desktop chÆ°a cháº¡y         | Má»Ÿ Docker Desktop                              |
-| 2   | `port is already allocated`           | Port Ä‘Ă£ bá»‹ chiáº¿m                 | `docker ps` â†’ stop container cÅ©, hoáº·c Ä‘á»•i port |
-| 3   | `no space left on device`             | Docker dĂ¹ng háº¿t disk             | `docker system prune -a --volumes`             |
-| 4   | Container exit code 137               | Out of memory (OOM killed)       | TÄƒng RAM cho Docker Desktop                    |
-| 5   | Container exit ngay láº­p tá»©c           | CMD/ENTRYPOINT lá»—i               | `docker logs <name>` Ä‘á»ƒ xem lá»—i                |
-| 6   | `exec format error`                   | Image build cho sai architecture | ThĂªm `--platform linux/amd64`                  |
-| 7   | Volume permission denied              | Container user khĂ¡c host user    | `chown` hoáº·c dĂ¹ng `user:` trong compose        |
+| 1   | `Cannot connect to the Docker daemon` | Docker Desktop chưa chạy         | Mở Docker Desktop                              |
+| 2   | `port is already allocated`           | Port đã bị chiếm                 | `docker ps` → stop container cũ, hoặc đổi port |
+| 3   | `no space left on device`             | Docker dùng hết disk             | `docker system prune -a --volumes`             |
+| 4   | Container exit code 137               | Out of memory (OOM killed)       | Tăng RAM cho Docker Desktop                    |
+| 5   | Container exit ngay lập tức           | CMD/ENTRYPOINT lỗi               | `docker logs <name>` để xem lỗi                |
+| 6   | `exec format error`                   | Image build cho sai architecture | Thêm `--platform linux/amd64`                  |
+| 7   | Volume permission denied              | Container user khác host user    | `chown` hoặc dùng `user:` trong compose        |
 
-### Script dá»n dáº¹p Docker
+### Script dọn dẹp Docker
 
 ```bash
-# Dá»n táº¥t cáº£ (containers dá»«ng, images orphan, volumes khĂ´ng dĂ¹ng)
+# Dọn tất cả (containers dừng, images orphan, volumes không dùng)
 docker system prune -a --volumes
 
 # Xem disk usage
 docker system df
 
-# Kill táº¥t cáº£ container Ä‘ang cháº¡y
+# Kill tất cả container đang chạy
 docker stop $(docker ps -q)
 
-# XoĂ¡ táº¥t cáº£ container
+# Xoá tất cả container
 docker rm $(docker ps -aq)
 ```
 
@@ -68,27 +68,27 @@ docker rm $(docker ps -aq)
 
 ## Python
 
-| #   | Lá»—i                                                | NguyĂªn nhĂ¢n                     | CĂ¡ch sá»­a                                          |
+| #   | Lỗi                                                | Nguyên nhân                     | Cách sửa                                          |
 | --- | -------------------------------------------------- | ------------------------------- | ------------------------------------------------- |
-| 1   | `ModuleNotFoundError: No module named 'xxx'`       | Package chÆ°a cĂ i trong env Ä‘Ăºng | `which python` â†’ kiá»ƒm tra env â†’ `pip install xxx` |
-| 2   | `command not found: python`                        | Python chÆ°a cĂ i hoáº·c alias sai  | DĂ¹ng `python3`, hoáº·c cĂ i qua pyenv/conda          |
-| 3   | `pip install` bá»‹ permission denied                 | CĂ i global trĂªn Linux           | KĂ­ch hoáº¡t venv trÆ°á»›c, hoáº·c dĂ¹ng `--user`          |
-| 4   | `SyntaxError: invalid syntax`                      | Sai Python version (2 vs 3)     | Äáº£m báº£o dĂ¹ng Python 3.9+                          |
-| 5   | `UnicodeDecodeError`                               | File encoding khĂ´ng pháº£i UTF-8  | `open(file, encoding='utf-8')`                    |
-| 6   | `IndentationError`                                 | Trá»™n tab vĂ  space               | Cáº¥u hĂ¬nh editor dĂ¹ng 4 spaces                     |
-| 7   | `RecursionError: maximum recursion depth exceeded` | Äá»‡ quy vĂ´ háº¡n                   | Kiá»ƒm tra base case                                |
+| 1   | `ModuleNotFoundError: No module named 'xxx'`       | Package chưa cài trong env đúng | `which python` → kiểm tra env → `pip install xxx` |
+| 2   | `command not found: python`                        | Python chưa cài hoặc alias sai  | Dùng `python3`, hoặc cài qua pyenv/conda          |
+| 3   | `pip install` bị permission denied                 | Cài global trên Linux           | Kích hoạt venv trước, hoặc dùng `--user`          |
+| 4   | `SyntaxError: invalid syntax`                      | Sai Python version (2 vs 3)     | Đảm bảo dùng Python 3.9+                          |
+| 5   | `UnicodeDecodeError`                               | File encoding không phải UTF-8  | `open(file, encoding='utf-8')`                    |
+| 6   | `IndentationError`                                 | Trộn tab và space               | Cấu hình editor dùng 4 spaces                     |
+| 7   | `RecursionError: maximum recursion depth exceeded` | Đệ quy vô hạn                   | Kiểm tra base case                                |
 
 ### Debug nhanh Python
 
 ```bash
-# Kiá»ƒm tra Python nĂ o Ä‘ang dĂ¹ng
+# Kiểm tra Python nào đang dùng
 which python
 python --version
 
-# Kiá»ƒm tra package Ä‘Ă£ cĂ i chÆ°a
+# Kiểm tra package đã cài chưa
 pip list | grep flask
 
-# Kiá»ƒm tra env Ä‘ang dĂ¹ng
+# Kiểm tra env đang dùng
 echo $VIRTUAL_ENV     # venv
 echo $CONDA_DEFAULT_ENV  # conda
 ```
@@ -97,19 +97,19 @@ echo $CONDA_DEFAULT_ENV  # conda
 
 ## Database (PostgreSQL)
 
-| #   | Lá»—i                                              | NguyĂªn nhĂ¢n                     | CĂ¡ch sá»­a                                                     |
+| #   | Lỗi                                              | Nguyên nhân                     | Cách sửa                                                     |
 | --- | ------------------------------------------------ | ------------------------------- | ------------------------------------------------------------ |
-| 1   | `Connection refused`                             | PostgreSQL chÆ°a cháº¡y            | `docker start postgres-dev`                                  |
-| 2   | `FATAL: password authentication failed`          | Sai password                    | Kiá»ƒm tra `POSTGRES_PASSWORD` trong docker env                |
-| 3   | `relation "table" does not exist`                | ChÆ°a táº¡o báº£ng                   | Cháº¡y migration hoáº·c `CREATE TABLE`                           |
-| 4   | `duplicate key value violates unique constraint` | Insert data trĂ¹ng unique column | Kiá»ƒm tra data, dĂ¹ng `ON CONFLICT`                            |
-| 5   | `too many connections`                           | Connection pool cáº¡n             | Kiá»ƒm tra code khĂ´ng close connection, tÄƒng `max_connections` |
+| 1   | `Connection refused`                             | PostgreSQL chưa chạy            | `docker start postgres-dev`                                  |
+| 2   | `FATAL: password authentication failed`          | Sai password                    | Kiểm tra `POSTGRES_PASSWORD` trong docker env                |
+| 3   | `relation "table" does not exist`                | Chưa tạo bảng                   | Chạy migration hoặc `CREATE TABLE`                           |
+| 4   | `duplicate key value violates unique constraint` | Insert data trùng unique column | Kiểm tra data, dùng `ON CONFLICT`                            |
+| 5   | `too many connections`                           | Connection pool cạn             | Kiểm tra code không close connection, tăng `max_connections` |
 
 ```bash
-# Kiá»ƒm tra PostgreSQL Ä‘ang cháº¡y
+# Kiểm tra PostgreSQL đang chạy
 docker ps | grep postgres
 
-# Káº¿t ná»‘i test
+# Kết nối test
 docker exec -it postgres-dev psql -U dev -d internhub -c "SELECT 1;"
 ```
 
@@ -117,16 +117,16 @@ docker exec -it postgres-dev psql -U dev -d internhub -c "SELECT 1;"
 
 ## Network / API
 
-| #   | Lá»—i                                   | NguyĂªn nhĂ¢n                           | CĂ¡ch sá»­a                                           |
+| #   | Lỗi                                   | Nguyên nhân                           | Cách sửa                                           |
 | --- | ------------------------------------- | ------------------------------------- | -------------------------------------------------- |
-| 1   | `ECONNREFUSED` / `Connection refused` | Server chÆ°a cháº¡y hoáº·c sai port        | Kiá»ƒm tra server, kiá»ƒm tra port                     |
-| 2   | `CORS error` (browser)                | Server chÆ°a cho phĂ©p origin           | ThĂªm CORS middleware                               |
-| 3   | `EADDRINUSE: address already in use`  | Port Ä‘Ă£ bá»‹ chiáº¿m                      | `lsof -i :PORT` â†’ `kill PID`, hoáº·c Ä‘á»•i port        |
-| 4   | `ETIMEDOUT`                           | Server quĂ¡ cháº­m hoáº·c khĂ´ng reach Ä‘Æ°á»£c | Kiá»ƒm tra network, firewall, DNS                    |
-| 5   | `SSL certificate problem`             | Self-signed cert hoáº·c cert expired    | Update cert, hoáº·c táº¡m táº¯t SSL verify (chá»‰ khi dev) |
+| 1   | `ECONNREFUSED` / `Connection refused` | Server chưa chạy hoặc sai port        | Kiểm tra server, kiểm tra port                     |
+| 2   | `CORS error` (browser)                | Server chưa cho phép origin           | Thêm CORS middleware                               |
+| 3   | `EADDRINUSE: address already in use`  | Port đã bị chiếm                      | `lsof -i :PORT` → `kill PID`, hoặc đổi port        |
+| 4   | `ETIMEDOUT`                           | Server quá chậm hoặc không reach được | Kiểm tra network, firewall, DNS                    |
+| 5   | `SSL certificate problem`             | Self-signed cert hoặc cert expired    | Update cert, hoặc tạm tắt SSL verify (chỉ khi dev) |
 
 ```bash
-# Kiá»ƒm tra port Ä‘ang má»Ÿ
+# Kiểm tra port đang mở
 lsof -i :3000          # macOS/Linux
 netstat -ano | findstr :3000  # Windows
 
@@ -141,43 +141,43 @@ nslookup api.example.com
 
 ## WSL / Windows
 
-| #   | Lá»—i                                    | NguyĂªn nhĂ¢n                      | CĂ¡ch sá»­a                                    |
+| #   | Lỗi                                    | Nguyên nhân                      | Cách sửa                                    |
 | --- | -------------------------------------- | -------------------------------- | ------------------------------------------- |
-| 1   | WSL ráº¥t cháº­m                           | Project náº±m á»Ÿ `/mnt/c/`          | Chuyá»ƒn project sang `/home/user/` trong WSL |
+| 1   | WSL rất chậm                           | Project nằm ở `/mnt/c/`          | Chuyển project sang `/home/user/` trong WSL |
 | 2   | Line ending warning Git                | CRLF vs LF                       | `git config --global core.autocrlf input`   |
-| 3   | Docker khĂ´ng cháº¡y trong WSL            | ChÆ°a báº­t WSL integration         | Docker Desktop â†’ Settings â†’ WSL Integration |
-| 4   | `chmod` khĂ´ng hoáº¡t Ä‘á»™ng trĂªn `/mnt/c/` | Windows filesystem khĂ´ng support | LĂ m viá»‡c trong WSL filesystem (`/home/`)    |
+| 3   | Docker không chạy trong WSL            | Chưa bật WSL integration         | Docker Desktop → Settings → WSL Integration |
+| 4   | `chmod` không hoạt động trên `/mnt/c/` | Windows filesystem không support | Làm việc trong WSL filesystem (`/home/`)    |
 
 ---
 
-## Quy trĂ¬nh debug chung
+## Quy trình debug chung
 
 ```mermaid
 graph TB
-    A[Gáº·p lá»—i] --> B{Äá»c error message}
+    A[Gặp lỗi] --> B{Đọc error message}
     B --> C[Google / Stack Overflow]
-    B --> D[Kiá»ƒm tra logs]
-    D --> E{TĂ¬m Ä‘Æ°á»£c nguyĂªn nhĂ¢n?}
+    B --> D[Kiểm tra logs]
+    D --> E{Tìm được nguyên nhân?}
     C --> E
-    E -->|CĂ³| F[Fix & Test]
-    E -->|KhĂ´ng| G[Há»i Ä‘á»“ng nghiá»‡p / mentor]
-    F --> H{Fix thĂ nh cĂ´ng?}
-    H -->|CĂ³| I[Ghi chĂº láº¡i Ä‘á»ƒ láº§n sau]
-    H -->|KhĂ´ng| G
+    E -->|Có| F[Fix & Test]
+    E -->|Không| G[Hỏi đồng nghiệp / mentor]
+    F --> H{Fix thành công?}
+    H -->|Có| I[Ghi chú lại để lần sau]
+    H -->|Không| G
 ```
 
 **Tips debug:**
 
-1. **Äá»c ká»¹ error message** â€“ 80% thĂ´ng tin á»Ÿ dĂ²ng cuá»‘i cĂ¹ng.
-2. **Copy error message** â†’ tĂ¬m Google/Stack Overflow.
-3. **Kiá»ƒm tra logs** â€“ `docker logs`, server log, browser console.
-4. **Reproduce** â€“ viáº¿t láº¡i bÆ°á»›c gĂ¢y lá»—i.
-5. **Isolate** â€“ comment bá»›t code Ä‘á»ƒ tĂ¬m dĂ²ng gĂ¢y lá»—i.
-6. **Ghi chĂº** â€“ viáº¿t láº¡i cĂ¡ch fix Ä‘á»ƒ láº§n sau khĂ´ng máº¥t thá»i gian.
+1. **Đọc kỹ error message** – 80% thông tin ở dòng cuối cùng.
+2. **Copy error message** → tìm Google/Stack Overflow.
+3. **Kiểm tra logs** – `docker logs`, server log, browser console.
+4. **Reproduce** – viết lại bước gây lỗi.
+5. **Isolate** – comment bớt code để tìm dòng gây lỗi.
+6. **Ghi chú** – viết lại cách fix để lần sau không mất thời gian.
 
 ---
 
-## TĂ i liá»‡u tham kháº£o
+## Tài liệu tham khảo
 
 - [Stack Overflow](https://stackoverflow.com/)
-- [DevDocs](https://devdocs.io/) â€“ Documentation cho má»i ngĂ´n ngá»¯
+- [DevDocs](https://devdocs.io/) – Documentation cho mọi ngôn ngữ

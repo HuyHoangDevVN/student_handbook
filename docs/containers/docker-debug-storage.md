@@ -4,7 +4,7 @@ Phần này gom quản lý image, debug container và volume.
 
 ---
 
-## Quáº£n lĂ½ images
+## Quản lý images
 
 ---
 
@@ -32,7 +32,7 @@ docker rmi python:3.11-slim
 
 ---
 
-## Dá»n image khĂ´ng dĂ¹ng
+## Dọn image không dùng
 
 ```bash
 docker image prune -a
@@ -60,7 +60,7 @@ docker logs -f my-nginx
 
 ---
 
-50 dĂ²ng cuá»‘i:
+50 dòng cuối:
 
 ```bash
 docker logs --tail 50 my-nginx
@@ -68,7 +68,7 @@ docker logs --tail 50 my-nginx
 
 ---
 
-Logs vá»›i timestamp:
+Logs với timestamp:
 
 ```bash
 docker logs -t my-nginx
@@ -76,9 +76,9 @@ docker logs -t my-nginx
 
 ---
 
-## Exec vĂ o container
+## Exec vào container
 
-Má»Ÿ shell:
+Mở shell:
 
 ```bash
 docker exec -it my-nginx sh
@@ -86,7 +86,7 @@ docker exec -it my-nginx sh
 
 ---
 
-Cháº¡y lá»‡nh nhanh:
+Chạy lệnh nhanh:
 
 ```bash
 docker exec my-nginx cat /etc/nginx/nginx.conf
@@ -94,7 +94,7 @@ docker exec my-nginx cat /etc/nginx/nginx.conf
 
 ---
 
-Náº¿u container cĂ³ bash:
+Nếu container có bash:
 
 ```bash
 docker exec -it container-name bash
@@ -110,7 +110,7 @@ docker inspect my-nginx
 
 ---
 
-Láº¥y IP container:
+Lấy IP container:
 
 ```bash
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-nginx
@@ -128,7 +128,7 @@ docker stats
 
 ## Volumes
 
-Volumes giĂºp **data khĂ´ng bá»‹ máº¥t khi container xoĂ¡**.
+Volumes giúp **data không bị mất khi container xoá**.
 
 ---
 
@@ -158,7 +158,7 @@ docker run -v /home/user/data:/app/data myimage
 
 ---
 
-## Quáº£n lĂ½ volumes
+## Quản lý volumes
 
 ```bash
 docker volume ls
@@ -182,7 +182,7 @@ docker volume prune
 
 ---
 
-### Khi nĂ o dĂ¹ng gĂ¬
+### Khi nào dùng gì
 
 | Type         | Use case        |
 | ------------ | --------------- |

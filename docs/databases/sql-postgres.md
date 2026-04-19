@@ -1,45 +1,45 @@
 # SQL & PostgreSQL
 
-Trang nay la muc luc cho cum bai SQL/PostgreSQL. Noi dung da duoc tach thanh 3 bai de phan biet
-ro setup, CRUD va toi uu/co che giao dich.
+Trang này là mục lục cho cụm bài SQL/PostgreSQL. Nội dung đã được tách thành 3 bài để phân biệt
+rõ setup, CRUD và tối ưu/cơ chế giao dịch.
 
 ---
 
-## Muc tieu
+## Mục tiêu
 
-Sau cum bai nay, ban co the:
+Sau cụm bài này, bạn có thể:
 
-- chay PostgreSQL bang Docker va ket noi bang CLI/GUI
-- viet truy van CRUD co ban
-- hieu index, transaction va mot so cong cu `psql`
+- chạy PostgreSQL bằng Docker và kết nối bằng CLI/GUI
+- viết truy vấn CRUD cơ bản
+- hiểu index, transaction và một số công cụ `psql`
 
 ---
 
 ## Prerequisites
 
-- Da hoan thanh: [Quickstart](../getting-started/quickstart.md)
-- Da biet Docker co ban: [Docker co ban](../containers/docker.md)
+- Đã hoàn thành: [Quickstart](../getting-started/quickstart.md)
+- Đã biết Docker cơ bản: [Docker cơ bản](../containers/docker.md)
 
 ---
 
-## Lo trinh hoc
+## Lộ trình học
 
-1. [Cai Dat Va Ket Noi PostgreSQL](postgres-setup.md)
-2. [SQL CRUD Co Ban](sql-crud.md)
-3. [Index, Transaction Va Toi Uu SQL](sql-advanced.md)
-
----
-
-## Goi y hoc
-
-- Chay database mau truoc khi hoc CRUD
-- Tu go lai truy van thay vi chi copy/paste
-- Dung `EXPLAIN ANALYZE` o phan nang cao de tap doc execution plan
+1. [Cài Đặt Và Kết Nối PostgreSQL](postgres-setup.md)
+2. [SQL CRUD Cơ Bản](sql-crud.md)
+3. [Index, Transaction Và Tối Ưu SQL](sql-advanced.md)
 
 ---
 
-## Tai lieu lien quan
+## Gợi ý học
+
+- Chạy database mẫu trước khi học CRUD
+- Tự gõ lại truy vấn thay vì chỉ copy/paste
+- Dùng `EXPLAIN ANALYZE` ở phần nâng cao để tập đọc execution plan
+
+---
+
+## Tài liệu liên quan
 
 - [MongoDB & Redis](mongodb-redis.md)
 - [SQL Cheat Sheet](../cheatsheets/sql.md)
-- File mau trong repo: `resources/database/sample-schema.sql`
+- File mẫu trong repo: `resources/database/sample-schema.sql`

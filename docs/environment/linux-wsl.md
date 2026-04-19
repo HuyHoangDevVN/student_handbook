@@ -4,23 +4,23 @@ Phần này hướng dẫn cài WSL 2 và cách truy cập file giữa Windows v
 
 ---
 
-## 1. CĂ i Ä‘áº·t WSL 2
+## 1. Cài đặt WSL 2
 
-Má»Ÿ **PowerShell (Admin)**:
+Mở **PowerShell (Admin)**:
 
 ```powershell
 wsl --install
 ```
 
-WSL sáº½ tá»± Ä‘á»™ng:
+WSL sẽ tự động:
 
-- báº­t **Virtual Machine Platform**
-- cĂ i **Ubuntu**
-- cáº¥u hĂ¬nh **WSL 2**
+- bật **Virtual Machine Platform**
+- cài **Ubuntu**
+- cấu hình **WSL 2**
 
 ---
 
-### Chá»n distro cá»¥ thá»ƒ
+### Chọn distro cụ thể
 
 ```powershell
 wsl --install -d Ubuntu-22.04
@@ -28,13 +28,13 @@ wsl --install -d Ubuntu-22.04
 
 ---
 
-### Kiá»ƒm tra WSL
+### Kiểm tra WSL
 
 ```powershell
 wsl -l -v
 ```
 
-VĂ­ dá»¥:
+Ví dụ:
 
 ```text
 NAME            STATE           VERSION
@@ -43,15 +43,15 @@ Ubuntu          Running         2
 
 ---
 
-### Má»Ÿ WSL
+### Mở WSL
 
-CĂ¡ch dá»… nháº¥t:
+Cách dễ nhất:
 
-Má»Ÿ **Windows Terminal â†’ chá»n Ubuntu**
+Mở **Windows Terminal → chọn Ubuntu**
 
 ---
 
-## Truy cáº­p file Windows tá»« WSL
+## Truy cập file Windows từ WSL
 
 Trong WSL:
 
@@ -61,7 +61,7 @@ cd /mnt/c/Users/<your-user>
 
 ---
 
-## Truy cáº­p file WSL tá»« Windows
+## Truy cập file WSL từ Windows
 
 Trong Windows Explorer:
 

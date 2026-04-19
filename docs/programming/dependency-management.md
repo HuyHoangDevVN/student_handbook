@@ -1,31 +1,31 @@
-﻿# Quáº£n lĂ½ Dependencies
+﻿# Quản lý Dependencies
 
-Dependencies lĂ  cĂ¡c **thÆ° viá»‡n hoáº·c package bĂªn ngoĂ i** mĂ  project sá»­ dá»¥ng.
+Dependencies là các **thư viện hoặc package bên ngoài** mà project sử dụng.
 
-Quáº£n lĂ½ dependencies Ä‘Ăºng cĂ¡ch giĂºp:
+Quản lý dependencies đúng cách giúp:
 
-- Ä‘áº£m báº£o **má»i developer cháº¡y cĂ¹ng mĂ´i trÆ°á»ng**
-- trĂ¡nh lá»—i **â€œworks on my machineâ€**
-- giáº£m rá»§i ro **security vulnerabilities**
-
----
-
-## Má»¥c tiĂªu
-
-Sau bĂ i nĂ y báº¡n cĂ³ thá»ƒ:
-
-- hiá»ƒu táº§m quan trá»ng cá»§a dependency management
-- sá»­ dá»¥ng **lock file**
-- hiá»ƒu **Semantic Versioning**
-- cáº­p nháº­t package an toĂ n
+- đảm bảo **mọi developer chạy cùng môi trường**
+- tránh lỗi **"works on my machine"**
+- giảm rủi ro **security vulnerabilities**
 
 ---
 
-## VĂ¬ sao dependency management quan trá»ng
+## Mục tiêu
 
-Má»™t project cĂ³ thá»ƒ sá»­ dá»¥ng **hĂ ng chá»¥c Ä‘áº¿n hĂ ng trÄƒm thÆ° viá»‡n**.
+Sau bài này bạn có thể:
 
-Náº¿u khĂ´ng quáº£n lĂ½ Ä‘Ăºng:
+- hiểu tầm quan trọng của dependency management
+- sử dụng **lock file**
+- hiểu **Semantic Versioning**
+- cập nhật package an toàn
+
+---
+
+## Vì sao dependency management quan trọng
+
+Một project có thể sử dụng **hàng chục đến hàng trăm thư viện**.
+
+Nếu không quản lý đúng:
 
 ```text
 Developer A: package v1.0
@@ -33,38 +33,38 @@ Developer B: package v1.2
 CI server: package v2.0
 ```
 
-Káº¿t quáº£:
+Kết quả:
 
 ```text
-á»¨ng dá»¥ng cháº¡y khĂ¡c nhau trĂªn má»—i mĂ¡y
+Ứng dụng chạy khác nhau trên mỗi máy
 ```
 
 ---
 
 ## Lock File
 
-Lock file ghi láº¡i **chĂ­nh xĂ¡c phiĂªn báº£n dependency** Ä‘Æ°á»£c cĂ i.
+Lock file ghi lại **chính xác phiên bản dependency** được cài.
 
-Nhá» Ä‘Ă³ má»i developer vĂ  CI server Ä‘á»u cĂ i **giá»‘ng nhau 100%**.
+Nhờ đó mọi developer và CI server đều cài **giống nhau 100%**.
 
 ---
 
-## Lock file theo ngĂ´n ngá»¯
+## Lock file theo ngôn ngữ
 
-| NgĂ´n ngá»¯        | Lock file         | Commit? |
+| Ngôn ngữ        | Lock file         | Commit? |
 | --------------- | ----------------- | ------- |
-| Python          | requirements.txt  | CĂ³      |
-| Node.js         | package-lock.json | CĂ³      |
-| Node.js (yarn)  | yarn.lock         | CĂ³      |
-| Python (Poetry) | poetry.lock       | CĂ³      |
-| Conda           | environment.yml   | CĂ³      |
+| Python          | requirements.txt  | Có      |
+| Node.js         | package-lock.json | Có      |
+| Node.js (yarn)  | yarn.lock         | Có      |
+| Python (Poetry) | poetry.lock       | Có      |
+| Conda           | environment.yml   | Có      |
 
 ---
 
-!!! warning "Quy táº¯c quan trá»ng"
-LuĂ´n **commit lock file** vĂ o repository.
+!!! warning "Quy tắc quan trọng"
+Luôn **commit lock file** vào repository.
 
-ÄĂ¢y lĂ  cĂ¡ch duy nháº¥t Ä‘á»ƒ Ä‘áº£m báº£o:
+Đây là cách duy nhất để đảm bảo:
 
 ```text
 Reproducible builds
@@ -74,7 +74,7 @@ Reproducible builds
 
 ## Semantic Versioning (SemVer)
 
-Háº§u háº¿t package sá»­ dá»¥ng **Semantic Versioning**.
+Hầu hết package sử dụng **Semantic Versioning**.
 
 Format:
 
@@ -82,7 +82,7 @@ Format:
 MAJOR.MINOR.PATCH
 ```
 
-VĂ­ dá»¥:
+Ví dụ:
 
 ```text
 2.1.3
@@ -90,46 +90,46 @@ VĂ­ dá»¥:
 
 ---
 
-## Ă nghÄ©a version
+## Ă nghĩa version
 
-| Pháº§n  | Khi nĂ o tÄƒng     |
+| Phần  | Khi nào tăng     |
 | ----- | ---------------- |
 | MAJOR | breaking changes |
-| MINOR | thĂªm feature     |
-| PATCH | sá»­a bug          |
+| MINOR | thêm feature     |
+| PATCH | sửa bug          |
 
 ---
 
-### VĂ­ dá»¥
+### Ví dụ
 
 ```text
-1.2.3 â†’ 2.0.0   breaking changes
-2.0.0 â†’ 2.1.0   new feature
-2.1.0 â†’ 2.1.1   bug fix
+1.2.3 → 2.0.0   breaking changes
+2.0.0 → 2.1.0   new feature
+2.1.0 → 2.1.1   bug fix
 ```
 
 ---
 
 ## Version ranges (Node.js)
 
-Trong `package.json` thÆ°á»ng tháº¥y:
+Trong `package.json` thường thấy:
 
-| KĂ½ hiá»‡u  | Ă nghÄ©a                |
+| Ký hiệu  | Ă nghĩa                |
 | -------- | ---------------------- |
-| `^1.2.3` | cho phĂ©p upgrade minor |
-| `~1.2.3` | chá»‰ upgrade patch      |
-| `1.2.3`  | version chĂ­nh xĂ¡c      |
-| `*`      | báº¥t ká»³ version         |
+| `^1.2.3` | cho phép upgrade minor |
+| `~1.2.3` | chỉ upgrade patch      |
+| `1.2.3`  | version chính xác      |
+| `*`      | bất kỳ version         |
 
 ---
 
-### VĂ­ dá»¥
+### Ví dụ
 
 ```json
 "express": "^4.18.2"
 ```
 
-Range thá»±c táº¿:
+Range thực tế:
 
 ```text
 >=4.18.2 <5.0.0
@@ -137,13 +137,13 @@ Range thá»±c táº¿:
 
 ---
 
-## Kiá»ƒm tra dependency outdated
+## Kiểm tra dependency outdated
 
 ---
 
 ## Node.js
 
-Xem package cÅ©:
+Xem package cũ:
 
 ```bash
 npm outdated
@@ -151,7 +151,7 @@ npm outdated
 
 ---
 
-Cáº­p nháº­t theo semver range:
+Cập nhật theo semver range:
 
 ```bash
 npm update
@@ -159,7 +159,7 @@ npm update
 
 ---
 
-Cáº­p nháº­t major version:
+Cập nhật major version:
 
 ```bash
 npx npm-check-updates -u
@@ -168,13 +168,13 @@ npm install
 
 ---
 
-Kiá»ƒm tra security:
+Kiểm tra security:
 
 ```bash
 npm audit
 ```
 
-Fix tá»± Ä‘á»™ng:
+Fix tự động:
 
 ```bash
 npm audit fix
@@ -192,7 +192,7 @@ pip list --outdated
 
 ---
 
-Cáº­p nháº­t package:
+Cập nhật package:
 
 ```bash
 pip install --upgrade flask
@@ -200,7 +200,7 @@ pip install --upgrade flask
 
 ---
 
-Kiá»ƒm tra security:
+Kiểm tra security:
 
 ```bash
 pip install safety
@@ -215,7 +215,7 @@ safety check
 
 ## 1. Pin version trong production
 
-VĂ­ dá»¥ Python:
+Ví dụ Python:
 
 ```text
 flask==2.3.3
@@ -223,9 +223,9 @@ flask==2.3.3
 
 ---
 
-## 2. LuĂ´n commit lock file
+## 2. Luôn commit lock file
 
-VĂ­ dá»¥:
+Ví dụ:
 
 ```text
 requirements.txt
@@ -236,16 +236,16 @@ package-lock.json
 
 ## 3. Review dependency changes
 
-Khi dependency thay Ä‘á»•i:
+Khi dependency thay đổi:
 
 - xem changelog
-- kiá»ƒm tra breaking changes
+- kiểm tra breaking changes
 
 ---
 
-## 4. Audit security thÆ°á»ng xuyĂªn
+## 4. Audit security thường xuyên
 
-VĂ­ dá»¥:
+Ví dụ:
 
 ```bash
 npm audit
@@ -254,15 +254,15 @@ safety check
 
 ---
 
-## 5. Giáº£m sá»‘ lÆ°á»£ng dependency
+## 5. Giảm số lượng dependency
 
-NguyĂªn táº¯c:
+Nguyên tắc:
 
 ```text
-Chá»‰ cĂ i dependency khi thá»±c sá»± cáº§n.
+Chỉ cài dependency khi thực sự cần.
 ```
 
-Má»—i dependency má»›i cĂ³ thá»ƒ mang theo:
+Mỗi dependency mới có thể mang theo:
 
 - security risk
 - performance overhead
@@ -270,27 +270,27 @@ Má»—i dependency má»›i cĂ³ thá»ƒ mang theo:
 
 ---
 
-## Lá»—i thÆ°á»ng gáº·p
+## Lỗi thường gặp
 
-| Lá»—i                   | NguyĂªn nhĂ¢n             | CĂ¡ch sá»­a           |
+| Lỗi                   | Nguyên nhân             | Cách sửa           |
 | --------------------- | ----------------------- | ------------------ |
-| Works on my machine   | dependency khĂ¡c version | commit lock file   |
-| Build fail trĂªn CI    | thiáº¿u dependency        | update lock file   |
-| Vulnerable dependency | package cÅ©              | upgrade dependency |
+| Works on my machine   | dependency khác version | commit lock file   |
+| Build fail trên CI    | thiếu dependency        | update lock file   |
+| Vulnerable dependency | package cũ              | upgrade dependency |
 
 ---
 
-## BĂ i táº­p
+## Bài tập
 
-### BĂ i 1
+### Bài 1
 
-Táº¡o project Node.js vĂ :
+Tạo project Node.js và:
 
 ```bash
 npm install express
 ```
 
-Sau Ä‘Ă³ xem:
+Sau đó xem:
 
 ```bash
 npm outdated
@@ -298,9 +298,9 @@ npm outdated
 
 ---
 
-### BĂ i 2
+### Bài 2
 
-Táº¡o project Python:
+Tạo project Python:
 
 ```bash
 pip install flask requests
@@ -314,13 +314,13 @@ pip freeze > requirements.txt
 
 ---
 
-### BĂ i 3
+### Bài 3
 
-TĂ¬m má»™t dependency cĂ³ **security vulnerability** vĂ  cáº­p nháº­t nĂ³.
+Tìm một dependency có **security vulnerability** và cập nhật nó.
 
 ---
 
-## TĂ i liá»‡u tham kháº£o
+## Tài liệu tham khảo
 
 ```text
 https://semver.org/

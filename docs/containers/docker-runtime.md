@@ -4,7 +4,7 @@ Phần này tập trung vào image, container và các thao tác chạy containe
 
 ---
 
-## KhĂ¡i niá»‡m cá»‘t lĂµi
+## Khái niệm cốt lõi
 
 ```mermaid
 graph TB
@@ -16,43 +16,43 @@ B -->|docker push| D
 
 ---
 
-| ThĂ nh pháº§n | Ă nghÄ©a                      |
+| Thành phần | Ă nghĩa                      |
 | ---------- | ---------------------------- |
-| Image      | template chá»‰ Ä‘á»c chá»©a app    |
-| Container  | instance Ä‘ang cháº¡y cá»§a image |
+| Image      | template chỉ đọc chứa app    |
+| Container  | instance đang chạy của image |
 | Volume     | storage persistent           |
-| Network    | máº¡ng giá»¯a containers         |
+| Network    | mạng giữa containers         |
 
 ---
 
-## VĂ­ dá»¥ dá»… hiá»ƒu
+## Ví dụ dễ hiểu
 
-| Docker    | Thá»±c táº¿              |
+| Docker    | Thực tế              |
 | --------- | -------------------- |
-| Image     | file cĂ i Ä‘áº·t Windows |
-| Container | mĂ¡y Ä‘Ă£ cĂ i Windows   |
-| Volume    | á»• USB                |
+| Image     | file cài đặt Windows |
+| Container | máy đã cài Windows   |
+| Volume    | ổ USB                |
 | Network   | LAN                  |
 
 ---
 
-## Cháº¡y container
+## Chạy container
 
-VĂ­ dá»¥ Ä‘Æ¡n giáº£n nháº¥t:
+Ví dụ đơn giản nhất:
 
 ```bash
 docker run hello-world
 ```
 
-Docker sáº½:
+Docker sẽ:
 
 1. pull image
-2. táº¡o container
-3. cháº¡y container
+2. tạo container
+3. chạy container
 
 ---
 
-## Cháº¡y container vá»›i options
+## Chạy container với options
 
 ```bash
 docker run -d \
@@ -64,18 +64,18 @@ nginx:alpine
 
 ---
 
-## Giáº£i thĂ­ch
+## Giải thích
 
-| Option   | Ă nghÄ©a           |
+| Option   | Ă nghĩa           |
 | -------- | ----------------- |
-| `-d`     | cháº¡y background   |
-| `--name` | Ä‘áº·t tĂªn container |
+| `-d`     | chạy background   |
+| `--name` | đặt tên container |
 | `-p`     | port mapping      |
 | `-v`     | mount volume      |
 
 ---
 
-Sau khi cháº¡y:
+Sau khi chạy:
 
 ```
 http://localhost:8080
@@ -83,7 +83,7 @@ http://localhost:8080
 
 ---
 
-## Quáº£n lĂ½ container
+## Quản lý container
 
 ---
 
@@ -95,7 +95,7 @@ docker ps
 
 ---
 
-Xem cáº£ container Ä‘Ă£ stop:
+Xem cả container đã stop:
 
 ```bash
 docker ps -a

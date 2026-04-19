@@ -1,13 +1,13 @@
 ﻿# Logging & Monitoring
 
-## Má»¥c tiĂªu
+## Mục tiêu
 
-Sau bĂ i nĂ y, báº¡n sáº½:
+Sau bài này, bạn sẽ:
 
-- Hiá»ƒu log levels vĂ  cĂ¡ch sá»­ dá»¥ng Ä‘Ăºng.
-- Viáº¿t log cĂ³ cáº¥u trĂºc (structured logging).
-- Giá»›i thiá»‡u stack monitoring: **Prometheus + Grafana**.
-- Setup monitoring cÆ¡ báº£n báº±ng Docker Compose.
+- Hiểu log levels và cách sử dụng đúng.
+- Viết log có cấu trúc (structured logging).
+- Giới thiệu stack monitoring: **Prometheus + Grafana**.
+- Setup monitoring cơ bản bằng Docker Compose.
 
 ## Prerequisites
 
@@ -17,21 +17,21 @@ Sau bĂ i nĂ y, báº¡n sáº½:
 
 ## Log Levels
 
-| Level   | Khi nĂ o dĂ¹ng                          | VĂ­ dá»¥                                          |
+| Level   | Khi nào dùng                          | Ví dụ                                          |
 | ------- | ------------------------------------- | ---------------------------------------------- |
-| `DEBUG` | Chi tiáº¿t cho dev, khĂ´ng báº­t trĂªn prod | `DEBUG: Query result: {rows: 42}`              |
-| `INFO`  | Sá»± kiá»‡n bĂ¬nh thÆ°á»ng                   | `INFO: Server started on port 3000`            |
-| `WARN`  | Váº¥n Ä‘á» tiá»m áº©n, chÆ°a lá»—i              | `WARN: Disk usage at 85%`                      |
-| `ERROR` | Lá»—i nhÆ°ng app váº«n cháº¡y                | `ERROR: Failed to send email to user@test.com` |
-| `FATAL` | Lá»—i nghiĂªm trá»ng, app pháº£i dá»«ng       | `FATAL: Database connection failed`            |
+| `DEBUG` | Chi tiết cho dev, không bật trên prod | `DEBUG: Query result: {rows: 42}`              |
+| `INFO`  | Sự kiện bình thường                   | `INFO: Server started on port 3000`            |
+| `WARN`  | Vấn đề tiềm ẩn, chưa lỗi              | `WARN: Disk usage at 85%`                      |
+| `ERROR` | Lỗi nhưng app vẫn chạy                | `ERROR: Failed to send email to user@test.com` |
+| `FATAL` | Lỗi nghiêm trọng, app phải dừng       | `FATAL: Database connection failed`            |
 
-!!! warning "Quy táº¯c" - **Production**: chá»‰ báº­t `INFO` trá»Ÿ lĂªn. - **Development**: báº­t `DEBUG`. - **KHĂ”NG** log sensitive data (password, token, PII).
+!!! warning "Quy tắc" - **Production**: chỉ bật `INFO` trở lên. - **Development**: bật `DEBUG`. - **KHÔNG** log sensitive data (password, token, PII).
 
 ---
 
 ## Structured Logging
 
-### âŒ Log khĂ´ng tá»‘t
+### âŒ Log không tốt
 
 ```
 Error occurred while processing request
@@ -39,7 +39,7 @@ Something went wrong
 User login failed
 ```
 
-### âœ… Log cĂ³ cáº¥u trĂºc
+### ✅ Log có cấu trúc
 
 ```json
 {
@@ -53,7 +53,7 @@ User login failed
 }
 ```
 
-### VĂ­ dá»¥ code
+### Ví dụ code
 
 === "Python"
 ```python
@@ -96,16 +96,16 @@ const winston = require('winston');
 docker logs internhub-api
 docker logs -f --tail 100 internhub-api
 
-# Logs táº¥t cáº£ services (Compose)
+# Logs tất cả services (Compose)
 docker compose logs -f
 
-# Xem logs service cá»¥ thá»ƒ
+# Xem logs service cụ thể
 docker compose logs -f web
 ```
 
 ---
 
-## Prometheus + Grafana (Giá»›i thiá»‡u)
+## Prometheus + Grafana (Giới thiệu)
 
 ```mermaid
 graph LR
@@ -114,10 +114,10 @@ graph LR
     C -->|dashboard| D[You đŸ‘€]
 ```
 
-| Tool              | Vai trĂ²                                        |
+| Tool              | Vai trò                                        |
 | ----------------- | ---------------------------------------------- |
-| **Prometheus**    | Thu tháº­p metrics (CPU, memory, request countâ€¦) |
-| **Grafana**       | Hiá»ƒn thá»‹ dashboard Ä‘áº¹p máº¯t                     |
+| **Prometheus**    | Thu thập metrics (CPU, memory, request count…) |
+| **Grafana**       | Hiển thị dashboard đẹp mắt                     |
 | **Node Exporter** | Expose system metrics                          |
 
 ### Docker Compose cho Monitoring Stack
@@ -154,7 +154,7 @@ volumes:
   grafana-data:
 ```
 
-### File cáº¥u hĂ¬nh Prometheus
+### File cấu hình Prometheus
 
 ```yaml
 # monitoring/prometheus.yml
@@ -173,42 +173,42 @@ scrape_configs:
 ```
 
 ```bash
-# Cháº¡y stack monitoring
+# Chạy stack monitoring
 docker compose -f docker-compose.monitoring.yml up -d
 
-# Truy cáº­p
+# Truy cập
 # Prometheus: http://localhost:9090
 # Grafana:    http://localhost:3001 (admin/admin)
 ```
 
 ---
 
-## Metrics cÆ¡ báº£n cáº§n theo dĂµi
+## Metrics cơ bản cần theo dõi
 
-| Metric             | Ă nghÄ©a                        |
+| Metric             | Ă nghĩa                        |
 | ------------------ | ------------------------------ |
-| **Request rate**   | Sá»‘ request / giĂ¢y              |
-| **Error rate**     | % request lá»—i (4xx, 5xx)       |
-| **Response time**  | Latency trung bĂ¬nh / P95 / P99 |
-| **CPU usage**      | % CPU sá»­ dá»¥ng                  |
-| **Memory usage**   | RAM sá»­ dá»¥ng                    |
-| **Disk usage**     | Dung lÆ°á»£ng disk                |
-| **DB connections** | Sá»‘ connection pool             |
+| **Request rate**   | Số request / giây              |
+| **Error rate**     | % request lỗi (4xx, 5xx)       |
+| **Response time**  | Latency trung bình / P95 / P99 |
+| **CPU usage**      | % CPU sử dụng                  |
+| **Memory usage**   | RAM sử dụng                    |
+| **Disk usage**     | Dung lượng disk                |
+| **DB connections** | Số connection pool             |
 
 ---
 
-## Lá»—i thÆ°á»ng gáº·p
+## Lỗi thường gặp
 
-| Lá»—i                      | NguyĂªn nhĂ¢n                 | CĂ¡ch sá»­a                            |
+| Lỗi                      | Nguyên nhân                 | Cách sửa                            |
 | ------------------------ | --------------------------- | ----------------------------------- |
-| Log quĂ¡ nhiá»u â†’ disk Ä‘áº§y | Log level DEBUG trĂªn prod   | Äá»•i sang INFO, thĂªm log rotation    |
-| Grafana khĂ´ng hiá»‡n data  | Prometheus chÆ°a scrape Ä‘Æ°á»£c | Kiá»ƒm tra target trong Prometheus UI |
-| Metrics endpoint 404     | App chÆ°a expose /metrics    | ThĂªm metrics middleware             |
+| Log quá nhiều → disk đầy | Log level DEBUG trên prod   | Đổi sang INFO, thêm log rotation    |
+| Grafana không hiện data  | Prometheus chưa scrape được | Kiểm tra target trong Prometheus UI |
+| Metrics endpoint 404     | App chưa expose /metrics    | Thêm metrics middleware             |
 
 ---
 
-## TĂ i liá»‡u tham kháº£o
+## Tài liệu tham khảo
 
 - [Prometheus Docs](https://prometheus.io/docs/)
 - [Grafana Docs](https://grafana.com/docs/)
-- [The Twelve-Factor App â€“ Logs](https://12factor.net/logs)
+- [The Twelve-Factor App – Logs](https://12factor.net/logs)

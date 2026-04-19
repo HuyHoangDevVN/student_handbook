@@ -4,11 +4,11 @@ Phần này gom các thao tác tạo bảng, thêm dữ liệu, truy vấn, cậ
 
 ---
 
-## SQL cÆ¡ báº£n
+## SQL cơ bản
 
 ---
 
-## Táº¡o báº£ng
+## Tạo bảng
 
 ```sql
 CREATE TABLE users (
@@ -42,9 +42,9 @@ CREATE TABLE posts (
 ```sql
 INSERT INTO users (name, email, role)
 VALUES
-('Nguyá»…n VÄƒn A','a.nguyen@example.com','intern'),
-('Tráº§n Thá»‹ B','b.tran@example.com','developer'),
-('LĂª VÄƒn C','c.le@example.com','lead');
+('Nguyễn Văn A','a.nguyen@example.com','intern'),
+('Trần Thị B','b.tran@example.com','developer'),
+('Lê Văn C','c.le@example.com','lead');
 ```
 
 ---
@@ -63,7 +63,7 @@ VALUES
 
 ---
 
-### Láº¥y táº¥t cáº£ dá»¯ liá»‡u
+### Lấy tất cả dữ liệu
 
 ```sql
 SELECT * FROM users;
@@ -71,7 +71,7 @@ SELECT * FROM users;
 
 ---
 
-### Láº¥y cá»™t cá»¥ thá»ƒ
+### Lấy cột cụ thể
 
 ```sql
 SELECT name, email
@@ -81,7 +81,7 @@ WHERE role = 'intern';
 
 ---
 
-### Sáº¯p xáº¿p
+### Sắp xếp
 
 ```sql
 SELECT *
@@ -91,7 +91,7 @@ ORDER BY created_at DESC;
 
 ---
 
-### Giá»›i háº¡n káº¿t quáº£
+### Giới hạn kết quả
 
 ```sql
 SELECT *
@@ -111,7 +111,7 @@ GROUP BY role;
 
 ---
 
-### TĂ¬m kiáº¿m text
+### Tìm kiếm text
 
 ```sql
 SELECT *
@@ -123,7 +123,7 @@ WHERE name ILIKE '%nguyen%';
 
 ## JOIN
 
-JOIN giĂºp káº¿t há»£p dá»¯ liá»‡u tá»« nhiá»u báº£ng.
+JOIN giúp kết hợp dữ liệu từ nhiều bảng.
 
 ---
 
@@ -169,21 +169,21 @@ WHERE id = 3;
 
 ---
 
-!!! danger "Cáº£nh bĂ¡o"
-LuĂ´n kiá»ƒm tra Ä‘iá»u kiá»‡n trÆ°á»›c khi cháº¡y:
+!!! danger "Cảnh báo"
+Luôn kiểm tra điều kiện trước khi chạy:
 
 ```sql
 UPDATE
 DELETE
 ```
 
-NĂªn cháº¡y:
+Nên chạy:
 
 ```sql
 SELECT
 ```
 
-trÆ°á»›c Ä‘á»ƒ Ä‘áº£m báº£o query Ä‘Ăºng.
+trước để đảm bảo query đúng.
 
 ---
 

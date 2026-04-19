@@ -4,13 +4,13 @@ Phần này gom các thao tác quản lý package và quyền truy cập trong L
 
 ---
 
-## 2. Quáº£n lĂ½ package vá»›i apt
+## 2. Quản lý package với apt
 
-Ubuntu sá»­ dá»¥ng **APT package manager**.
+Ubuntu sử dụng **APT package manager**.
 
 ---
 
-### Cáº­p nháº­t package list
+### Cập nhật package list
 
 ```bash
 sudo apt update
@@ -18,7 +18,7 @@ sudo apt update
 
 ---
 
-### NĂ¢ng cáº¥p há»‡ thá»‘ng
+### Nâng cấp hệ thống
 
 ```bash
 sudo apt upgrade -y
@@ -26,7 +26,7 @@ sudo apt upgrade -y
 
 ---
 
-### CĂ i package
+### Cài package
 
 ```bash
 sudo apt install -y curl wget htop tree jq
@@ -34,7 +34,7 @@ sudo apt install -y curl wget htop tree jq
 
 ---
 
-### Gá»¡ package
+### Gỡ package
 
 ```bash
 sudo apt remove package-name
@@ -42,7 +42,7 @@ sudo apt remove package-name
 
 ---
 
-### TĂ¬m package
+### Tìm package
 
 ```bash
 apt search keyword
@@ -50,9 +50,9 @@ apt search keyword
 
 ---
 
-## 3. Há»‡ thá»‘ng quyá»n (Permissions)
+## 3. Hệ thống quyền (Permissions)
 
-Linux dĂ¹ng **permission model**:
+Linux dùng **permission model**:
 
 ```text
 owner | group | others
@@ -60,16 +60,16 @@ owner | group | others
 
 ---
 
-### VĂ­ dá»¥ `ls -la`
+### Ví dụ `ls -la`
 
 ```text
 -rw-r--r--  1 user group  4096 Jan 15 10:30 file.txt
 drwxr-xr-x  2 user group  4096 Jan 15 10:30 folder/
 ```
 
-Giáº£i thĂ­ch:
+Giải thích:
 
-| KĂ½ tá»± | Ă nghÄ©a |
+| Ký tự | Ă nghĩa |
 | ----- | ------- |
 | `r`   | read    |
 | `w`   | write   |
@@ -77,7 +77,7 @@ Giáº£i thĂ­ch:
 
 ---
 
-### GiĂ¡ trá»‹ sá»‘
+### Giá trị số
 
 | Permission | Value |
 | ---------- | ----- |
@@ -87,13 +87,13 @@ Giáº£i thĂ­ch:
 
 ---
 
-### VĂ­ dá»¥
+### Ví dụ
 
 ```bash
 chmod 755 script.sh
 ```
 
-Giáº£i thĂ­ch:
+Giải thích:
 
 ```
 7 = rwx
@@ -103,7 +103,7 @@ Giáº£i thĂ­ch:
 
 ---
 
-### Cáº¥p quyá»n thá»±c thi
+### Cấp quyền thực thi
 
 ```bash
 chmod +x script.sh
@@ -111,7 +111,7 @@ chmod +x script.sh
 
 ---
 
-### Äá»•i owner
+### Đổi owner
 
 ```bash
 chown user:group file.txt
@@ -119,7 +119,7 @@ chown user:group file.txt
 
 ---
 
-### Ăp dá»¥ng Ä‘á»‡ quy
+### Ăp dụng đệ quy
 
 ```bash
 chmod -R 755 folder/

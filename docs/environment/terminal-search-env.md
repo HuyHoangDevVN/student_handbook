@@ -4,11 +4,11 @@ Phần này gom các lệnh tìm kiếm, biến môi trường, mẹo hữu ích
 
 ---
 
-## TĂ¬m kiáº¿m file
+## Tìm kiếm file
 
 ---
 
-### TĂ¬m file theo tĂªn
+### Tìm file theo tên
 
 ```bash
 find . -name "*.js"
@@ -16,7 +16,7 @@ find . -name "*.js"
 
 ---
 
-### TĂ¬m text trong file
+### Tìm text trong file
 
 ```bash
 grep "TODO" -r src/
@@ -24,7 +24,7 @@ grep "TODO" -r src/
 
 ---
 
-### TĂ¬m kĂ¨m sá»‘ dĂ²ng
+### Tìm kèm số dòng
 
 ```bash
 grep -rn "error" .
@@ -32,7 +32,7 @@ grep -rn "error" .
 
 ---
 
-### TĂ¬m theo extension
+### Tìm theo extension
 
 ```bash
 grep -rn "error" --include="*.log" .
@@ -40,7 +40,7 @@ grep -rn "error" --include="*.log" .
 
 ---
 
-### Ripgrep (nhanh hÆ¡n)
+### Ripgrep (nhanh hơn)
 
 ```bash
 rg "TODO" src/
@@ -48,11 +48,11 @@ rg "TODO" src/
 
 ---
 
-## Biáº¿n mĂ´i trÆ°á»ng
+## Biến môi trường
 
 ---
 
-### Xem biáº¿n
+### Xem biến
 
 ```bash
 echo $HOME
@@ -61,7 +61,7 @@ echo $PATH
 
 ---
 
-### Táº¡o biáº¿n táº¡m
+### Tạo biến tạm
 
 ```bash
 export MY_VAR="hello"
@@ -69,7 +69,7 @@ export MY_VAR="hello"
 
 ---
 
-### Sá»­ dá»¥ng
+### Sử dụng
 
 ```bash
 echo $MY_VAR
@@ -77,27 +77,27 @@ echo $MY_VAR
 
 ---
 
-### LÆ°u vÄ©nh viá»…n
+### Lưu vĩnh viễn
 
-ThĂªm vĂ o:
+Thêm vào:
 
 ```
 ~/.bashrc
 ```
 
-hoáº·c
+hoặc
 
 ```
 ~/.zshrc
 ```
 
-VĂ­ dá»¥:
+Ví dụ:
 
 ```bash
 echo 'export MY_VAR="hello"' >> ~/.bashrc
 ```
 
-Sau Ä‘Ă³ reload:
+Sau đó reload:
 
 ```bash
 source ~/.bashrc
@@ -105,13 +105,13 @@ source ~/.bashrc
 
 ---
 
-## Lá»‡nh há»¯u Ă­ch khĂ¡c
+## Lệnh hữu ích khác
 
 ```bash
 which python
 ```
 
-ÄÆ°á»ng dáº«n binary.
+Đường dẫn binary.
 
 ---
 
@@ -119,7 +119,7 @@ which python
 whoami
 ```
 
-User hiá»‡n táº¡i.
+User hiện tại.
 
 ---
 
@@ -127,7 +127,7 @@ User hiá»‡n táº¡i.
 df -h
 ```
 
-Dung lÆ°á»£ng disk.
+Dung lượng disk.
 
 ---
 
@@ -135,7 +135,7 @@ Dung lÆ°á»£ng disk.
 du -sh folder/
 ```
 
-KĂ­ch thÆ°á»›c folder.
+Kích thước folder.
 
 ---
 
@@ -143,26 +143,26 @@ KĂ­ch thÆ°á»›c folder.
 history | grep docker
 ```
 
-TĂ¬m lá»‡nh trong history.
+Tìm lệnh trong history.
 
 ---
 
-## Lá»—i thÆ°á»ng gáº·p
+## Lỗi thường gặp
 
-| Lá»—i               | NguyĂªn nhĂ¢n      | CĂ¡ch sá»­a        |
+| Lỗi               | Nguyên nhân      | Cách sửa        |
 | ----------------- | ---------------- | --------------- |
-| command not found | chÆ°a cĂ i package | cĂ i package     |
-| permission denied | thiáº¿u quyá»n      | dĂ¹ng `sudo`     |
-| no such file      | sai path         | kiá»ƒm tra `ls`   |
-| kĂ½ tá»± láº¡          | encoding sai     | kiá»ƒm tra locale |
+| command not found | chưa cài package | cài package     |
+| permission denied | thiếu quyền      | dùng `sudo`     |
+| no such file      | sai path         | kiểm tra `ls`   |
+| ký tự lạ          | encoding sai     | kiểm tra locale |
 
 ---
 
-## BĂ i táº­p
+## Bài tập
 
-### BĂ i 1
+### Bài 1
 
-Táº¡o cáº¥u trĂºc thÆ° má»¥c:
+Tạo cấu trúc thư mục:
 
 ```
 myproject/
@@ -171,23 +171,23 @@ tests/
 docs/
 ```
 
-báº±ng **má»™t lá»‡nh**.
+bằng **một lệnh**.
 
 ---
 
-### BĂ i 2
+### Bài 2
 
-TĂ¬m táº¥t cáº£ file `.md` vĂ  Ä‘áº¿m sá»‘ dĂ²ng.
-
----
-
-### BĂ i 3
-
-TĂ¬m **10 lá»‡nh gáº§n nháº¥t chá»©a `git`** trong history.
+Tìm tất cả file `.md` và đếm số dòng.
 
 ---
 
-## TĂ i liá»‡u tham kháº£o
+### Bài 3
+
+Tìm **10 lệnh gần nhất chứa `git`** trong history.
+
+---
+
+## Tài liệu tham khảo
 
 ```
 https://linuxcommand.org/tlcl.php

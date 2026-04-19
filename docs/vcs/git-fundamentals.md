@@ -4,7 +4,7 @@ Phần này đi qua mô hình hoạt động của Git, khởi tạo repo, commi
 
 ---
 
-## Git hoáº¡t Ä‘á»™ng tháº¿ nĂ o
+## Git hoạt động thế nào
 
 ```mermaid
 graph LR
@@ -16,18 +16,18 @@ graph LR
 
 ---
 
-## CĂ¡c vĂ¹ng trong Git
+## Các vùng trong Git
 
-| VĂ¹ng              | Ă nghÄ©a              |
+| Vùng              | Ă nghĩa              |
 | ----------------- | -------------------- |
-| Working Directory | code trĂªn mĂ¡y        |
-| Staging Area      | file chuáº©n bá»‹ commit |
-| Local Repository  | lá»‹ch sá»­ commit local |
-| Remote Repository | repo trĂªn GitHub     |
+| Working Directory | code trên máy        |
+| Staging Area      | file chuẩn bị commit |
+| Local Repository  | lịch sử commit local |
+| Remote Repository | repo trên GitHub     |
 
 ---
 
-## Khá»Ÿi táº¡o repository
+## Khởi tạo repository
 
 ---
 
@@ -40,7 +40,7 @@ cd repo
 
 ---
 
-## Táº¡o repo má»›i
+## Tạo repo mới
 
 ```bash
 mkdir myproject
@@ -50,11 +50,11 @@ git init
 
 ---
 
-## Kiá»ƒm tra tráº¡ng thĂ¡i
+## Kiểm tra trạng thái
 
 ---
 
-### Tráº¡ng thĂ¡i file
+### Trạng thái file
 
 ```bash
 git status
@@ -62,7 +62,7 @@ git status
 
 ---
 
-### Xem lá»‹ch sá»­ commit
+### Xem lịch sử commit
 
 ```bash
 git log --oneline --graph --all
@@ -70,7 +70,7 @@ git log --oneline --graph --all
 
 ---
 
-### Xem thay Ä‘á»•i
+### Xem thay đổi
 
 ```bash
 git diff
@@ -78,7 +78,7 @@ git diff
 
 ---
 
-### Xem thay Ä‘á»•i Ä‘Ă£ staged
+### Xem thay đổi đã staged
 
 ```bash
 git diff --staged
@@ -90,7 +90,7 @@ git diff --staged
 
 ---
 
-### ThĂªm file vĂ o staging
+### Thêm file vào staging
 
 ```bash
 git add file.txt
@@ -98,7 +98,7 @@ git add file.txt
 
 ---
 
-### ThĂªm toĂ n bá»™ file
+### Thêm toàn bộ file
 
 ```bash
 git add .
@@ -114,7 +114,7 @@ git commit -m "feat: add login API"
 
 ---
 
-### Sá»­a commit gáº§n nháº¥t
+### Sửa commit gần nhất
 
 ```bash
 git commit --amend -m "feat: add login API endpoint"
@@ -140,7 +140,7 @@ git push origin main
 git pull origin main
 ```
 
-Pull thá»±c cháº¥t lĂ :
+Pull thực chất là:
 
 ```
 fetch + merge
@@ -148,7 +148,7 @@ fetch + merge
 
 ---
 
-### Chá»‰ fetch
+### Chỉ fetch
 
 ```bash
 git fetch origin

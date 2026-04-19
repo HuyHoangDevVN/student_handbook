@@ -1,38 +1,38 @@
 # Sample Project: InternHub API
 
-InternHub API la sample app xuyen suot cua handbook nay. Muc tieu cua no la giup ban hoc mot case
-study duy nhat, thay vi moi chuong lai dung mot vi du roi rac.
+InternHub API là sample app xuyên suốt của handbook này. Mục tiêu của nó là giúp bạn học một case
+study duy nhất, thay vì mỗi chương lại dùng một ví dụ rời rạc.
 
 ---
 
-## Muc tieu
+## Mục tiêu
 
-Sau khi di het handbook voi sample app nay, ban se thay duoc mot quy trinh trien khai thuc te:
+Sau khi đi hết handbook với sample app này, bạn sẽ thấy được một quy trình triển khai thực tế:
 
 - local setup
-- terminal va Linux workflow
-- Git va pull request
-- PostgreSQL schema va truy van SQL
-- Docker va Docker Compose
-- API testing voi Postman va HTTP client
-- CI/CD, release, monitoring va deployment
+- terminal và Linux workflow
+- Git và pull request
+- PostgreSQL schema và truy vấn SQL
+- Docker và Docker Compose
+- API testing với Postman và HTTP client
+- CI/CD, release, monitoring và deployment
 
 ---
 
-## InternHub API la gi
+## InternHub API là gì
 
-InternHub API la mot REST API don gian de quan ly user noi bo trong mot team:
+InternHub API là một REST API đơn giản để quản lý user nội bộ trong một team:
 
-- `users`: danh sach intern, developer, lead
-- `posts`: bai viet va ghi chu noi bo
-- `comments`: binh luan
-- `tags`: gan nhan cho bai viet
+- `users`: danh sách intern, developer, lead
+- `posts`: bài viết và ghi chú nội bộ
+- `comments`: bình luận
+- `tags`: gắn nhãn cho bài viết
 
-Database mau, Postman collection va stack Docker deu da co san trong repo.
+Database mẫu, Postman collection và stack Docker đều đã có sẵn trong repo.
 
 ---
 
-## Kien truc mau
+## Kiến trúc mẫu
 
 ```text
 InternHub API
@@ -46,7 +46,7 @@ InternHub API
 
 ---
 
-## Tai nguyen trong repo
+## Tài nguyên trong repo
 
 - Database schema: `resources/database/sample-schema.sql`
 - PostgreSQL stack: `resources/docker/postgres-compose.yml`
@@ -55,28 +55,28 @@ InternHub API
 
 ---
 
-## Ban se gap InternHub API o dau
+## Bạn sẽ gặp InternHub API ở đâu
 
-- Quickstart: dung PostgreSQL stack de khoi dong moi truong hoc
-- SQL/PostgreSQL: dung schema va seed data cua InternHub
-- Docker Compose: dong goi web + db + redis cho InternHub API
-- API Testing: import collection va test endpoint `/api/users`
+- Quickstart: dùng PostgreSQL stack để khởi động môi trường học
+- SQL/PostgreSQL: dùng schema và seed data của InternHub
+- Docker Compose: đóng gói web + db + redis cho InternHub API
+- API Testing: import collection và test endpoint `/api/users`
 - CI/CD: build image `internhub-api`
-- Deployment: deploy InternHub API len VPS/PaaS
-- Logging/Monitoring: theo doi logs va metrics cua `internhub-api`
+- Deployment: deploy InternHub API lên VPS/PaaS
+- Logging/Monitoring: theo dõi logs và metrics của `internhub-api`
 
 ---
 
-## Goi y cach hoc
+## Gợi ý cách học
 
-1. Khoi dong database mau truoc
-2. Doc SQL va API testing de hieu data model
-3. Chuyen sang Docker/Docker Compose de dong goi app
-4. Cuoi cung moi hoc CI/CD, monitoring va deployment
+1. Khởi động database mẫu trước
+2. Đọc SQL và API testing để hiểu data model
+3. Chuyển sang Docker/Docker Compose để đóng gói app
+4. Cuối cùng mới học CI/CD, monitoring và deployment
 
 ---
 
-## Tai lieu lien quan
+## Tài liệu liên quan
 
 - [Quickstart](quickstart.md)
 - [SQL & PostgreSQL](../databases/sql-postgres.md)

@@ -1,39 +1,39 @@
 ﻿# GitHub Workflow
 
-GitHub Workflow mĂ´ táº£ cĂ¡ch cĂ¡c developer **lĂ m viá»‡c nhĂ³m vá»›i Git vĂ  GitHub**.
+GitHub Workflow mô tả cách các developer **làm việc nhóm với Git và GitHub**.
 
-Quy trĂ¬nh phá»• biáº¿n:
+Quy trình phổ biến:
 
 ```text
-Task â†’ Branch â†’ Commit â†’ Pull Request â†’ Code Review â†’ Merge
+Task → Branch → Commit → Pull Request → Code Review → Merge
 ```
 
 ---
 
-## Má»¥c tiĂªu
+## Mục tiêu
 
-Sau bĂ i nĂ y báº¡n cĂ³ thá»ƒ:
+Sau bài này bạn có thể:
 
-- táº¡o vĂ  quáº£n lĂ½ **Pull Request**
-- thá»±c hiá»‡n **Code Review**
-- sá»­ dá»¥ng **GitHub Issues**
-- Ă¡p dá»¥ng **branching strategy trong team**
+- tạo và quản lý **Pull Request**
+- thực hiện **Code Review**
+- sử dụng **GitHub Issues**
+- áp dụng **branching strategy trong team**
 
 ---
 
-## YĂªu cáº§u
+## Yêu cầu
 
-Báº¡n cáº§n:
+Bạn cần:
 
-- hiá»ƒu **Git cÆ¡ báº£n**
-- cĂ³ tĂ i khoáº£n **GitHub**
-- báº­t **2FA**
+- hiểu **Git cơ bản**
+- có tài khoản **GitHub**
+- bật **2FA**
 
 ---
 
 ## GitHub Flow (Branching Strategy)
 
-GitHub Flow lĂ  workflow phá»• biáº¿n cho web application.
+GitHub Flow là workflow phổ biến cho web application.
 
 ```mermaid
 gitGraph
@@ -51,21 +51,21 @@ gitGraph
 
 ---
 
-## NguyĂªn táº¯c
+## Nguyên tắc
 
-1. `main` luĂ´n **deployable**
-2. má»—i task â†’ **má»™t branch**
-3. push branch â†’ táº¡o **Pull Request**
-4. **review trÆ°á»›c khi merge**
-5. xoĂ¡ branch sau khi merge
-
----
-
-## Táº¡o Pull Request
+1. `main` luôn **deployable**
+2. mỗi task → **một branch**
+3. push branch → tạo **Pull Request**
+4. **review trước khi merge**
+5. xoá branch sau khi merge
 
 ---
 
-## 1. Táº¡o branch
+## Tạo Pull Request
+
+---
+
+## 1. Tạo branch
 
 ```bash
 git switch -c feature/user-profile
@@ -86,11 +86,11 @@ git push -u origin feature/user-profile
 
 ---
 
-## 2. Táº¡o PR trĂªn GitHub
+## 2. Tạo PR trên GitHub
 
-VĂ o repo â†’ **Pull requests â†’ New Pull Request**
+Vào repo → **Pull requests → New Pull Request**
 
-Chá»n:
+Chọn:
 
 ```text
 base: main
@@ -102,21 +102,21 @@ compare: feature/user-profile
 ## Template Pull Request
 
 ```markdown
-## MĂ´ táº£
+## Mô tả
 
-ThĂªm trang profile cho user.
+Thêm trang profile cho user.
 
-## Thay Ä‘á»•i
+## Thay đổi
 
-- thĂªm UserProfile component
-- thĂªm API endpoint /users/profile
-- thĂªm test
+- thêm UserProfile component
+- thêm API endpoint /users/profile
+- thêm test
 
 ## Checklist
 
-- [x] code Ä‘Ăºng style
+- [x] code đúng style
 - [x] tests pass
-- [x] docs cáº­p nháº­t
+- [x] docs cập nhật
 
 Closes #15
 ```
@@ -125,31 +125,31 @@ Closes #15
 
 ## 3. Request Review
 
-Sau khi táº¡o PR:
+Sau khi tạo PR:
 
 - assign **reviewer**
-- thĂªm **labels**
+- thêm **labels**
 - link **issue**
 
 ---
 
 ## Code Review
 
-Code review giĂºp:
+Code review giúp:
 
-- phĂ¡t hiá»‡n bug
-- Ä‘áº£m báº£o code quality
-- chia sáº» kiáº¿n thá»©c trong team
+- phát hiện bug
+- đảm bảo code quality
+- chia sẻ kiến thức trong team
 
 ---
 
-## CĂ¡c loáº¡i review
+## Các loại review
 
-| Action          | Ă nghÄ©a |
+| Action          | Ă nghĩa |
 | --------------- | ------- |
 | Approve         | code OK |
-| Comment         | gĂ³p Ă½   |
-| Request changes | cáº§n sá»­a |
+| Comment         | góp ý   |
+| Request changes | cần sửa |
 
 ---
 
@@ -157,21 +157,21 @@ Code review giĂºp:
 
 Khi review code:
 
-- [ ] logic Ä‘Ăºng
-- [ ] khĂ´ng cĂ³ security issue
-- [ ] cĂ³ test cho feature má»›i
-- [ ] tĂªn biáº¿n rĂµ rĂ ng
-- [ ] khĂ´ng cĂ³ `console.log` hoáº·c code thá»«a
+- [ ] logic đúng
+- [ ] không có security issue
+- [ ] có test cho feature mới
+- [ ] tên biến rõ ràng
+- [ ] không có `console.log` hoặc code thừa
 
 ---
 
-## Khi nháº­n feedback
+## Khi nhận feedback
 
 Khi reviewer comment:
 
-1. Ä‘á»c ká»¹ comment
-2. sá»­a code
-3. push commit má»›i
+1. đọc kỹ comment
+2. sửa code
+3. push commit mới
 
 ```bash
 git add .
@@ -179,28 +179,28 @@ git commit -m "fix: address review comments"
 git push
 ```
 
-GitHub sáº½ **tá»± cáº­p nháº­t Pull Request**.
+GitHub sẽ **tự cập nhật Pull Request**.
 
 ---
 
-## Conflict trĂªn Pull Request
+## Conflict trên Pull Request
 
-Conflict xáº£y ra khi:
+Conflict xảy ra khi:
 
 ```text
-branch cá»§a báº¡n quĂ¡ cÅ© so vá»›i main
+branch của bạn quá cũ so với main
 ```
 
 ---
 
-## CĂ¡ch 1 â€“ Rebase
+## Cách 1 – Rebase
 
 ```bash
 git fetch origin
 git rebase origin/main
 ```
 
-Fix conflict náº¿u cĂ³:
+Fix conflict nếu có:
 
 ```bash
 git add .
@@ -215,13 +215,13 @@ git push --force-with-lease
 
 ---
 
-## CĂ¡ch 2 â€“ Merge main
+## Cách 2 – Merge main
 
 ```bash
 git merge origin/main
 ```
 
-Sau Ä‘Ă³:
+Sau đó:
 
 ```bash
 git push
@@ -229,14 +229,14 @@ git push
 
 ---
 
-!!! tip "Máº¹o"
-LuĂ´n dĂ¹ng:
+!!! tip "Mẹo"
+Luôn dùng:
 
 ```text
 --force-with-lease
 ```
 
-thay vĂ¬:
+thay vì:
 
 ```text
 --force
@@ -246,49 +246,49 @@ thay vĂ¬:
 
 ## GitHub Issues
 
-Issue dĂ¹ng Ä‘á»ƒ **track bug hoáº·c task**.
+Issue dùng để **track bug hoặc task**.
 
 ---
 
-## VĂ­ dá»¥ Issue
+## Ví dụ Issue
 
 ```markdown
 Title: [BUG] Login fails with special characters
 
-## MĂ´ táº£
+## Mô tả
 
-Login lá»—i khi password chá»©a kĂ½ tá»± Ä‘áº·c biá»‡t.
+Login lỗi khi password chứa ký tự đặc biệt.
 
 ## Steps to reproduce
 
-1. VĂ o /login
-2. nháº­p password chá»©a &
+1. Vào /login
+2. nhập password chứa &
 3. click Login
 
 ## Expected
 
-Login thĂ nh cĂ´ng.
+Login thành công.
 
 ## Actual
 
-Server tráº£ 500 error.
+Server trả 500 error.
 ```
 
 ---
 
-## Labels phá»• biáº¿n
+## Labels phổ biến
 
-| Label            | Ă nghÄ©a            |
+| Label            | Ă nghĩa            |
 | ---------------- | ------------------ |
-| bug              | lá»—i                |
-| feature          | tĂ­nh nÄƒng          |
+| bug              | lỗi                |
+| feature          | tính năng          |
 | docs             | documentation      |
-| good first issue | task cho ngÆ°á»i má»›i |
-| priority: high   | Æ°u tiĂªn cao        |
+| good first issue | task cho người mới |
+| priority: high   | ưu tiên cao        |
 
 ---
 
-## `.gitignore` cÆ¡ báº£n
+## `.gitignore` cơ bản
 
 ```gitignore
 node_modules/
@@ -312,62 +312,62 @@ build/
 
 ---
 
-!!! danger "Quan trá»ng"
-KhĂ´ng commit:
+!!! danger "Quan trọng"
+Không commit:
 
 - `.env`
 - password
 - API key
 - secret token
 
-Náº¿u lá»¡ commit, **pháº£i rotate secret ngay láº­p tá»©c**.
+Nếu lỡ commit, **phải rotate secret ngay lập tức**.
 
 ---
 
-## Lá»—i thÆ°á»ng gáº·p
+## Lỗi thường gặp
 
-| Lá»—i              | NguyĂªn nhĂ¢n       | CĂ¡ch sá»­a      |
+| Lỗi              | Nguyên nhân       | Cách sửa      |
 | ---------------- | ----------------- | ------------- |
-| PR bá»‹ conflict   | branch quĂ¡ cÅ©     | rebase main   |
-| push bá»‹ reject   | remote khĂ¡c local | pull rá»“i push |
-| commit nháº§m main | quĂªn táº¡o branch   | reset commit  |
-| PR quĂ¡ lá»›n       | nhiá»u thay Ä‘á»•i    | chia nhá» PR   |
+| PR bị conflict   | branch quá cũ     | rebase main   |
+| push bị reject   | remote khác local | pull rồi push |
+| commit nhầm main | quên tạo branch   | reset commit  |
+| PR quá lớn       | nhiều thay đổi    | chia nhỏ PR   |
 
 ---
 
-## BĂ i táº­p
+## Bài tập
 
-### BĂ i 1
+### Bài 1
 
 Fork repository handbook.
 
 ---
 
-### BĂ i 2
+### Bài 2
 
-Táº¡o branch:
+Tạo branch:
 
 ```text
 docs/fix-typo
 ```
 
-Sá»­a 1 lá»—i vĂ  táº¡o Pull Request.
+Sửa 1 lỗi và tạo Pull Request.
 
 ---
 
-### BĂ i 3
+### Bài 3
 
-Review Pull Request cá»§a báº¡n khĂ¡c.
-
----
-
-### BĂ i 4
-
-Táº¡o 1 Issue theo template.
+Review Pull Request của bạn khác.
 
 ---
 
-## TĂ i liá»‡u tham kháº£o
+### Bài 4
+
+Tạo 1 Issue theo template.
+
+---
+
+## Tài liệu tham khảo
 
 ```text
 https://docs.github.com/en/get-started/using-github/github-flow

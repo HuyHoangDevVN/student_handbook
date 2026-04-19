@@ -6,11 +6,11 @@ Phần này đi qua index, transaction, psql cheat sheet và phần tự luyện
 
 ## Index
 
-Index giĂºp **tÄƒng tá»‘c truy váº¥n**.
+Index giúp **tăng tốc truy vấn**.
 
 ---
 
-### Táº¡o index
+### Tạo index
 
 ```sql
 CREATE INDEX idx_users_email
@@ -26,7 +26,7 @@ ON posts(user_id);
 
 ---
 
-### PhĂ¢n tĂ­ch query
+### Phân tích query
 
 ```sql
 EXPLAIN ANALYZE
@@ -38,7 +38,7 @@ WHERE email = 'a.nguyen@example.com';
 
 ## Transaction
 
-Transaction Ä‘áº£m báº£o **atomic operations**.
+Transaction đảm bảo **atomic operations**.
 
 ---
 
@@ -57,7 +57,7 @@ COMMIT;
 
 ---
 
-Náº¿u cĂ³ lá»—i:
+Nếu có lỗi:
 
 ```sql
 ROLLBACK;
@@ -67,33 +67,33 @@ ROLLBACK;
 
 ## psql Cheat Sheet
 
-| Command       | MĂ´ táº£                |
+| Command       | Mô tả                |
 | ------------- | -------------------- |
-| `\l`          | danh sĂ¡ch database   |
-| `\dt`         | danh sĂ¡ch table      |
+| `\l`          | danh sách database   |
+| `\dt`         | danh sách table      |
 | `\d users`    | schema table         |
 | `\x`          | toggle expanded view |
 | `\q`          | exit                 |
-| `\i file.sql` | cháº¡y file SQL        |
+| `\i file.sql` | chạy file SQL        |
 
 ---
 
-## Lá»—i thÆ°á»ng gáº·p
+## Lỗi thường gặp
 
-| Lá»—i                     | NguyĂªn nhĂ¢n          | CĂ¡ch sá»­a          |
+| Lỗi                     | Nguyên nhân          | Cách sửa          |
 | ----------------------- | -------------------- | ----------------- |
-| connection refused      | PostgreSQL chÆ°a cháº¡y | start container   |
-| relation does not exist | chÆ°a táº¡o table       | cháº¡y CREATE TABLE |
-| duplicate key           | dá»¯ liá»‡u trĂ¹ng        | dĂ¹ng unique check |
-| permission denied       | user thiáº¿u quyá»n     | GRANT permissions |
+| connection refused      | PostgreSQL chưa chạy | start container   |
+| relation does not exist | chưa tạo table       | chạy CREATE TABLE |
+| duplicate key           | dữ liệu trùng        | dùng unique check |
+| permission denied       | user thiếu quyền     | GRANT permissions |
 
 ---
 
-## BĂ i táº­p
+## Bài tập
 
-### BĂ i 1
+### Bài 1
 
-Táº¡o báº£ng:
+Tạo bảng:
 
 ```
 products
@@ -111,9 +111,9 @@ category
 
 ---
 
-### BĂ i 2
+### Bài 2
 
-Insert 5 sáº£n pháº©m vĂ  query:
+Insert 5 sản phẩm và query:
 
 ```
 price > 100000
@@ -122,7 +122,7 @@ stock > 0
 
 ---
 
-### BĂ i 3
+### Bài 3
 
 JOIN:
 
@@ -130,11 +130,11 @@ JOIN:
 users + posts
 ```
 
-Ä‘áº¿m sá»‘ bĂ i viáº¿t má»—i user.
+đếm số bài viết mỗi user.
 
 ---
 
-## TĂ i liá»‡u tham kháº£o
+## Tài liệu tham khảo
 
 ```
 https://www.postgresqltutorial.com/

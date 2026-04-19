@@ -4,9 +4,9 @@ Phần này hướng dẫn chạy PostgreSQL bằng Docker và kết nối bằn
 
 ---
 
-## Cháº¡y PostgreSQL báº±ng Docker
+## Chạy PostgreSQL bằng Docker
 
-CĂ¡ch nhanh nháº¥t Ä‘á»ƒ cháº¡y PostgreSQL lĂ  dĂ¹ng container.
+Cách nhanh nhất để chạy PostgreSQL là dùng container.
 
 ```bash
 docker run -d \
@@ -21,7 +21,7 @@ postgres:16-alpine
 
 ---
 
-### Kiá»ƒm tra container
+### Kiểm tra container
 
 ```bash
 docker ps
@@ -29,7 +29,7 @@ docker ps
 
 ---
 
-### Káº¿t ná»‘i báº±ng psql
+### Kết nối bằng psql
 
 ```bash
 docker exec -it postgres-dev psql -U dev -d internhub
@@ -37,15 +37,15 @@ docker exec -it postgres-dev psql -U dev -d internhub
 
 ---
 
-## Káº¿t ná»‘i báº±ng GUI
+## Kết nối bằng GUI
 
-Developer thÆ°á»ng dĂ¹ng GUI tool Ä‘á»ƒ quáº£n lĂ½ database.
+Developer thường dùng GUI tool để quản lý database.
 
 ---
 
 ## DBeaver
 
-Táº£i:
+Tải:
 
 ```
 https://dbeaver.io/download/
@@ -53,9 +53,9 @@ https://dbeaver.io/download/
 
 ---
 
-### Táº¡o connection
+### Tạo connection
 
-ThĂ´ng tin káº¿t ná»‘i:
+Thông tin kết nối:
 
 | Field    | Value     |
 | -------- | --------- |

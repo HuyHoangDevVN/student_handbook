@@ -1,32 +1,32 @@
 ﻿# Docker Compose
 
-## Má»¥c tiĂªu
+## Mục tiêu
 
-Sau bĂ i nĂ y, báº¡n sáº½:
+Sau bài này, bạn sẽ:
 
-- Viáº¿t file `docker-compose.yml` cho multi-container app.
-- Quáº£n lĂ½ stack: web + database + cache.
-- Sá»­ dá»¥ng networks, volumes, environment variables.
-- Ăp dá»¥ng cho mĂ´i trÆ°á»ng development.
+- Viết file `docker-compose.yml` cho multi-container app.
+- Quản lý stack: web + database + cache.
+- Sử dụng networks, volumes, environment variables.
+- Ăp dụng cho môi trường development.
 
 ## Prerequisites
 
-- [Docker cÆ¡ báº£n](docker.md).
+- [Docker cơ bản](docker.md).
 
 ---
 
-## Táº¡i sao cáº§n Docker Compose?
+## Tại sao cần Docker Compose?
 
-Thay vĂ¬ cháº¡y nhiá»u lá»‡nh `docker run`:
+Thay vì chạy nhiều lệnh `docker run`:
 
 ```bash
-# KhĂ´ng dĂ¹ng Compose â€“ pháº£i cháº¡y tá»«ng container
+# Không dùng Compose – phải chạy từng container
 docker run -d --name db -e POSTGRES_PASSWORD=secret postgres:16
 docker run -d --name redis redis:7
 docker run -d --name internhub-api -p 3000:3000 --link db --link redis internhub-api
 ```
 
-DĂ¹ng Compose â€“ **1 file, 1 lá»‡nh**:
+Dùng Compose – **1 file, 1 lệnh**:
 
 ```bash
 docker compose up -d
@@ -34,14 +34,14 @@ docker compose up -d
 
 ---
 
-## Cáº¥u trĂºc docker-compose.yml
+## Cấu trúc docker-compose.yml
 
 ```yaml
 # docker-compose.yml
 services:
   # === Web Application ===
   web:
-    build: . # Build tá»« Dockerfile á»Ÿ thÆ° má»¥c hiá»‡n táº¡i
+    build: . # Build từ Dockerfile ở thư mục hiện tại
     ports:
       - "3000:3000" # Map port
     environment:
@@ -63,7 +63,7 @@ services:
       POSTGRES_PASSWORD: dev123
       POSTGRES_DB: internhub
     ports:
-      - "5432:5432" # Expose Ä‘á»ƒ connect báº±ng DBeaver
+      - "5432:5432" # Expose để connect bằng DBeaver
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./resources/database/sample-schema.sql:/docker-entrypoint-initdb.d/init.sql
@@ -84,49 +84,49 @@ volumes:
 
 ---
 
-## Lá»‡nh Docker Compose
+## Lệnh Docker Compose
 
 ```bash
-# Khá»Ÿi Ä‘á»™ng táº¥t cáº£ services (foreground)
+# Khởi động tất cả services (foreground)
 docker compose up
 
-# Khá»Ÿi Ä‘á»™ng á»Ÿ background
+# Khởi động ở background
 docker compose up -d
 
-# Xem tráº¡ng thĂ¡i
+# Xem trạng thái
 docker compose ps
 
 # Xem logs
 docker compose logs
-docker compose logs -f web         # Follow logs cá»§a service "web"
+docker compose logs -f web         # Follow logs của service "web"
 
-# Dá»«ng táº¥t cáº£
+# Dừng tất cả
 docker compose stop
 
-# Dá»«ng + xoĂ¡ containers
+# Dừng + xoá containers
 docker compose down
 
-# Dá»«ng + xoĂ¡ containers + volumes (Máº¤T DATA!)
+# Dừng + xoá containers + volumes (MẤT DATA!)
 docker compose down -v
 
 # Rebuild images
 docker compose build
-docker compose up -d --build       # Build láº¡i rá»“i start
+docker compose up -d --build       # Build lại rồi start
 
-# Cháº¡y lá»‡nh trong service
+# Chạy lệnh trong service
 docker compose exec web bash
 docker compose exec db psql -U dev -d internhub
 
-# Scale service (cháº¡y nhiá»u instance)
+# Scale service (chạy nhiều instance)
 docker compose up -d --scale web=3
 ```
 
 ---
 
-## VĂ­ dá»¥: Full Stack App
+## Ví dụ: Full Stack App
 
 ```yaml
-# docker-compose.yml cho project thá»±c táº¿
+# docker-compose.yml cho project thực tế
 services:
   # Frontend (React)
   frontend:
@@ -199,22 +199,22 @@ volumes:
 
 ## Network trong Compose
 
-- Compose tá»± táº¡o **default network** cho stack.
-- CĂ¡c service giao tiáº¿p qua **tĂªn service**: `db`, `redis`, `web`.
-- KhĂ´ng cáº§n IP, Docker DNS tá»± resolve.
+- Compose tự tạo **default network** cho stack.
+- Các service giao tiếp qua **tên service**: `db`, `redis`, `web`.
+- Không cần IP, Docker DNS tự resolve.
 
 ```yaml
-# web káº¿t ná»‘i db báº±ng hostname "db"
+# web kết nối db bằng hostname "db"
 DATABASE_URL=postgres://dev:dev123@db:5432/internhub
 #                                   ^^
-#                              TĂªn service = hostname
+#                              Tên service = hostname
 ```
 
 ---
 
 ## Environment Variables
 
-### CĂ¡ch 1 â€“ Inline trong compose
+### Cách 1 – Inline trong compose
 
 ```yaml
 environment:
@@ -222,7 +222,7 @@ environment:
   - PORT=3000
 ```
 
-### CĂ¡ch 2 â€“ DĂ¹ng file .env
+### Cách 2 – Dùng file .env
 
 ```yaml
 # docker-compose.yml
@@ -239,7 +239,7 @@ PORT=3000
 DATABASE_URL=postgres://dev:dev123@db:5432/internhub
 ```
 
-### CĂ¡ch 3 â€“ Biáº¿n thay tháº¿ trong compose
+### Cách 3 – Biến thay thế trong compose
 
 ```yaml
 # docker-compose.yml
@@ -249,32 +249,32 @@ services:
 ```
 
 ```bash
-# Cháº¡y vá»›i biáº¿n
+# Chạy với biến
 POSTGRES_VERSION=15 docker compose up -d
 ```
 
 ---
 
-## Lá»—i thÆ°á»ng gáº·p
+## Lỗi thường gặp
 
-| Lá»—i                                                  | NguyĂªn nhĂ¢n      | CĂ¡ch sá»­a                                                 |
+| Lỗi                                                  | Nguyên nhân      | Cách sửa                                                 |
 | ---------------------------------------------------- | ---------------- | -------------------------------------------------------- |
-| `service "web" depends on "db" which is not healthy` | DB chÆ°a sáºµn sĂ ng | ThĂªm healthcheck cho db                                  |
-| `address already in use`                             | Port bá»‹ chiáº¿m    | Stop container/process cÅ©, Ä‘á»•i port                      |
-| Volume data bá»‹ cÅ©                                    | Cache image cÅ©   | `docker compose down -v && docker compose up -d --build` |
-| Container restart liĂªn tá»¥c                           | App crash loop   | Xem logs: `docker compose logs web`                      |
+| `service "web" depends on "db" which is not healthy` | DB chưa sẵn sàng | Thêm healthcheck cho db                                  |
+| `address already in use`                             | Port bị chiếm    | Stop container/process cũ, đổi port                      |
+| Volume data bị cũ                                    | Cache image cũ   | `docker compose down -v && docker compose up -d --build` |
+| Container restart liên tục                           | App crash loop   | Xem logs: `docker compose logs web`                      |
 
 ---
 
-## BĂ i táº­p
+## Bài tập
 
-1. Viáº¿t `docker-compose.yml` cho: Express API + PostgreSQL + Redis.
-2. ThĂªm healthcheck cho PostgreSQL.
-3. DĂ¹ng `docker compose exec` Ä‘á»ƒ cháº¡y `psql` vĂ  táº¡o báº£ng.
+1. Viết `docker-compose.yml` cho: Express API + PostgreSQL + Redis.
+2. Thêm healthcheck cho PostgreSQL.
+3. Dùng `docker compose exec` để chạy `psql` và tạo bảng.
 
 ---
 
-## TĂ i liá»‡u tham kháº£o
+## Tài liệu tham khảo
 
 - [Docker Compose Overview](https://docs.docker.com/compose/)
 - [Compose File Reference](https://docs.docker.com/compose/compose-file/)

@@ -1,8 +1,8 @@
 ﻿# Node.js & npm
 
-Trang nĂ y giá»›i thiá»‡u cĂ¡ch thiáº¿t láº­p mĂ´i trÆ°á»ng **Node.js development** vĂ  quáº£n lĂ½ package vá»›i **npm**.
+Trang này giới thiệu cách thiết lập môi trường **Node.js development** và quản lý package với **npm**.
 
-Node.js Ä‘Æ°á»£c dĂ¹ng phá»• biáº¿n Ä‘á»ƒ xĂ¢y dá»±ng:
+Node.js được dùng phổ biến để xây dựng:
 
 - backend APIs
 - CLI tools
@@ -10,60 +10,60 @@ Node.js Ä‘Æ°á»£c dĂ¹ng phá»• biáº¿n Ä‘á»ƒ xĂ¢y dá»±n
 
 ---
 
-## Má»¥c tiĂªu
+## Mục tiêu
 
-Sau bĂ i nĂ y báº¡n cĂ³ thá»ƒ:
+Sau bài này bạn có thể:
 
-- cĂ i Node.js báº±ng **nvm**
-- hiá»ƒu `npm`, `yarn`, `pnpm`
-- sá»­ dá»¥ng **package.json**
-- quáº£n lĂ½ **scripts**
-- dĂ¹ng **biáº¿n mĂ´i trÆ°á»ng `.env`**
+- cài Node.js bằng **nvm**
+- hiểu `npm`, `yarn`, `pnpm`
+- sử dụng **package.json**
+- quản lý **scripts**
+- dùng **biến môi trường `.env`**
 
 ---
 
-## YĂªu cáº§u
+## Yêu cầu
 
-Báº¡n cáº§n cĂ³ **terminal**.
+Bạn cần có **terminal**.
 
-Náº¿u chÆ°a quen command line, xem:
+Nếu chưa quen command line, xem:
 
 ```text
-Terminal cÆ¡ báº£n
+Terminal cơ bản
 ```
 
 ---
 
-## CĂ i Ä‘áº·t Node.js
+## Cài đặt Node.js
 
-Khuyáº¿n nghá»‹ sá»­ dá»¥ng **nvm (Node Version Manager)** Ä‘á»ƒ quáº£n lĂ½ nhiá»u phiĂªn báº£n Node.js.
+Khuyến nghị sử dụng **nvm (Node Version Manager)** để quản lý nhiều phiên bản Node.js.
 
 ---
 
 ## Linux / macOS
 
-CĂ i **nvm**:
+Cài **nvm**:
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 source ~/.bashrc
 ```
 
-CĂ i Node.js LTS:
+Cài Node.js LTS:
 
 ```bash
 nvm install --lts
 nvm use --lts
 ```
 
-Kiá»ƒm tra:
+Kiểm tra:
 
 ```bash
 node --version
 npm --version
 ```
 
-VĂ­ dá»¥:
+Ví dụ:
 
 ```text
 v20.x.x
@@ -74,20 +74,20 @@ v20.x.x
 
 ## Windows
 
-Sá»­ dá»¥ng **nvm-windows**:
+Sử dụng **nvm-windows**:
 
 ```text
 https://github.com/coreybutler/nvm-windows
 ```
 
-Sau khi cĂ i:
+Sau khi cài:
 
 ```powershell
 nvm install 20
 nvm use 20
 ```
 
-Kiá»ƒm tra:
+Kiểm tra:
 
 ```powershell
 node --version
@@ -96,19 +96,19 @@ npm --version
 
 ---
 
-## npm cÆ¡ báº£n
+## npm cơ bản
 
-npm lĂ  **package manager cá»§a Node.js**.
+npm là **package manager của Node.js**.
 
 ---
 
-## Khá»Ÿi táº¡o project
+## Khởi tạo project
 
 ```bash
 npm init -y
 ```
 
-Lá»‡nh nĂ y táº¡o file:
+Lệnh này tạo file:
 
 ```text
 package.json
@@ -116,7 +116,7 @@ package.json
 
 ---
 
-## CĂ i package
+## Cài package
 
 ---
 
@@ -144,7 +144,7 @@ npm install -g nodemon
 
 ---
 
-### CĂ i tá»« package.json
+### Cài từ package.json
 
 ```bash
 npm install
@@ -156,11 +156,11 @@ Clean install:
 npm ci
 ```
 
-`npm ci` thÆ°á»ng dĂ¹ng trong **CI/CD pipelines**.
+`npm ci` thường dùng trong **CI/CD pipelines**.
 
 ---
 
-## Gá»¡ package
+## Gỡ package
 
 ```bash
 npm uninstall express
@@ -170,11 +170,11 @@ npm uninstall express
 
 ## package.json
 
-File `package.json` chá»©a metadata cá»§a project.
+File `package.json` chứa metadata của project.
 
 ---
 
-## VĂ­ dá»¥
+## Ví dụ
 
 ```json
 {
@@ -201,32 +201,32 @@ File `package.json` chá»©a metadata cá»§a project.
 
 ---
 
-## CĂ¡c trÆ°á»ng quan trá»ng
+## Các trường quan trọng
 
-| Field           | Ă nghÄ©a                       |
+| Field           | Ă nghĩa                       |
 | --------------- | ----------------------------- |
-| scripts         | cĂ¡c lá»‡nh cháº¡y project         |
-| dependencies    | packages dĂ¹ng cho production  |
-| devDependencies | packages dĂ¹ng khi development |
+| scripts         | các lệnh chạy project         |
+| dependencies    | packages dùng cho production  |
+| devDependencies | packages dùng khi development |
 
 ---
 
-## Cháº¡y scripts
+## Chạy scripts
 
-Scripts Ä‘Æ°á»£c cháº¡y báº±ng:
+Scripts được chạy bằng:
 
 ```bash
 npm run <script-name>
 ```
 
-VĂ­ dá»¥:
+Ví dụ:
 
 ```bash
 npm run dev
 npm run lint
 ```
 
-Má»™t sá»‘ script cĂ³ shortcut:
+Một số script có shortcut:
 
 ```bash
 npm start
@@ -235,9 +235,9 @@ npm test
 
 ---
 
-## Biáº¿n mĂ´i trÆ°á»ng (.env)
+## Biến môi trường (.env)
 
-ThÆ° viá»‡n phá»• biáº¿n:
+Thư viện phổ biến:
 
 ```bash
 npm install dotenv
@@ -245,7 +245,7 @@ npm install dotenv
 
 ---
 
-## VĂ­ dá»¥ `.env`
+## Ví dụ `.env`
 
 ```env
 PORT=3000
@@ -256,7 +256,7 @@ NODE_ENV=development
 
 ---
 
-## Sá»­ dá»¥ng trong code
+## Sử dụng trong code
 
 ```javascript
 require("dotenv").config();
@@ -268,10 +268,10 @@ console.log(`Server running on port ${port}`);
 
 ---
 
-!!! danger "Quan trá»ng"
-KhĂ´ng commit file `.env`.
+!!! danger "Quan trọng"
+Không commit file `.env`.
 
-Thay vĂ o Ä‘Ă³ nĂªn táº¡o:
+Thay vào đó nên tạo:
 
 ```text
 .env.example
@@ -284,12 +284,12 @@ Thay vĂ o Ä‘Ă³ nĂªn táº¡o:
 |            | npm               | yarn      | pnpm           |
 | ---------- | ----------------- | --------- | -------------- |
 | Lock file  | package-lock.json | yarn.lock | pnpm-lock.yaml |
-| Tá»‘c Ä‘á»™     | trung bĂ¬nh        | nhanh     | nhanh nháº¥t     |
-| Disk usage | lá»›n               | lá»›n       | tiáº¿t kiá»‡m      |
+| Tốc độ     | trung bình        | nhanh     | nhanh nhất     |
+| Disk usage | lớn               | lớn       | tiết kiệm      |
 
 ---
 
-### VĂ­ dá»¥ yarn
+### Ví dụ yarn
 
 ```bash
 npm install -g yarn
@@ -298,7 +298,7 @@ yarn add express
 
 ---
 
-### VĂ­ dá»¥ pnpm
+### Ví dụ pnpm
 
 ```bash
 npm install -g pnpm
@@ -308,65 +308,65 @@ pnpm add express
 ---
 
 !!! tip "Best practice"
-Trong má»™t project nĂªn **chá»‰ dĂ¹ng má»™t package manager**.
+Trong một project nên **chỉ dùng một package manager**.
 
 ---
 
-## Cáº¥u trĂºc project Node.js
+## Cấu trúc project Node.js
 
-Má»™t project backend thÆ°á»ng cĂ³ cáº¥u trĂºc:
+Một project backend thường có cấu trúc:
 
 ```text
 my-api/
-â”œâ”€â”€ node_modules/
-â”œâ”€â”€ src/
-â”‚   â”œâ”€â”€ index.js
-â”‚   â”œâ”€â”€ routes/
-â”‚   â”œâ”€â”€ controllers/
-â”‚   â”œâ”€â”€ models/
-â”‚   â”œâ”€â”€ middleware/
-â”‚   â””â”€â”€ utils/
-â”œâ”€â”€ tests/
-â”œâ”€â”€ .env
-â”œâ”€â”€ .env.example
-â”œâ”€â”€ .gitignore
-â”œâ”€â”€ package.json
-â””â”€â”€ README.md
+├── node_modules/
+├── src/
+│   ├── index.js
+│   ├── routes/
+│   ├── controllers/
+│   ├── models/
+│   ├── middleware/
+│   └── utils/
+├── tests/
+├── .env
+├── .env.example
+├── .gitignore
+├── package.json
+└── README.md
 ```
 
 ---
 
-## Lá»—i thÆ°á»ng gáº·p
+## Lỗi thường gặp
 
-| Lá»—i                      | NguyĂªn nhĂ¢n          | CĂ¡ch sá»­a             |
+| Lỗi                      | Nguyên nhân          | Cách sửa             |
 | ------------------------ | -------------------- | -------------------- |
-| node command not found   | chÆ°a dĂ¹ng nvm        | `nvm use --lts`      |
-| EACCES permission denied | cĂ i global báº±ng sudo | dĂ¹ng nvm             |
-| Cannot find module       | thiáº¿u dependency     | cháº¡y `npm install`   |
-| ENOSPC watchers          | Linux watcher limit  | tÄƒng `inotify` limit |
-| Port Ä‘Ă£ dĂ¹ng             | process khĂ¡c chiáº¿m   | kill process         |
+| node command not found   | chưa dùng nvm        | `nvm use --lts`      |
+| EACCES permission denied | cài global bằng sudo | dùng nvm             |
+| Cannot find module       | thiếu dependency     | chạy `npm install`   |
+| ENOSPC watchers          | Linux watcher limit  | tăng `inotify` limit |
+| Port đã dùng             | process khác chiếm   | kill process         |
 
 ---
 
-## BĂ i táº­p
+## Bài tập
 
-### BĂ i 1
+### Bài 1
 
-Táº¡o project Node.js má»›i.
+Tạo project Node.js mới.
 
-CĂ i:
+Cài:
 
 ```text
 express
 ```
 
-Viáº¿t API:
+Viết API:
 
 ```text
 GET /hello
 ```
 
-Tráº£:
+Trả:
 
 ```json
 {
@@ -376,21 +376,21 @@ Tráº£:
 
 ---
 
-### BĂ i 2
+### Bài 2
 
-ThĂªm script:
+Thêm script:
 
 ```text
 dev
 ```
 
-sá»­ dá»¥ng `nodemon`.
+sử dụng `nodemon`.
 
 ---
 
-### BĂ i 3
+### Bài 3
 
-Táº¡o `.env` vá»›i biáº¿n:
+Tạo `.env` với biến:
 
 ```text
 PORT
@@ -398,7 +398,7 @@ PORT
 
 ---
 
-## TĂ i liá»‡u tham kháº£o
+## Tài liệu tham khảo
 
 ```text
 https://nodejs.org/en/docs

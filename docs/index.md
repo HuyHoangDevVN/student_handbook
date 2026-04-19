@@ -1,148 +1,148 @@
 ﻿# Student IT Handbook
 
-**Student IT Handbook** lĂ  tĂ i liá»‡u thá»±c hĂ nh dĂ nh cho sinh viĂªn CĂ´ng nghá»‡ thĂ´ng tin chuáº©n bá»‹ **thá»±c táº­p (intern)** hoáº·c **báº¯t Ä‘áº§u cĂ´ng viá»‡c Ä‘áº§u tiĂªn trong ngĂ nh pháº§n má»m**.
+**Student IT Handbook** là tài liệu thực hành dành cho sinh viên Công nghệ thông tin chuẩn bị **thực tập (intern)** hoặc **bắt đầu công việc đầu tiên trong ngành phần mềm**.
 
-Handbook táº­p trung vĂ o **cĂ¡c cĂ´ng cá»¥ vĂ  workflow thá»±c táº¿ trong doanh nghiá»‡p**, giĂºp sinh viĂªn chuyá»ƒn tá»«:
+Handbook tập trung vào **các công cụ và workflow thực tế trong doanh nghiệp**, giúp sinh viên chuyển từ:
 
 ```
-Láº­p trĂ¬nh trong trÆ°á»ng â†’ Quy trĂ¬nh phĂ¡t triá»ƒn pháº§n má»m thá»±c táº¿
+Lập trình trong trường → Quy trình phát triển phần mềm thực tế
 ```
 
 ---
 
-## Sample project xuyen suot
+## Sample project xuyên suốt
 
-Toan bo handbook nay duoc xau chuoi quanh mot case study duy nhat: [InternHub API](getting-started/sample-project.md).
+Toàn bộ handbook này được xâu chuỗi quanh một case study duy nhất: [InternHub API](getting-started/sample-project.md).
 
-InternHub API la mot REST API don gian de quan ly user, bai viet noi bo, comment va tags. Khi hoc
-theo handbook, ban se gap cung mot sample app o cac chuong:
+InternHub API là một REST API đơn giản để quản lý user, bài viết nội bộ, comment và tags. Khi học
+theo handbook, bạn sẽ gặp cùng một sample app ở các chương:
 
-- SQL va PostgreSQL
-- Docker va Docker Compose
+- SQL và PostgreSQL
+- Docker và Docker Compose
 - API testing
 - CI/CD
-- Monitoring va deployment
+- Monitoring và deployment
 
-Muc tieu la giup ban thay duoc mot quy trinh end-to-end thay vi nhieu vi du roi rac.
-
----
-
-## Báº¡n sáº½ há»c Ä‘Æ°á»£c gĂ¬
-
-Handbook táº­p trung vĂ o cĂ¡c **ká»¹ nÄƒng ká»¹ thuáº­t cÆ¡ báº£n mĂ  háº§u háº¿t cĂ´ng ty pháº§n má»m yĂªu cáº§u**:
-
-- Linux vĂ  Terminal cÆ¡ báº£n
-- Git vĂ  GitHub workflow lĂ m viá»‡c nhĂ³m
-- Thiáº¿t láº­p mĂ´i trÆ°á»ng láº­p trĂ¬nh
-- Database cÆ¡ báº£n (SQL / PostgreSQL)
-- Docker vĂ  container hĂ³a á»©ng dá»¥ng
-- CI/CD cÆ¡ báº£n
-- Deployment vĂ  monitoring
-
-Má»¥c tiĂªu lĂ  giĂºp sinh viĂªn hiá»ƒu **quy trĂ¬nh phĂ¡t triá»ƒn pháº§n má»m end-to-end**.
+Mục tiêu là giúp bạn thấy được một quy trình end-to-end thay vì nhiều ví dụ rời rạc.
 
 ---
 
-## Handbook nĂ y dĂ nh cho ai
+## Bạn sẽ học được gì
 
-TĂ i liá»‡u nĂ y phĂ¹ há»£p vá»›i:
+Handbook tập trung vào các **kỹ năng kỹ thuật cơ bản mà hầu hết công ty phần mềm yêu cầu**:
 
-- Sinh viĂªn IT **nÄƒm 3â€“4 chuáº©n bá»‹ Ä‘i thá»±c táº­p**
-- **Fresher developer** má»›i Ä‘i lĂ m
-- NgÆ°á»i muá»‘n há»c **DevOps workflow cÆ¡ báº£n**
+- Linux và Terminal cơ bản
+- Git và GitHub workflow làm việc nhóm
+- Thiết lập môi trường lập trình
+- Database cơ bản (SQL / PostgreSQL)
+- Docker và container hóa ứng dụng
+- CI/CD cơ bản
+- Deployment và monitoring
 
-YĂªu cáº§u kiáº¿n thá»©c:
-
-- Biáº¿t Ă­t nháº¥t **má»™t ngĂ´n ngá»¯ láº­p trĂ¬nh**
-- Biáº¿t sá»­ dá»¥ng **command line cÆ¡ báº£n**
+Mục tiêu là giúp sinh viên hiểu **quy trình phát triển phần mềm end-to-end**.
 
 ---
 
-## Lá»™ trĂ¬nh há»c táº­p
+## Handbook này dành cho ai
+
+Tài liệu này phù hợp với:
+
+- Sinh viên IT **năm 3–4 chuẩn bị đi thực tập**
+- **Fresher developer** mới đi làm
+- Người muốn học **DevOps workflow cơ bản**
+
+Yêu cầu kiến thức:
+
+- Biết ít nhất **một ngôn ngữ lập trình**
+- Biết sử dụng **command line cơ bản**
+
+---
+
+## Lộ trình học tập
 
 ```mermaid
 graph LR
     A[Terminal & Linux] --> B[Git & GitHub]
-    B --> C[MĂ´i trÆ°á»ng láº­p trĂ¬nh]
+    B --> C[Môi trường lập trình]
     C --> D[Database]
     D --> E[Docker]
     E --> F[CI/CD]
     F --> G[Deployment & Monitoring]
 ```
 
-Lá»™ trĂ¬nh nĂ y pháº£n Ă¡nh **quy trĂ¬nh phĂ¡t triá»ƒn pháº§n má»m phá»• biáº¿n trong doanh nghiá»‡p**:
+Lộ trình này phản ánh **quy trình phát triển phần mềm phổ biến trong doanh nghiệp**:
 
 ```
-Code â†’ Version Control â†’ Build â†’ Container â†’ CI/CD â†’ Deploy
+Code → Version Control → Build → Container → CI/CD → Deploy
 ```
 
 ---
 
-## Báº¯t Ä‘áº§u nhanh
+## Bắt đầu nhanh
 
-Náº¿u báº¡n má»›i báº¯t Ä‘áº§u, hĂ£y há»c theo thá»© tá»± sau:
+Nếu bạn mới bắt đầu, hãy học theo thứ tự sau:
 
-1. Thiáº¿t láº­p mĂ´i trÆ°á»ng phĂ¡t triá»ƒn
-2. LĂ m quen vá»›i Linux vĂ  Terminal
-3. Há»c Git vĂ  GitHub workflow
-4. Thiáº¿t láº­p mĂ´i trÆ°á»ng láº­p trĂ¬nh
-5. Há»c SQL vĂ  database cÆ¡ báº£n
-6. Há»c Docker vĂ  container
-7. Hiá»ƒu CI/CD pipeline
+1. Thiết lập môi trường phát triển
+2. Làm quen với Linux và Terminal
+3. Học Git và GitHub workflow
+4. Thiết lập môi trường lập trình
+5. Học SQL và database cơ bản
+6. Học Docker và container
+7. Hiểu CI/CD pipeline
 
-Báº¡n cÅ©ng cĂ³ thá»ƒ **tĂ¬m nhanh ná»™i dung báº±ng thanh Search** hoáº·c má»Ÿ trá»±c tiáº¿p tá»«ng chÆ°Æ¡ng.
+Bạn cũng có thể **tìm nhanh nội dung bằng thanh Search** hoặc mở trực tiếp từng chương.
 
-Neu muon di theo mot luong hoc co case study ro rang, hay mo [Sample Project: InternHub API](getting-started/sample-project.md)
+Nếu muốn đi theo một luồng học có case study rõ ràng, hãy mở [Sample Project: InternHub API](getting-started/sample-project.md)
 ngay sau `Quickstart`.
 
 ---
 
-## Cáº¥u trĂºc handbook
+## Cấu trúc handbook
 
-| Pháº§n            | Ná»™i dung                        |
+| Phần            | Nội dung                        |
 | --------------- | ------------------------------- |
-| Getting Started | Thiáº¿t láº­p mĂ´i trÆ°á»ng phĂ¡t triá»ƒn |
-| Environment     | Terminal vĂ  Linux cÆ¡ báº£n        |
-| Version Control | Git vĂ  GitHub                   |
+| Getting Started | Thiết lập môi trường phát triển |
+| Environment     | Terminal và Linux cơ bản        |
+| Version Control | Git và GitHub                   |
 | Programming     | Python / Node.js environment    |
-| Databases       | SQL vĂ  PostgreSQL               |
-| Containers      | Docker vĂ  Docker Compose        |
+| Databases       | SQL và PostgreSQL               |
+| Containers      | Docker và Docker Compose        |
 | DevOps          | CI/CD, logging, security        |
 
 ---
 
-## VĂ¬ sao handbook nĂ y Ä‘Æ°á»£c táº¡o ra
+## Vì sao handbook này được tạo ra
 
-Nhiá»u sinh viĂªn biáº¿t **viáº¿t code**, nhÆ°ng gáº·p khĂ³ khÄƒn khi:
+Nhiều sinh viên biết **viết code**, nhưng gặp khó khăn khi:
 
-- thiáº¿t láº­p mĂ´i trÆ°á»ng láº­p trĂ¬nh
-- lĂ m viá»‡c nhĂ³m vá»›i Git
-- cháº¡y á»©ng dá»¥ng báº±ng Docker
-- hiá»ƒu pipeline CI/CD
+- thiết lập môi trường lập trình
+- làm việc nhóm với Git
+- chạy ứng dụng bằng Docker
+- hiểu pipeline CI/CD
 
-Handbook nĂ y giĂºp **thu háº¹p khoáº£ng cĂ¡ch giá»¯a há»c táº­p trong trÆ°á»ng vĂ  mĂ´i trÆ°á»ng lĂ m viá»‡c thá»±c táº¿**.
+Handbook này giúp **thu hẹp khoảng cách giữa học tập trong trường và môi trường làm việc thực tế**.
 
 ---
 
-## ÄĂ³ng gĂ³p ná»™i dung
+## Đóng góp nội dung
 
-Má»i Ä‘Ă³ng gĂ³p Ä‘á»u Ä‘Æ°á»£c hoan nghĂªnh.
+Mọi đóng góp đều được hoan nghênh.
 
-Náº¿u báº¡n muá»‘n cáº£i thiá»‡n handbook:
+Nếu bạn muốn cải thiện handbook:
 
 1. Fork repository
-2. Táº¡o branch má»›i
-3. Commit thay Ä‘á»•i
-4. Táº¡o Pull Request
+2. Tạo branch mới
+3. Commit thay đổi
+4. Tạo Pull Request
 
 ---
 
-## ThĂ´ng tin phiĂªn báº£n
+## Thông tin phiên bản
 
-| Thuá»™c tĂ­nh | GiĂ¡ trá»‹           |
+| Thuộc tính | Giá trị           |
 | ---------- | ----------------- |
-| PhiĂªn báº£n  | 1.1-draft         |
-| Äá»‹nh dáº¡ng  | Markdown + MkDocs |
-| Cáº­p nháº­t   | 2026              |
+| Phiên bản  | 1.1-draft         |
+| Định dạng  | Markdown + MkDocs |
+| Cập nhật   | 2026              |
 
 ---

@@ -1,29 +1,29 @@
 ﻿# SQL Cheat Sheet
 
-> Copy-paste nhanh cĂ¡c cĂ¢u SQL thÆ°á»ng dĂ¹ng (PostgreSQL).
+> Copy-paste nhanh các câu SQL thường dùng (PostgreSQL).
 
 ---
 
-## Kiá»ƒu dá»¯ liá»‡u phá»• biáº¿n
+## Kiểu dữ liệu phổ biến
 
 ```
-INT / INTEGER          Sá»‘ nguyĂªn
+INT / INTEGER          Số nguyên
 SERIAL                 Auto-increment integer
 BIGSERIAL              Auto-increment big integer
-VARCHAR(n)             Chuá»—i giá»›i háº¡n n kĂ½ tá»±
-TEXT                   Chuá»—i khĂ´ng giá»›i háº¡n
+VARCHAR(n)             Chuỗi giới hạn n ký tự
+TEXT                   Chuỗi không giới hạn
 BOOLEAN                true / false
-TIMESTAMP              NgĂ y giá»
-DATE                   Chá»‰ ngĂ y
-DECIMAL(10,2)          Sá»‘ tháº­p phĂ¢n
+TIMESTAMP              Ngày giờ
+DATE                   Chỉ ngày
+DECIMAL(10,2)          Số thập phân
 JSON / JSONB           JSON data
 UUID                   Unique identifier
 ```
 
-## DDL â€“ Táº¡o / Sá»­a báº£ng
+## DDL – Tạo / Sửa bảng
 
 ```sql
--- Táº¡o báº£ng
+-- Tạo bảng
 CREATE TABLE users (
     id          SERIAL PRIMARY KEY,
     name        VARCHAR(100) NOT NULL,
@@ -33,19 +33,19 @@ CREATE TABLE users (
     created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- ThĂªm cá»™t
+-- Thêm cột
 ALTER TABLE users ADD COLUMN phone VARCHAR(20);
 
--- Äá»•i tĂªn cá»™t
+-- Đổi tên cột
 ALTER TABLE users RENAME COLUMN phone TO phone_number;
 
--- XoĂ¡ cá»™t
+-- Xoá cột
 ALTER TABLE users DROP COLUMN phone_number;
 
--- XoĂ¡ báº£ng
+-- Xoá bảng
 DROP TABLE IF EXISTS users;
 
--- Táº¡o index
+-- Tạo index
 CREATE INDEX idx_users_email ON users(email);
 ```
 
@@ -53,32 +53,32 @@ CREATE INDEX idx_users_email ON users(email);
 
 ```sql
 -- Insert 1 row
-INSERT INTO users (name, email) VALUES ('VÄƒn A', 'a@test.com');
+INSERT INTO users (name, email) VALUES ('Văn A', 'a@test.com');
 
--- Insert nhiá»u rows
+-- Insert nhiều rows
 INSERT INTO users (name, email, role) VALUES
-  ('Thá»‹ B', 'b@test.com', 'admin'),
-  ('VÄƒn C', 'c@test.com', 'user');
+  ('Thị B', 'b@test.com', 'admin'),
+  ('Văn C', 'c@test.com', 'user');
 
--- Insert náº¿u chÆ°a tá»“n táº¡i
+-- Insert nếu chưa tồn tại
 INSERT INTO users (name, email)
-VALUES ('VÄƒn A', 'a@test.com')
+VALUES ('Văn A', 'a@test.com')
 ON CONFLICT (email) DO NOTHING;
 
 -- Upsert
 INSERT INTO users (name, email)
-VALUES ('VÄƒn A Updated', 'a@test.com')
+VALUES ('Văn A Updated', 'a@test.com')
 ON CONFLICT (email) DO UPDATE SET name = EXCLUDED.name;
 ```
 
 ## SELECT
 
 ```sql
--- CÆ¡ báº£n
+-- Cơ bản
 SELECT * FROM users;
 SELECT name, email FROM users;
 
--- Äiá»u kiá»‡n
+-- Điều kiện
 SELECT * FROM users WHERE role = 'admin';
 SELECT * FROM users WHERE role IN ('admin', 'user');
 SELECT * FROM users WHERE name LIKE '%nguyen%';     -- Case-sensitive
@@ -86,15 +86,15 @@ SELECT * FROM users WHERE name ILIKE '%nguyen%';    -- Case-insensitive (PG)
 SELECT * FROM users WHERE created_at > '2025-01-01';
 SELECT * FROM users WHERE is_active = true AND role = 'admin';
 
--- Sáº¯p xáº¿p
+-- Sắp xếp
 SELECT * FROM users ORDER BY created_at DESC;
 SELECT * FROM users ORDER BY name ASC, id DESC;
 
--- Giá»›i háº¡n & phĂ¢n trang
+-- Giới hạn & phân trang
 SELECT * FROM users LIMIT 10;
 SELECT * FROM users LIMIT 10 OFFSET 20;  -- Page 3
 
--- Äáº¿m & Aggregate
+-- Đếm & Aggregate
 SELECT COUNT(*) FROM users;
 SELECT role, COUNT(*) FROM users GROUP BY role;
 SELECT role, COUNT(*) FROM users GROUP BY role HAVING COUNT(*) > 5;
@@ -110,7 +110,7 @@ SELECT DISTINCT role FROM users;
 UPDATE users SET role = 'admin' WHERE id = 1;
 UPDATE users SET is_active = false WHERE created_at < '2024-01-01';
 
--- Update nhiá»u cá»™t
+-- Update nhiều cột
 UPDATE users SET name = 'New Name', role = 'senior' WHERE id = 1;
 ```
 
@@ -120,9 +120,9 @@ UPDATE users SET name = 'New Name', role = 'senior' WHERE id = 1;
 DELETE FROM users WHERE id = 1;
 DELETE FROM users WHERE is_active = false;
 
--- â ï¸ XoĂ¡ táº¥t cáº£ (cáº©n tháº­n!)
+-- â ï¸ Xoá tất cả (cẩn thận!)
 DELETE FROM users;
-TRUNCATE TABLE users;  -- Nhanh hÆ¡n DELETE, reset SERIAL
+TRUNCATE TABLE users;  -- Nhanh hơn DELETE, reset SERIAL
 ```
 
 ## JOIN
@@ -133,7 +133,7 @@ SELECT u.name, p.title
 FROM users u
 INNER JOIN posts p ON u.id = p.user_id;
 
--- LEFT JOIN (táº¥t cáº£ users, ká»ƒ cáº£ khĂ´ng cĂ³ posts)
+-- LEFT JOIN (tất cả users, kể cả không có posts)
 SELECT u.name, COUNT(p.id) as post_count
 FROM users u
 LEFT JOIN posts p ON u.id = p.user_id
@@ -171,22 +171,22 @@ BEGIN;
   UPDATE accounts SET balance = balance + 100 WHERE id = 2;
 COMMIT;
 
--- Náº¿u lá»—i:
+-- Nếu lỗi:
 ROLLBACK;
 ```
 
 ## psql Commands
 
 ```bash
-\l              # Liá»‡t kĂª databases
-\c dbname       # Káº¿t ná»‘i database
-\dt             # Liá»‡t kĂª tables
-\d tablename    # Cáº¥u trĂºc báº£ng
-\di             # Liá»‡t kĂª indexes
+\l              # Liệt kê databases
+\c dbname       # Kết nối database
+\dt             # Liệt kê tables
+\d tablename    # Cấu trúc bảng
+\di             # Liệt kê indexes
 \x              # Toggle expanded display
-\q              # ThoĂ¡t
-\i file.sql     # Cháº¡y file SQL
-\timing         # Báº­t Ä‘o thá»i gian query
+\q              # Thoát
+\i file.sql     # Chạy file SQL
+\timing         # Bật đo thời gian query
 ```
 
 ## Performance
@@ -195,7 +195,7 @@ ROLLBACK;
 -- Xem execution plan
 EXPLAIN ANALYZE SELECT * FROM users WHERE email = 'a@test.com';
 
--- Táº¡o index
+-- Tạo index
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_posts_user_published ON posts(user_id, published);
 ```

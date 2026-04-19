@@ -2612,10 +2612,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cicd-la-ga" class="md-nav__link">
+  <a href="#cicd-la-gi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CI/CD lĂ gĂ¬?
+        CI/CD là gì?
       
     </span>
   </a>
@@ -2623,10 +2623,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#caou-traoc-th-mac-chuaon" class="md-nav__link">
+  <a href="#cau-truc-thu-muc-chuan" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cáº¥u trĂºc thÆ° má»¥c chuáº©n
+        Cấu trúc thư mục chuẩn
       
     </span>
   </a>
@@ -2634,10 +2634,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quy-tao-c-ci-achuaon-teama" class="md-nav__link">
+  <a href="#quy-tac-ci-chuan-team" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quy táº¯c CI â€œchuáº©n teamâ€
+        Quy tắc CI "chuẩn team"
       
     </span>
   </a>
@@ -2645,10 +2645,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quickstart-workflow-tai-thiau" class="md-nav__link">
+  <a href="#quickstart-workflow-toi-thieu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quickstart: Workflow tá»‘i thiá»ƒu
+        Quickstart: Workflow tối thiểu
       
     </span>
   </a>
@@ -3122,10 +3122,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cicd-la-ga" class="md-nav__link">
+  <a href="#cicd-la-gi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CI/CD lĂ gĂ¬?
+        CI/CD là gì?
       
     </span>
   </a>
@@ -3133,10 +3133,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#caou-traoc-th-mac-chuaon" class="md-nav__link">
+  <a href="#cau-truc-thu-muc-chuan" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cáº¥u trĂºc thÆ° má»¥c chuáº©n
+        Cấu trúc thư mục chuẩn
       
     </span>
   </a>
@@ -3144,10 +3144,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quy-tao-c-ci-achuaon-teama" class="md-nav__link">
+  <a href="#quy-tac-ci-chuan-team" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quy táº¯c CI â€œchuáº©n teamâ€
+        Quy tắc CI "chuẩn team"
       
     </span>
   </a>
@@ -3155,10 +3155,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quickstart-workflow-tai-thiau" class="md-nav__link">
+  <a href="#quickstart-workflow-toi-thieu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quickstart: Workflow tá»‘i thiá»ƒu
+        Quickstart: Workflow tối thiểu
       
     </span>
   </a>
@@ -3188,7 +3188,7 @@
 <h1 id="cicd-fundamentals">CI/CD Fundamentals<a class="headerlink" href="#cicd-fundamentals" title="Permanent link">&para;</a></h1>
 <p>Phần này giới thiệu CI/CD, cấu trúc workflow và quy tắc pipeline cơ bản.</p>
 <hr />
-<h2 id="cicd-la-ga">CI/CD lĂ  gĂ¬?<a class="headerlink" href="#cicd-la-ga" title="Permanent link">&para;</a></h2>
+<h2 id="cicd-la-gi">CI/CD là gì?<a class="headerlink" href="#cicd-la-gi" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>graph LR
 A[Developer Push / PR] --&gt; B[CI: Lint + Test + Build]
 B --&gt;|Pass| C[CD: Deploy Staging]
@@ -3197,59 +3197,59 @@ B --&gt;|Fail| E[Notify + Fix]</code></pre>
 <table>
 <thead>
 <tr>
-<th>Thuáº­t ngá»¯</th>
-<th>Ă nghÄ©a</th>
+<th>Thuật ngữ</th>
+<th>Ý nghĩa</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>CI (Continuous Integration)</td>
-<td>tá»± Ä‘á»™ng lint/test/build khi push/PR</td>
+<td>tự động lint/test/build khi push/PR</td>
 </tr>
 <tr>
 <td>CD (Continuous Delivery/Deployment)</td>
-<td>tá»± Ä‘á»™ng deploy sau khi CI pass (tuá»³ má»©c tá»± Ä‘á»™ng)</td>
+<td>tự động deploy sau khi CI pass (tuỳ mức tự động)</td>
 </tr>
 <tr>
 <td>Workflow</td>
-<td>file YAML mĂ´ táº£ pipeline</td>
+<td>file YAML mô tả pipeline</td>
 </tr>
 <tr>
 <td>Job</td>
-<td>nhĂ³m step cháº¡y trĂªn 1 runner</td>
+<td>nhóm step chạy trên 1 runner</td>
 </tr>
 <tr>
 <td>Step</td>
-<td>1 hĂ nh Ä‘á»™ng trong job (checkout, setup runtime, run command)</td>
+<td>1 hành động trong job (checkout, setup runtime, run command)</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="caou-traoc-th-mac-chuaon">Cáº¥u trĂºc thÆ° má»¥c chuáº©n<a class="headerlink" href="#caou-traoc-th-mac-chuaon" title="Permanent link">&para;</a></h2>
+<h2 id="cau-truc-thu-muc-chuan">Cấu trúc thư mục chuẩn<a class="headerlink" href="#cau-truc-thu-muc-chuan" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>.github/
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>â””â”€â”€ workflows/
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    â”œâ”€â”€ ci.yml
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    â”œâ”€â”€ docker.yml
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    â”œâ”€â”€ deploy.yml
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    â””â”€â”€ docs.yml
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>└── workflows/
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    ├── ci.yml
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    ├── docker.yml
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    ├── deploy.yml
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    └── docs.yml
 </span></code></pre></div>
 <hr />
-<h2 id="quy-tao-c-ci-achuaon-teama">Quy táº¯c CI â€œchuáº©n teamâ€<a class="headerlink" href="#quy-tao-c-ci-achuaon-teama" title="Permanent link">&para;</a></h2>
+<h2 id="quy-tac-ci-chuan-team">Quy tắc CI "chuẩn team"<a class="headerlink" href="#quy-tac-ci-chuan-team" title="Permanent link">&para;</a></h2>
 <ul>
-<li>CI cháº¡y trĂªn <strong>Pull Request</strong> lĂ  quan trá»ng nháº¥t</li>
-<li>PR chá»‰ Ä‘Æ°á»£c merge khi <strong>CI xanh</strong></li>
-<li>Workflow nĂªn:</li>
+<li>CI chạy trên <strong>Pull Request</strong> là quan trọng nhất</li>
+<li>PR chỉ được merge khi <strong>CI xanh</strong></li>
+<li>Workflow nên:</li>
 <li><strong>nhanh</strong></li>
-<li><strong>deterministic</strong> (khĂ´ng phá»¥ thuá»™c mĂ¡y dev)</li>
-<li><strong>cache tá»‘t</strong></li>
-<li><strong>fail sá»›m</strong> (lint trÆ°á»›c test)</li>
+<li><strong>deterministic</strong> (không phụ thuộc máy dev)</li>
+<li><strong>cache tốt</strong></li>
+<li><strong>fail sớm</strong> (lint trước test)</li>
 </ul>
 <hr />
-<h2 id="quickstart-workflow-tai-thiau">Quickstart: Workflow tá»‘i thiá»ƒu<a class="headerlink" href="#quickstart-workflow-tai-thiau" title="Permanent link">&para;</a></h2>
-<p>Táº¡o file:</p>
+<h2 id="quickstart-workflow-toi-thieu">Quickstart: Workflow tối thiểu<a class="headerlink" href="#quickstart-workflow-toi-thieu" title="Permanent link">&para;</a></h2>
+<p>Tạo file:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>.github/workflows/ci.yml
 </span></code></pre></div>
-<p>Máº«u skeleton:</p>
+<p>Mẫu skeleton:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">on</span><span class="p">:</span>

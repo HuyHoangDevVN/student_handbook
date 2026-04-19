@@ -1,35 +1,35 @@
-﻿# Checklist sinh viĂªn má»›i
+﻿# Checklist sinh viên mới
 
-Checklist nĂ y giĂºp báº¡n kiá»ƒm tra xem mĂ¬nh Ä‘Ă£ **sáºµn sĂ ng tham gia vĂ o má»™t team phĂ¡t triá»ƒn pháº§n má»m** hay chÆ°a.
+Checklist này giúp bạn kiểm tra xem mình đã **sẵn sàng tham gia vào một team phát triển phần mềm** hay chưa.
 
-Danh sĂ¡ch Ä‘Æ°á»£c chia thĂ nh 3 giai Ä‘oáº¡n:
+Danh sách được chia thành 3 giai đoạn:
 
-- TrÆ°á»›c ngĂ y Ä‘áº§u tiĂªn
-- NgĂ y Ä‘áº§u tiĂªn
-- Tuáº§n Ä‘áº§u tiĂªn
-
----
-
-## TrÆ°á»›c ngĂ y Ä‘áº§u tiĂªn
-
-HĂ£y hoĂ n thĂ nh cĂ¡c bÆ°á»›c sau trÆ°á»›c khi báº¯t Ä‘áº§u internship hoáº·c dá»± Ă¡n.
-
-### TĂ i khoáº£n & truy cáº­p
-
-- [ ] Táº¡o tĂ i khoáº£n **GitHub**
-- [ ] Báº­t **Two-Factor Authentication (2FA)** cho GitHub
-- [ ] CĂ i Ä‘áº·t **SSH key** cho GitHub (khuyáº¿n nghá»‹)
+- Trước ngày đầu tiên
+- Ngày đầu tiên
+- Tuần đầu tiên
 
 ---
 
-### CĂ´ng cá»¥ phĂ¡t triá»ƒn
+## Trước ngày đầu tiên
 
-- [ ] CĂ i Ä‘áº·t **Git**
-- [ ] Cáº¥u hĂ¬nh `user.name` vĂ  `user.email`
-- [ ] CĂ i Ä‘áº·t **Docker Desktop**
-- [ ] CĂ i Ä‘áº·t **VS Code**
+Hãy hoàn thành các bước sau trước khi bắt đầu internship hoặc dự án.
 
-Extensions nĂªn cĂ i:
+### Tài khoản & truy cập
+
+- [ ] Tạo tài khoản **GitHub**
+- [ ] Bật **Two-Factor Authentication (2FA)** cho GitHub
+- [ ] Cài đặt **SSH key** cho GitHub (khuyến nghị)
+
+---
+
+### Công cụ phát triển
+
+- [ ] Cài đặt **Git**
+- [ ] Cấu hình `user.name` và `user.email`
+- [ ] Cài đặt **Docker Desktop**
+- [ ] Cài đặt **VS Code**
+
+Extensions nên cài:
 
 - GitLens
 - Docker
@@ -38,11 +38,11 @@ Extensions nĂªn cĂ i:
 
 ---
 
-### MĂ´i trÆ°á»ng láº­p trĂ¬nh
+### Môi trường lập trình
 
-- [ ] CĂ i **Python 3.11+** hoáº·c **Anaconda**
-- [ ] CĂ i **Node.js 20+** (náº¿u dá»± Ă¡n sá»­ dá»¥ng)
-- [ ] Kiá»ƒm tra cĂ¡c lá»‡nh sau cháº¡y Ä‘Æ°á»£c:
+- [ ] Cài **Python 3.11+** hoặc **Anaconda**
+- [ ] Cài **Node.js 20+** (nếu dự án sử dụng)
+- [ ] Kiểm tra các lệnh sau chạy được:
 
 ```bash
 git --version
@@ -53,35 +53,35 @@ node --version
 
 ---
 
-### Äá»c tĂ i liá»‡u
+### Đọc tài liệu
 
-- [ ] Äá»c pháº§n **Quickstart**
-- [ ] Hiá»ƒu cĂ¡ch **clone repo vĂ  cháº¡y project**
-
----
-
-## NgĂ y Ä‘áº§u tiĂªn
-
-Má»¥c tiĂªu cá»§a ngĂ y Ä‘áº§u tiĂªn lĂ  **setup mĂ´i trÆ°á»ng vĂ  hiá»ƒu workflow cá»§a team**.
-
-### Truy cáº­p há»‡ thá»‘ng
-
-- [ ] Nháº­n invite vĂ o **GitHub Organization**
-- [ ] Nháº­n quyá»n truy cáº­p repository
+- [ ] Đọc phần **Quickstart**
+- [ ] Hiểu cách **clone repo và chạy project**
 
 ---
 
-### Setup dá»± Ă¡n
+## Ngày đầu tiên
 
-- [ ] Clone repository chĂ­nh
+Mục tiêu của ngày đầu tiên là **setup môi trường và hiểu workflow của team**.
+
+### Truy cập hệ thống
+
+- [ ] Nhận invite vào **GitHub Organization**
+- [ ] Nhận quyền truy cập repository
+
+---
+
+### Setup dự án
+
+- [ ] Clone repository chính
 
 ```bash
 git clone <repo-url>
 ```
 
-- [ ] Cháº¡y Ä‘Æ°á»£c project trĂªn local
+- [ ] Chạy được project trên local
 
-VĂ­ dá»¥:
+Ví dụ:
 
 ```bash
 docker compose up
@@ -89,53 +89,53 @@ docker compose up
 
 ---
 
-### Kiá»ƒm tra workflow Git
+### Kiểm tra workflow Git
 
-Táº¡o branch test:
+Tạo branch test:
 
 ```bash
 git checkout -b feature/your-name-hello
 ```
 
-Sau Ä‘Ă³:
+Sau đó:
 
-- [ ] Commit thay Ä‘á»•i
+- [ ] Commit thay đổi
 - [ ] Push branch
-- [ ] Táº¡o Pull Request
+- [ ] Tạo Pull Request
 
 ---
 
-### LĂ m quen vá»›i team
+### Làm quen với team
 
-- [ ] Gáº·p **mentor / tech lead**
-- [ ] Há»i vá» **workflow code review**
-- [ ] Há»i vá» **quy trĂ¬nh deploy**
-
----
-
-## Tuáº§n Ä‘áº§u tiĂªn
-
-Trong tuáº§n Ä‘áº§u, má»¥c tiĂªu lĂ  **hiá»ƒu codebase vĂ  workflow lĂ m viá»‡c**.
-
-### Hiá»ƒu dá»± Ă¡n
-
-- [ ] Hiá»ƒu cáº¥u trĂºc folder
-- [ ] Äá»c `README.md`
-- [ ] Äá»c `CONTRIBUTING.md`
+- [ ] Gặp **mentor / tech lead**
+- [ ] Hỏi về **workflow code review**
+- [ ] Hỏi về **quy trình deploy**
 
 ---
 
-### Cháº¡y test
+## Tuần đầu tiên
 
-- [ ] Cháº¡y test suite
+Trong tuần đầu, mục tiêu là **hiểu codebase và workflow làm việc**.
 
-VĂ­ dá»¥:
+### Hiểu dự án
+
+- [ ] Hiểu cấu trúc folder
+- [ ] Đọc `README.md`
+- [ ] Đọc `CONTRIBUTING.md`
+
+---
+
+### Chạy test
+
+- [ ] Chạy test suite
+
+Ví dụ:
 
 ```bash
 npm test
 ```
 
-hoáº·c
+hoặc
 
 ```bash
 pytest
@@ -143,52 +143,52 @@ pytest
 
 ---
 
-### HoĂ n thĂ nh task Ä‘áº§u tiĂªn
+### Hoàn thành task đầu tiên
 
-Má»™t task nhá» cĂ³ thá»ƒ lĂ :
+Một task nhỏ có thể là:
 
-- sá»­a typo
-- cáº­p nháº­t documentation
-- fix bug nhá»
+- sửa typo
+- cập nhật documentation
+- fix bug nhỏ
 
-Má»¥c tiĂªu: **hoĂ n thĂ nh Ă­t nháº¥t 1 Pull Request**.
+Mục tiêu: **hoàn thành ít nhất 1 Pull Request**.
 
 ---
 
-### Tham gia hoáº¡t Ä‘á»™ng cá»§a team
+### Tham gia hoạt động của team
 
 - [ ] Tham gia **daily standup**
-- [ ] Theo dĂµi **issue tracker**
-- [ ] Hiá»ƒu **task board (Jira / GitHub Projects)**
+- [ ] Theo dõi **issue tracker**
+- [ ] Hiểu **task board (Jira / GitHub Projects)**
 
 ---
 
-## Ká»¹ nÄƒng cáº§n náº¯m trong thĂ¡ng Ä‘áº§u
+## Kỹ năng cần nắm trong tháng đầu
 
-| Ká»¹ nÄƒng          | Má»¥c tiĂªu             | TĂ i liá»‡u                                               |
+| Kỹ năng          | Mục tiêu             | Tài liệu                                               |
 | ---------------- | -------------------- | ------------------------------------------------------ |
-| Terminal / Shell | Sá»­ dá»¥ng thĂ nh tháº¡o   | [Terminal](../environment/terminal.md)                 |
-| Git branching    | Hiá»ƒu workflow branch | [Git](../vcs/git-basics.md)                            |
-| Docker           | Cháº¡y container       | [Docker](../containers/docker.md)                      |
-| SQL cÆ¡ báº£n       | Viáº¿t query           | [SQL](../databases/sql-postgres.md)                    |
-| Debug & logs     | TĂ¬m lá»—i cÆ¡ báº£n       | [Troubleshooting](../troubleshooting/common-errors.md) |
+| Terminal / Shell | Sử dụng thành thạo   | [Terminal](../environment/terminal.md)                 |
+| Git branching    | Hiểu workflow branch | [Git](../vcs/git-basics.md)                            |
+| Docker           | Chạy container       | [Docker](../containers/docker.md)                      |
+| SQL cơ bản       | Viết query           | [SQL](../databases/sql-postgres.md)                    |
+| Debug & logs     | Tìm lỗi cơ bản       | [Troubleshooting](../troubleshooting/common-errors.md) |
 
 ---
 
-## Máº¹o cho ngĂ y Ä‘áº§u
+## Mẹo cho ngày đầu
 
-!!! tip "Lá»i khuyĂªn"
-Äá»«ng ngáº¡i há»i khi chÆ°a hiá»ƒu.
-Ghi chĂ©p láº¡i cĂ¡c hÆ°á»›ng dáº«n cá»§a mentor.
+!!! tip "Lời khuyên"
+Đừng ngại hỏi khi chưa hiểu.
+Ghi chép lại các hướng dẫn của mentor.
 
-Báº¡n nĂªn táº¡o má»™t file riĂªng:
+Bạn nên tạo một file riêng:
 
 ```bash
 notes.md
 ```
 
-Ä‘á»ƒ ghi láº¡i:
+để ghi lại:
 
-- cĂ¡c lá»‡nh thÆ°á»ng dĂ¹ng
-- workflow cá»§a team
-- cĂ¡c lá»—i thÆ°á»ng gáº·p
+- các lệnh thường dùng
+- workflow của team
+- các lỗi thường gặp

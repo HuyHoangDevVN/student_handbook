@@ -1,56 +1,56 @@
 ﻿# Linux Cheat Sheet
 
-> Copy-paste nhanh cĂ¡c lá»‡nh Linux thÆ°á»ng dĂ¹ng.
+> Copy-paste nhanh các lệnh Linux thường dùng.
 
 ---
 
-## Di chuyá»ƒn & File
+## Di chuyển & File
 
 ```bash
-pwd                           # ThÆ° má»¥c hiá»‡n táº¡i
-ls -la                        # Liá»‡t kĂª chi tiáº¿t + file áº©n
-cd /path/to/dir               # Di chuyá»ƒn
-cd ..                         # LĂªn 1 cáº¥p
-cd ~                          # Vá» home
-cd -                          # Quay láº¡i thÆ° má»¥c trÆ°á»›c
+pwd                           # Thư mục hiện tại
+ls -la                        # Liệt kê chi tiết + file ẩn
+cd /path/to/dir               # Di chuyển
+cd ..                         # Lên 1 cấp
+cd ~                          # Về home
+cd -                          # Quay lại thư mục trước
 
-mkdir -p dir/subdir            # Táº¡o folder lá»“ng nhau
-touch file.txt                 # Táº¡o file rá»—ng
+mkdir -p dir/subdir            # Tạo folder lồng nhau
+touch file.txt                 # Tạo file rỗng
 cp -r src/ dest/               # Copy folder
-mv old new                     # Di chuyá»ƒn / Ä‘á»•i tĂªn
-rm -rf folder/                 # XoĂ¡ folder (â ï¸ cáº©n tháº­n!)
+mv old new                     # Di chuyển / đổi tên
+rm -rf folder/                 # Xoá folder (â ï¸ cẩn thận!)
 ```
 
-## Xem & TĂ¬m kiáº¿m
+## Xem & Tìm kiếm
 
 ```bash
-cat file.txt                   # In ná»™i dung file
-head -20 file.txt              # 20 dĂ²ng Ä‘áº§u
+cat file.txt                   # In nội dung file
+head -20 file.txt              # 20 dòng đầu
 tail -f app.log                # Follow log realtime
-less file.txt                  # Xem tá»«ng trang
-wc -l file.txt                 # Äáº¿m dĂ²ng
+less file.txt                  # Xem từng trang
+wc -l file.txt                 # Đếm dòng
 
-grep -rn "pattern" .           # TĂ¬m text trong file
-find . -name "*.py" -type f    # TĂ¬m file theo tĂªn
+grep -rn "pattern" .           # Tìm text trong file
+find . -name "*.py" -type f    # Tìm file theo tên
 ```
 
-## Quyá»n (Permissions)
+## Quyền (Permissions)
 
 ```bash
-chmod +x script.sh             # Cáº¥p quyá»n thá»±c thi
+chmod +x script.sh             # Cấp quyền thực thi
 chmod 755 file                 # rwxr-xr-x
 chmod 644 file                 # rw-r--r--
-chown user:group file          # Äá»•i owner
+chown user:group file          # Đổi owner
 ```
 
 ## Process
 
 ```bash
-ps aux                         # Liá»‡t kĂª process
-ps aux | grep node             # TĂ¬m process
-kill PID                       # Dá»«ng process
+ps aux                         # Liệt kê process
+ps aux | grep node             # Tìm process
+kill PID                       # Dừng process
 kill -9 PID                    # Force kill
-pkill -f "pattern"             # Kill theo tĂªn
+pkill -f "pattern"             # Kill theo tên
 htop                           # Monitor realtime
 ```
 
@@ -58,57 +58,57 @@ htop                           # Monitor realtime
 
 ```bash
 ip addr show                   # Xem IP
-ss -tulnp                      # Xem port Ä‘ang má»Ÿ
-lsof -i :8080                  # Ai dĂ¹ng port 8080
+ss -tulnp                      # Xem port đang mở
+lsof -i :8080                  # Ai dùng port 8080
 curl -I http://localhost:3000   # Test HTTP
 ping google.com -c 4           # Test connectivity
-wget URL                       # Táº£i file
+wget URL                       # Tải file
 ```
 
 ## Pipe & Redirect
 
 ```bash
 cmd1 | cmd2                    # Pipe output
-echo "text" > file             # Ghi Ä‘Ă¨ file
-echo "text" >> file            # Ghi thĂªm cuá»‘i file
+echo "text" > file             # Ghi đè file
+echo "text" >> file            # Ghi thêm cuối file
 cmd 2> error.log               # Redirect stderr
-cmd > all.log 2>&1             # Redirect cáº£ stdout + stderr
+cmd > all.log 2>&1             # Redirect cả stdout + stderr
 ```
 
 ## Package (Ubuntu/Debian)
 
 ```bash
-sudo apt update                # Cáº­p nháº­t danh sĂ¡ch
-sudo apt install -y pkg        # CĂ i package
-sudo apt remove pkg            # Gá»¡ package
-apt search keyword             # TĂ¬m package
+sudo apt update                # Cập nhật danh sách
+sudo apt install -y pkg        # Cài package
+sudo apt remove pkg            # Gỡ package
+apt search keyword             # Tìm package
 ```
 
 ## Disk & System
 
 ```bash
 df -h                          # Disk usage
-du -sh folder/                 # KĂ­ch thÆ°á»›c folder
+du -sh folder/                 # Kích thước folder
 free -h                        # RAM usage
-uname -a                       # ThĂ´ng tin há»‡ thá»‘ng
-whoami                         # User hiá»‡n táº¡i
-history | grep cmd             # Lá»‹ch sá»­ lá»‡nh
+uname -a                       # Thông tin hệ thống
+whoami                         # User hiện tại
+history | grep cmd             # Lịch sử lệnh
 ```
 
-## Biáº¿n mĂ´i trÆ°á»ng
+## Biến môi trường
 
 ```bash
 echo $PATH                     # Xem PATH
-export MY_VAR="value"          # Set biáº¿n (session)
-echo 'export VAR="val"' >> ~/.bashrc  # Set cá»‘ Ä‘á»‹nh
+export MY_VAR="value"          # Set biến (session)
+echo 'export VAR="val"' >> ~/.bashrc  # Set cố định
 source ~/.bashrc               # Reload config
 ```
 
-## NĂ©n & Giáº£i nĂ©n
+## Nén & Giải nén
 
 ```bash
-tar -czf archive.tar.gz dir/   # NĂ©n
-tar -xzf archive.tar.gz        # Giáº£i nĂ©n
-zip -r archive.zip dir/        # NĂ©n zip
-unzip archive.zip              # Giáº£i nĂ©n zip
+tar -czf archive.tar.gz dir/   # Nén
+tar -xzf archive.tar.gz        # Giải nén
+zip -r archive.zip dir/        # Nén zip
+unzip archive.zip              # Giải nén zip
 ```

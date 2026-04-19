@@ -1,12 +1,12 @@
 ﻿# API Testing
 
-## Má»¥c tiĂªu
+## Mục tiêu
 
-Sau bĂ i nĂ y, báº¡n sáº½:
+Sau bài này, bạn sẽ:
 
-- Sá»­ dá»¥ng **Postman** / **Thunder Client** Ä‘á»ƒ test API.
-- Viáº¿t test assertions cÆ¡ báº£n trong Postman.
-- Sá»­ dá»¥ng **curl** vĂ  **httpie** tá»« terminal.
+- Sử dụng **Postman** / **Thunder Client** để test API.
+- Viết test assertions cơ bản trong Postman.
+- Sử dụng **curl** và **httpie** từ terminal.
 
 ## Prerequisites
 
@@ -16,41 +16,41 @@ Sau bĂ i nĂ y, báº¡n sáº½:
 
 ## Postman
 
-InternHub API la sample app xuyen suot trong handbook nay, vi vay ban co the import collection mau
-va dung lai o cac bai Docker, SQL va deployment.
+InternHub API là sample app xuyên suốt trong handbook này, vì vậy bạn có thể import collection mẫu
+và dùng lại ở các bài Docker, SQL và deployment.
 
-### CĂ i Ä‘áº·t
+### Cài đặt
 
-- Táº£i tá»« [https://www.postman.com/downloads/](https://www.postman.com/downloads/)
-- Hoáº·c dĂ¹ng **Thunder Client** (VS Code extension) cho nháº¹ hÆ¡n.
+- Tải từ [https://www.postman.com/downloads/](https://www.postman.com/downloads/)
+- Hoặc dùng **Thunder Client** (VS Code extension) cho nhẹ hơn.
 
-### Táº¡o Request
+### Tạo Request
 
-1. Click **New â†’ HTTP Request**.
-2. Chá»n method: `GET`, `POST`, â€¦
-3. Nháº­p URL: `http://localhost:3000/api/users`.
-4. Tab **Body** â†’ `raw` â†’ `JSON` (cho POST/PUT).
+1. Click **New → HTTP Request**.
+2. Chọn method: `GET`, `POST`, …
+3. Nhập URL: `http://localhost:3000/api/users`.
+4. Tab **Body** → `raw` → `JSON` (cho POST/PUT).
 5. Click **Send**.
 
 ### Postman Collections
 
-- NhĂ³m cĂ¡c request liĂªn quan vĂ o **Collection**.
-- Export/import dÆ°á»›i dáº¡ng JSON (`resources/api/postman-collection.json`).
-- Collection mau nay duoc dat ten **InternHub API** va dung `base_url=http://localhost:3000`.
+- Nhóm các request liên quan vào **Collection**.
+- Export/import dưới dạng JSON (`resources/api/postman-collection.json`).
+- Collection mẫu này được đặt tên **InternHub API** và dùng `base_url=http://localhost:3000`.
 
-### Biáº¿n mĂ´i trÆ°á»ng (Environment)
+### Biến môi trường (Environment)
 
 ```json
-// Táº¡o Environment "Development"
+// Tạo Environment "Development"
 {
   "base_url": "http://localhost:3000",
   "token": "eyJhbGciOiJI..."
 }
 ```
 
-Sá»­ dá»¥ng trong request: `{{base_url}}/api/users`
+Sử dụng trong request: `{{base_url}}/api/users`
 
-### Viáº¿t Test trong Postman
+### Viết Test trong Postman
 
 ```javascript
 // Tab "Tests" trong Postman
@@ -71,27 +71,27 @@ pm.test("Response time < 500ms", function () {
 
 ---
 
-## httpie (thay tháº¿ curl, dá»… Ä‘á»c hÆ¡n)
+## httpie (thay thế curl, dễ đọc hơn)
 
 ```bash
-# CĂ i
+# Cài
 pip install httpie
 
 # GET
 http GET localhost:3000/api/users
 
-# POST JSON (tá»± detect Content-Type)
+# POST JSON (tự detect Content-Type)
 http POST localhost:3000/api/users name="John" email="john@test.com"
 
-# Vá»›i header
+# Với header
 http GET localhost:3000/api/users Authorization:"Bearer <token>"
 ```
 
 ---
 
-## Test API tá»± Ä‘á»™ng
+## Test API tự động
 
-### Vá»›i pytest (Python)
+### Với pytest (Python)
 
 ```python
 import requests
@@ -117,17 +117,17 @@ pytest tests/test_api.py -v
 
 ---
 
-## Lá»—i thÆ°á»ng gáº·p
+## Lỗi thường gặp
 
-| Lá»—i                              | NguyĂªn nhĂ¢n                        | CĂ¡ch sá»­a                                    |
+| Lỗi                              | Nguyên nhân                        | Cách sửa                                    |
 | -------------------------------- | ---------------------------------- | ------------------------------------------- |
-| Postman tráº£ vá» HTML thay vĂ¬ JSON | URL sai hoáº·c server tráº£ error page | Kiá»ƒm tra URL, xem server log                |
-| `Could not send request`         | Server chÆ°a cháº¡y                   | Start server trÆ°á»›c                          |
-| SSL certificate error            | Self-signed cert                   | Táº¯t SSL verification trong Postman settings |
+| Postman trả về HTML thay vì JSON | URL sai hoặc server trả error page | Kiểm tra URL, xem server log                |
+| `Could not send request`         | Server chưa chạy                   | Start server trước                          |
+| SSL certificate error            | Self-signed cert                   | Tắt SSL verification trong Postman settings |
 
 ---
 
-## TĂ i liá»‡u tham kháº£o
+## Tài liệu tham khảo
 
 - [Postman Learning Center](https://learning.postman.com/)
 - [httpie Docs](https://httpie.io/docs)

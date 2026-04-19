@@ -1,56 +1,56 @@
 ﻿# Quickstart
 
-Thiáº¿t láº­p **mĂ´i trÆ°á»ng phĂ¡t triá»ƒn cÆ¡ báº£n trong ~30 phĂºt**.
+Thiết lập **môi trường phát triển cơ bản trong ~30 phút**.
 
-Sau khi hoĂ n thĂ nh trang nĂ y, báº¡n sáº½ cĂ³ thá»ƒ:
+Sau khi hoàn thành trang này, bạn sẽ có thể:
 
-- CĂ i Ä‘áº·t cĂ¡c cĂ´ng cá»¥ phĂ¡t triá»ƒn cáº§n thiáº¿t
+- Cài đặt các công cụ phát triển cần thiết
 - Clone repository handbook
-- Cháº¡y thá»­ stack development cho sample app InternHub API
+- Chạy thử stack development cho sample app InternHub API
 
 ---
 
-## Má»¥c tiĂªu
+## Mục tiêu
 
-Sau bĂ i nĂ y báº¡n sáº½:
+Sau bài này bạn sẽ:
 
-- CĂ i Ä‘áº·t **Git**
-- CĂ i Ä‘áº·t **Docker**
-- Thiáº¿t láº­p **Python environment**
-- (Tuá»³ chá»n) cĂ i **Node.js**
-- Cháº¡y thá»­ **Docker container**
+- Cài đặt **Git**
+- Cài đặt **Docker**
+- Thiết lập **Python environment**
+- (Tuỳ chọn) cài **Node.js**
+- Chạy thử **Docker container**
 
-Case study xuyen suot sau quickstart la [InternHub API](sample-project.md).
+Case study xuyên suốt sau quickstart là [InternHub API](sample-project.md).
 
 ---
 
-## YĂªu cáº§u trÆ°á»›c khi báº¯t Ä‘áº§u
+## Yêu cầu trước khi bắt đầu
 
-Báº¡n cáº§n chuáº©n bá»‹:
+Bạn cần chuẩn bị:
 
-- MĂ¡y tĂ­nh cháº¡y
+- Máy tính chạy
   - **Windows 10/11**
   - **macOS 12+**
   - **Ubuntu 22.04+**
 
-- Káº¿t ná»‘i Internet
+- Kết nối Internet
 
-- TĂ i khoáº£n **GitHub**
+- Tài khoản **GitHub**
 
 ---
 
-## 1. CĂ i Ä‘áº·t Git
+## 1. Cài đặt Git
 
-Git lĂ  cĂ´ng cá»¥ **version control** dĂ¹ng Ä‘á»ƒ quáº£n lĂ½ source code.
+Git là công cụ **version control** dùng để quản lý source code.
 
 ### Windows
 
 ```bash
-# CĂ i Git báº±ng winget
+# Cài Git bằng winget
 winget install Git.Git
 ```
 
-Hoáº·c táº£i tá»«:
+Hoặc tải từ:
 
 ```
 https://git-scm.com/download/win
@@ -61,10 +61,10 @@ https://git-scm.com/download/win
 ### macOS
 
 ```bash
-# CĂ i Git báº±ng Xcode tools
+# Cài Git bằng Xcode tools
 xcode-select --install
 
-# hoáº·c dĂ¹ng Homebrew
+# hoặc dùng Homebrew
 brew install git
 ```
 
@@ -79,13 +79,13 @@ sudo apt install -y git
 
 ---
 
-### Kiá»ƒm tra cĂ i Ä‘áº·t
+### Kiểm tra cài đặt
 
 ```bash
 git --version
 ```
 
-VĂ­ dá»¥:
+Ví dụ:
 
 ```
 git version 2.43.0
@@ -93,22 +93,22 @@ git version 2.43.0
 
 ---
 
-## Cáº¥u hĂ¬nh Git láº§n Ä‘áº§u
+## Cấu hình Git lần đầu
 
-Thiáº¿t láº­p thĂ´ng tin commit:
+Thiết lập thông tin commit:
 
 ```bash
-git config --global user.name "TĂªn cá»§a báº¡n"
+git config --global user.name "Tên của bạn"
 git config --global user.email "email@example.com"
 ```
 
-Thiáº¿t láº­p branch máº·c Ä‘á»‹nh:
+Thiết lập branch mặc định:
 
 ```bash
 git config --global init.defaultBranch main
 ```
 
-Thiáº¿t láº­p newline:
+Thiết lập newline:
 
 ```bash
 # macOS / Linux
@@ -120,23 +120,23 @@ git config --global core.autocrlf true
 
 ---
 
-## 2. CĂ i Docker
+## 2. Cài Docker
 
-Docker giĂºp cháº¡y á»©ng dá»¥ng trong **container**.
+Docker giúp chạy ứng dụng trong **container**.
 
 ---
 
 ## Windows / macOS
 
-Táº£i Docker Desktop:
+Tải Docker Desktop:
 
 ```
 https://www.docker.com/products/docker-desktop
 ```
 
-### LÆ°u Ă½ (Windows)
+### Lưu ý (Windows)
 
-Báº­t **WSL 2 backend** trong Docker Desktop.
+Bật **WSL 2 backend** trong Docker Desktop.
 
 ---
 
@@ -149,18 +149,18 @@ sudo apt install -y docker.io docker-compose-plugin
 sudo usermod -aG docker $USER
 ```
 
-Sau Ä‘Ă³ **logout vĂ  login láº¡i**.
+Sau đó **logout và login lại**.
 
 ---
 
-### Kiá»ƒm tra Docker
+### Kiểm tra Docker
 
 ```bash
 docker --version
 docker compose version
 ```
 
-Cháº¡y container test:
+Chạy container test:
 
 ```bash
 docker run --rm hello-world
@@ -168,21 +168,21 @@ docker run --rm hello-world
 
 ---
 
-## 3. CĂ i Python
+## 3. Cài Python
 
-Python Ä‘Æ°á»£c dĂ¹ng cho nhiá»u project backend vĂ  data.
+Python được dùng cho nhiều project backend và data.
 
 ---
 
-## CĂ¡ch 1 â€” Anaconda (khuyáº¿n nghá»‹)
+## Cách 1 — Anaconda (khuyến nghị)
 
-Táº£i táº¡i:
+Tải tại:
 
 ```
 https://www.anaconda.com/download
 ```
 
-Táº¡o mĂ´i trÆ°á»ng:
+Tạo môi trường:
 
 ```bash
 conda create -n myproject python=3.11 -y
@@ -192,21 +192,21 @@ python --version
 
 ---
 
-## CĂ¡ch 2 â€” Python thuáº§n
+## Cách 2 — Python thuần
 
-Táº£i Python:
+Tải Python:
 
 ```
 https://www.python.org/downloads/
 ```
 
-Táº¡o virtual environment:
+Tạo virtual environment:
 
 ```bash
 python -m venv .venv
 ```
 
-KĂ­ch hoáº¡t mĂ´i trÆ°á»ng:
+Kích hoạt môi trường:
 
 ### Linux / macOS
 
@@ -220,7 +220,7 @@ source .venv/bin/activate
 .\.venv\Scripts\Activate.ps1
 ```
 
-Kiá»ƒm tra:
+Kiểm tra:
 
 ```bash
 python --version
@@ -228,11 +228,11 @@ python --version
 
 ---
 
-## 4. CĂ i Node.js (tuá»³ chá»n)
+## 4. Cài Node.js (tuỳ chọn)
 
-Náº¿u báº¡n lĂ m **frontend hoáº·c fullstack**, cáº§n Node.js.
+Nếu bạn làm **frontend hoặc fullstack**, cần Node.js.
 
-KhuyĂªn dĂ¹ng **nvm** Ä‘á»ƒ quáº£n lĂ½ phiĂªn báº£n.
+Khuyên dùng **nvm** để quản lý phiên bản.
 
 ---
 
@@ -253,7 +253,7 @@ node --version
 
 ## Windows
 
-CĂ i **nvm-windows**:
+Cài **nvm-windows**:
 
 ```
 https://github.com/coreybutler/nvm-windows
@@ -263,7 +263,7 @@ https://github.com/coreybutler/nvm-windows
 
 ## 5. Clone repository
 
-Clone repository cá»§a handbook Ä‘á»ƒ láº¥y toĂ n bá»™ docs vĂ  resources cho InternHub API:
+Clone repository của handbook để lấy toàn bộ docs và resources cho InternHub API:
 
 ```bash
 git clone https://github.com/<github-org>/student-it-handbook.git
@@ -275,9 +275,9 @@ Thay `<github-org>` bằng organization hoặc username GitHub thực tế.
 
 ---
 
-## 6. Cháº¡y thá»­ á»©ng dá»¥ng máº«u
+## 6. Chạy thử ứng dụng mẫu
 
-Cháº¡y PostgreSQL stack cho InternHub API:
+Chạy PostgreSQL stack cho InternHub API:
 
 ```bash
 cd resources/docker
@@ -285,25 +285,25 @@ cd resources/docker
 docker compose -f postgres-compose.yml up -d
 ```
 
-Kiá»ƒm tra container:
+Kiểm tra container:
 
 ```bash
 docker ps
 ```
 
-Kiem tra ket noi database:
+Kiểm tra kết nối database:
 
 ```bash
 docker exec -it postgres-dev psql -U dev -d internhub -c "SELECT 1;"
 ```
 
-Neu command nay tra ve `1`, moi truong database cho sample app da san sang.
+Nếu command này trả về `1`, môi trường database cho sample app đã sẵn sàng.
 
 ---
 
-## Kiá»ƒm tra mĂ´i trÆ°á»ng
+## Kiểm tra môi trường
 
-Cháº¡y cĂ¡c lá»‡nh sau:
+Chạy các lệnh sau:
 
 ```bash
 git --version
@@ -312,26 +312,26 @@ python --version
 node --version
 ```
 
-Náº¿u táº¥t cáº£ Ä‘á»u cháº¡y thĂ nh cĂ´ng, mĂ´i trÆ°á»ng Ä‘Ă£ sáºµn sĂ ng.
+Nếu tất cả đều chạy thành công, môi trường đã sẵn sàng.
 
 ---
 
-## Lá»—i thÆ°á»ng gáº·p
+## Lỗi thường gặp
 
-| Lá»—i                                 | NguyĂªn nhĂ¢n                      | CĂ¡ch kháº¯c phá»¥c                  |
+| Lỗi                                 | Nguyên nhân                      | Cách khắc phục                  |
 | ----------------------------------- | -------------------------------- | ------------------------------- |
-| `git: command not found`            | Git chÆ°a cĂ i hoáº·c chÆ°a thĂªm PATH | CĂ i láº¡i Git                     |
-| `docker: permission denied`         | User chÆ°a thuá»™c group docker     | `sudo usermod -aG docker $USER` |
-| `conda: command not found`          | ChÆ°a init conda                  | `conda init`                    |
-| Docker Desktop khĂ´ng cháº¡y (Windows) | ChÆ°a báº­t WSL2                    | Báº­t trong Windows Features      |
+| `git: command not found`            | Git chưa cài hoặc chưa thêm PATH | Cài lại Git                     |
+| `docker: permission denied`         | User chưa thuộc group docker     | `sudo usermod -aG docker $USER` |
+| `conda: command not found`          | Chưa init conda                  | `conda init`                    |
+| Docker Desktop không chạy (Windows) | Chưa bật WSL2                    | Bật trong Windows Features      |
 
 ---
 
-## BÆ°á»›c tiáº¿p theo
+## Bước tiếp theo
 
-Sau khi setup xong mĂ´i trÆ°á»ng:
+Sau khi setup xong môi trường:
 
-- Äá»c **Sample Project: InternHub API**
-- Äá»c **Checklist sinh viĂªn má»›i**
-- Há»c **Terminal cÆ¡ báº£n**
-- LĂ m quen vá»›i **Git workflow**
+- Đọc **Sample Project: InternHub API**
+- Đọc **Checklist sinh viên mới**
+- Học **Terminal cơ bản**
+- Làm quen với **Git workflow**

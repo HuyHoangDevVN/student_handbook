@@ -1,56 +1,56 @@
-﻿# Deployment cÆ¡ báº£n
+﻿# Deployment cơ bản
 
-## Má»¥c tiĂªu
+## Mục tiêu
 
-Sau bĂ i nĂ y, báº¡n sáº½:
+Sau bài này, bạn sẽ:
 
-- Hiá»ƒu cĂ¡c khĂ¡i niá»‡m deploy: staging, production, rollback.
-- Deploy á»©ng dá»¥ng Ä‘Æ¡n giáº£n lĂªn VPS hoáº·c PaaS.
-- Hiá»ƒu cÆ¡ báº£n vá» reverse proxy (Nginx).
+- Hiểu các khái niệm deploy: staging, production, rollback.
+- Deploy ứng dụng đơn giản lên VPS hoặc PaaS.
+- Hiểu cơ bản về reverse proxy (Nginx).
 
 ## Prerequisites
 
-- [Docker cÆ¡ báº£n](../containers/docker.md).
+- [Docker cơ bản](../containers/docker.md).
 - [CI/CD](cicd-github-actions.md).
 
 ---
 
-## MĂ´i trÆ°á»ng Deploy
+## Môi trường Deploy
 
-| MĂ´i trÆ°á»ng              | Má»¥c Ä‘Ă­ch                 | Ai truy cáº­p |
+| Môi trường              | Mục đích                 | Ai truy cập |
 | ----------------------- | ------------------------ | ----------- |
-| **Development** (local) | Code + test trĂªn mĂ¡y     | Developer   |
-| **Staging**             | Test trÆ°á»›c khi lĂªn prod  | Team + QA   |
-| **Production**          | NgÆ°á»i dĂ¹ng tháº­t truy cáº­p | End users   |
+| **Development** (local) | Code + test trên máy     | Developer   |
+| **Staging**             | Test trước khi lên prod  | Team + QA   |
+| **Production**          | Người dùng thật truy cập | End users   |
 
-!!! tip "Quy táº¯c vĂ ng"
-Staging pháº£i **giá»‘ng production nháº¥t cĂ³ thá»ƒ** (cĂ¹ng OS, database version, config).
+!!! tip "Quy tắc vàng"
+Staging phải **giống production nhất có thể** (cùng OS, database version, config).
 
 ---
 
-## Deploy lĂªn VPS (Ä‘Æ¡n giáº£n)
+## Deploy lên VPS (đơn giản)
 
-### BÆ°á»›c 1 â€“ SSH vĂ o server
+### Bước 1 – SSH vào server
 
 ```bash
 ssh user@your-server-ip
 ```
 
-### BÆ°á»›c 2 â€“ Clone repo + Docker Compose
+### Bước 2 – Clone repo + Docker Compose
 
 ```bash
 git clone https://github.com/<github-org>/internhub-api.git
 cd internhub-api
 
-# Táº¡o .env cho production
+# Tạo .env cho production
 cp .env.example .env
-nano .env   # Sá»­a giĂ¡ trá»‹ cho production
+nano .env   # Sửa giá trị cho production
 
-# Cháº¡y
+# Chạy
 docker compose -f docker-compose.prod.yml up -d
 ```
 
-### BÆ°á»›c 3 â€“ Cáº¥u hĂ¬nh Nginx reverse proxy
+### Bước 3 – Cấu hình Nginx reverse proxy
 
 ```nginx
 # /etc/nginx/sites-available/internhub-api
@@ -76,51 +76,51 @@ sudo systemctl reload nginx
 
 ---
 
-## Deploy lĂªn PaaS (Ä‘Æ¡n giáº£n hÆ¡n)
+## Deploy lên PaaS (đơn giản hơn)
 
 ### Railway / Render / Fly.io
 
 ```bash
-# VĂ­ dá»¥ vá»›i Fly.io
+# Ví dụ với Fly.io
 fly launch
 fly deploy
 ```
 
-CĂ¡c PaaS thÆ°á»ng chá»‰ cáº§n:
+Các PaaS thường chỉ cần:
 
-- Dockerfile hoáº·c buildpack config.
-- Biáº¿n mĂ´i trÆ°á»ng (set trĂªn dashboard).
-- Git push â†’ tá»± deploy.
+- Dockerfile hoặc buildpack config.
+- Biến môi trường (set trên dashboard).
+- Git push → tự deploy.
 
 ---
 
 ## Rollback
 
 ```bash
-# Docker: quay láº¡i image version cÅ©
+# Docker: quay lại image version cũ
 docker compose pull   # Pull latest
 docker compose up -d  # Update
 
-# Rollback: chá»‰ Ä‘á»‹nh image tag cÅ©
+# Rollback: chỉ định image tag cũ
 # Trong docker-compose.yml: image: internhub-api:v1.2.0
 docker compose up -d
 ```
 
 ---
 
-## Checklist trÆ°á»›c khi deploy Production
+## Checklist trước khi deploy Production
 
 - [ ] Tests pass (CI green).
-- [ ] Environment variables Ä‘Ă£ set Ä‘Ăºng.
-- [ ] Database migration Ä‘Ă£ cháº¡y.
-- [ ] KhĂ´ng cĂ³ secrets trong code.
-- [ ] HTTPS Ä‘Ă£ cáº¥u hĂ¬nh (Let's Encrypt).
-- [ ] Logs & monitoring Ä‘Ă£ setup.
-- [ ] CĂ³ káº¿ hoáº¡ch rollback.
+- [ ] Environment variables đã set đúng.
+- [ ] Database migration đã chạy.
+- [ ] Không có secrets trong code.
+- [ ] HTTPS đã cấu hình (Let's Encrypt).
+- [ ] Logs & monitoring đã setup.
+- [ ] Có kế hoạch rollback.
 
 ---
 
-## TĂ i liá»‡u tham kháº£o
+## Tài liệu tham khảo
 
 - [Nginx Docs](https://nginx.org/en/docs/)
 - [Docker Compose in Production](https://docs.docker.com/compose/production/)

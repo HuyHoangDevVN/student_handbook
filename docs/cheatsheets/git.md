@@ -1,13 +1,13 @@
 ﻿# Git Cheat Sheet
 
-> Copy-paste nhanh cĂ¡c lá»‡nh Git thÆ°á»ng dĂ¹ng.
+> Copy-paste nhanh các lệnh Git thường dùng.
 
 ---
 
 ## Setup
 
 ```bash
-git config --global user.name "TĂªn"
+git config --global user.name "Tên"
 git config --global user.email "email@example.com"
 git config --global init.defaultBranch main
 git config --global core.autocrlf input      # Linux/macOS
@@ -15,112 +15,112 @@ git config --global core.autocrlf true       # Windows
 git config --list                            # Xem config
 ```
 
-## Khá»Ÿi táº¡o & Clone
+## Khởi tạo & Clone
 
 ```bash
-git init                       # Táº¡o repo má»›i
+git init                       # Tạo repo mới
 git clone URL                  # Clone repo
-git clone URL folder-name      # Clone vĂ o folder cá»¥ thá»ƒ
+git clone URL folder-name      # Clone vào folder cụ thể
 ```
 
-## CÆ¡ báº£n
+## Cơ bản
 
 ```bash
-git status                     # Xem tráº¡ng thĂ¡i
+git status                     # Xem trạng thái
 git add file.txt               # Stage file
-git add .                      # Stage táº¥t cáº£
+git add .                      # Stage tất cả
 git commit -m "message"        # Commit
-git commit --amend             # Sá»­a commit gáº§n nháº¥t
+git commit --amend             # Sửa commit gần nhất
 git push origin main           # Push
 git pull origin main           # Pull (fetch + merge)
-git fetch origin               # Fetch (khĂ´ng merge)
+git fetch origin               # Fetch (không merge)
 ```
 
 ## Branch
 
 ```bash
-git branch                     # Liá»‡t kĂª branch
-git branch -a                  # Liá»‡t kĂª cáº£ remote
-git switch -c feature/login    # Táº¡o + chuyá»ƒn branch
-git switch main                # Chuyá»ƒn branch
-git branch -d feature/login    # XoĂ¡ branch Ä‘Ă£ merge
-git branch -D feature/login    # Force xoĂ¡ branch
+git branch                     # Liệt kê branch
+git branch -a                  # Liệt kê cả remote
+git switch -c feature/login    # Tạo + chuyển branch
+git switch main                # Chuyển branch
+git branch -d feature/login    # Xoá branch đã merge
+git branch -D feature/login    # Force xoá branch
 ```
 
 ## Merge & Rebase
 
 ```bash
-git merge feature/login        # Merge branch vĂ o hiá»‡n táº¡i
-git rebase main                # Rebase branch hiá»‡n táº¡i lĂªn main
-git rebase --continue          # Tiáº¿p tá»¥c rebase sau fix conflict
-git rebase --abort             # Huá»· rebase
-git merge --abort              # Huá»· merge
+git merge feature/login        # Merge branch vào hiện tại
+git rebase main                # Rebase branch hiện tại lên main
+git rebase --continue          # Tiếp tục rebase sau fix conflict
+git rebase --abort             # Huỷ rebase
+git merge --abort              # Huỷ merge
 ```
 
 ## Stash
 
 ```bash
-git stash                      # LÆ°u táº¡m thay Ä‘á»•i
-git stash list                 # Xem danh sĂ¡ch stash
-git stash pop                  # Láº¥y láº¡i stash gáº§n nháº¥t
-git stash drop                 # XoĂ¡ stash gáº§n nháº¥t
-git stash apply stash@{0}      # Apply stash cá»¥ thá»ƒ
+git stash                      # Lưu tạm thay đổi
+git stash list                 # Xem danh sách stash
+git stash pop                  # Lấy lại stash gần nhất
+git stash drop                 # Xoá stash gần nhất
+git stash apply stash@{0}      # Apply stash cụ thể
 ```
 
 ## Undo & Recovery
 
 ```bash
-git restore file.txt           # Bá» thay Ä‘á»•i (chÆ°a stage)
+git restore file.txt           # Bỏ thay đổi (chưa stage)
 git restore --staged file.txt  # Unstage file
-git reset --soft HEAD~1        # Undo commit (giá»¯ staged)
-git reset HEAD~1               # Undo commit (giá»¯ unstaged)
-git reset --hard HEAD~1        # Undo commit (Máº¤T code!)
-git revert HEAD                # Táº¡o commit Ä‘áº£o ngÆ°á»£c
-git reflog                     # Xem má»i thao tĂ¡c (emergency!)
+git reset --soft HEAD~1        # Undo commit (giữ staged)
+git reset HEAD~1               # Undo commit (giữ unstaged)
+git reset --hard HEAD~1        # Undo commit (MẤT code!)
+git revert HEAD                # Tạo commit đảo ngược
+git reflog                     # Xem mọi thao tác (emergency!)
 ```
 
 ## Log & Diff
 
 ```bash
-git log --oneline              # Log ngáº¯n gá»n
-git log --oneline --graph --all  # Log dáº¡ng graph
-git log -5                     # 5 commit gáº§n nháº¥t
-git diff                       # Xem thay Ä‘á»•i (chÆ°a stage)
-git diff --staged              # Xem thay Ä‘á»•i (Ä‘Ă£ stage)
-git diff main..feature         # So sĂ¡nh 2 branch
-git show commit-hash           # Xem chi tiáº¿t commit
+git log --oneline              # Log ngắn gọn
+git log --oneline --graph --all  # Log dạng graph
+git log -5                     # 5 commit gần nhất
+git diff                       # Xem thay đổi (chưa stage)
+git diff --staged              # Xem thay đổi (đã stage)
+git diff main..feature         # So sánh 2 branch
+git show commit-hash           # Xem chi tiết commit
 ```
 
 ## Remote
 
 ```bash
 git remote -v                  # Xem remote URLs
-git remote add origin URL      # ThĂªm remote
+git remote add origin URL      # Thêm remote
 git push -u origin branch      # Push + set upstream
-git push --force-with-lease    # Force push (an toĂ n)
+git push --force-with-lease    # Force push (an toàn)
 ```
 
 ## Tag
 
 ```bash
-git tag v1.0.0                 # Táº¡o tag
-git tag -a v1.0.0 -m "msg"    # Tag kĂ¨m message
+git tag v1.0.0                 # Tạo tag
+git tag -a v1.0.0 -m "msg"    # Tag kèm message
 git push origin v1.0.0         # Push tag
-git push origin --tags         # Push táº¥t cáº£ tags
+git push origin --tags         # Push tất cả tags
 ```
 
 ## Commit Message Convention
 
 ```
-feat:     TĂ­nh nÄƒng má»›i
-fix:      Sá»­a bug
-docs:     Thay Ä‘á»•i docs
+feat:     Tính năng mới
+fix:      Sửa bug
+docs:     Thay đổi docs
 style:    Format code
-refactor: TĂ¡i cáº¥u trĂºc
-test:     ThĂªm/sá»­a test
+refactor: Tái cấu trúc
+test:     Thêm/sửa test
 chore:    Config, build tools
 
-# VĂ­ dá»¥
+# Ví dụ
 feat(auth): add JWT refresh token
 fix(api): validate email before insert
 docs: update README installation guide

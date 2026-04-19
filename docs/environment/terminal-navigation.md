@@ -4,9 +4,9 @@ Phần này tập trung vào các thao tác điều hướng thư mục cơ bả
 
 ---
 
-## Äiá»u hÆ°á»›ng thÆ° má»¥c
+## Điều hướng thư mục
 
-### In thÆ° má»¥c hiá»‡n táº¡i
+### In thư mục hiện tại
 
 ```bash
 pwd
@@ -14,13 +14,13 @@ pwd
 
 ---
 
-### Liá»‡t kĂª file
+### Liệt kê file
 
 ```bash
 ls
 ```
 
-Xem chi tiáº¿t:
+Xem chi tiết:
 
 ```bash
 ls -la
@@ -28,7 +28,7 @@ ls -la
 
 ---
 
-### Di chuyá»ƒn thÆ° má»¥c
+### Di chuyển thư mục
 
 ```bash
 cd folder
@@ -36,7 +36,7 @@ cd folder
 
 ---
 
-### LĂªn má»™t cáº¥p
+### Lên một cấp
 
 ```bash
 cd ..
@@ -44,7 +44,7 @@ cd ..
 
 ---
 
-### Vá» home directory
+### Về home directory
 
 ```bash
 cd ~
@@ -52,7 +52,7 @@ cd ~
 
 ---
 
-### Quay láº¡i thÆ° má»¥c trÆ°á»›c
+### Quay lại thư mục trước
 
 ```bash
 cd -

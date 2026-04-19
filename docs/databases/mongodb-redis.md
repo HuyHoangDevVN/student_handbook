@@ -1,23 +1,23 @@
 ﻿# MongoDB & Redis
 
-## Má»¥c tiĂªu
+## Mục tiêu
 
-Sau bĂ i nĂ y, báº¡n sáº½:
+Sau bài này, bạn sẽ:
 
-- Hiá»ƒu khi nĂ o dĂ¹ng NoSQL (MongoDB) vs SQL.
-- CRUD cÆ¡ báº£n vá»›i MongoDB.
-- Sá»­ dá»¥ng Redis lĂ m cache / session store.
-- Cháº¡y cáº£ hai báº±ng Docker.
+- Hiểu khi nào dùng NoSQL (MongoDB) vs SQL.
+- CRUD cơ bản với MongoDB.
+- Sử dụng Redis làm cache / session store.
+- Chạy cả hai bằng Docker.
 
 ## Prerequisites
 
-- [Docker cÆ¡ báº£n](../containers/docker.md).
+- [Docker cơ bản](../containers/docker.md).
 
 ---
 
 ## MongoDB
 
-### Cháº¡y báº±ng Docker
+### Chạy bằng Docker
 
 ```bash
 docker run -d \
@@ -29,27 +29,27 @@ docker run -d \
   mongo:7
 ```
 
-### Káº¿t ná»‘i báº±ng mongosh
+### Kết nối bằng mongosh
 
 ```bash
 docker exec -it mongo-dev mongosh -u admin -p admin123
 ```
 
-### CRUD cÆ¡ báº£n
+### CRUD cơ bản
 
 ```javascript
-// Chá»n database
+// Chọn database
 use internhub
 
 // Insert
-db.users.insertOne({ name: "VÄƒn A", email: "a@test.com", age: 22 })
+db.users.insertOne({ name: "Văn A", email: "a@test.com", age: 22 })
 db.users.insertMany([
-  { name: "Thá»‹ B", email: "b@test.com", age: 23 },
-  { name: "VÄƒn C", email: "c@test.com", age: 21 }
+  { name: "Thị B", email: "b@test.com", age: 23 },
+  { name: "Văn C", email: "c@test.com", age: 21 }
 ])
 
 // Find
-db.users.find()                           // Táº¥t cáº£
+db.users.find()                           // Tất cả
 db.users.find({ age: { $gte: 22 } })      // age >= 22
 db.users.findOne({ email: "a@test.com" })  // 1 document
 
@@ -66,21 +66,21 @@ db.users.deleteOne({ email: "c@test.com" })
 db.users.countDocuments({ age: { $gte: 22 } })
 ```
 
-### Khi nĂ o dĂ¹ng MongoDB vs PostgreSQL?
+### Khi nào dùng MongoDB vs PostgreSQL?
 
 |              | MongoDB               | PostgreSQL                |
 | ------------ | --------------------- | ------------------------- |
 | Schema       | Flexible (schemaless) | Fixed (strict schema)     |
 | Relationship | Embedded documents    | Foreign keys + JOINs      |
-| PhĂ¹ há»£p      | Logs, CMS, real-time  | E-commerce, finance, CRUD |
+| Phù hợp      | Logs, CMS, real-time  | E-commerce, finance, CRUD |
 | Query        | Document-based        | SQL                       |
-| Transaction  | CĂ³ (tá»« v4.0)          | CĂ³ (native, máº¡nh hÆ¡n)     |
+| Transaction  | Có (từ v4.0)          | Có (native, mạnh hơn)     |
 
 ---
 
 ## Redis
 
-### Cháº¡y báº±ng Docker
+### Chạy bằng Docker
 
 ```bash
 docker run -d \
@@ -89,10 +89,10 @@ docker run -d \
   redis:7-alpine
 ```
 
-### Lá»‡nh cÆ¡ báº£n
+### Lệnh cơ bản
 
 ```bash
-# Káº¿t ná»‘i redis-cli
+# Kết nối redis-cli
 docker exec -it redis-dev redis-cli
 
 # String
@@ -100,8 +100,8 @@ SET user:1:name "Nguyen Van A"
 GET user:1:name
 
 # Expiry (TTL)
-SET session:abc123 "user_data" EX 3600    # Háº¿t háº¡n sau 1 giá»
-TTL session:abc123                         # Xem thá»i gian cĂ²n láº¡i
+SET session:abc123 "user_data" EX 3600    # Hết hạn sau 1 giờ
+TTL session:abc123                         # Xem thời gian còn lại
 
 # Hash (object-like)
 HSET user:1 name "Van A" email "a@test.com" role "intern"
@@ -116,36 +116,36 @@ RPOP queue:emails
 SADD tags:post:1 "docker" "devops" "linux"
 SMEMBERS tags:post:1
 
-# XoĂ¡ key
+# Xoá key
 DEL user:1:name
 
-# Xem táº¥t cáº£ keys (chá»‰ dĂ¹ng khi dev!)
+# Xem tất cả keys (chỉ dùng khi dev!)
 KEYS *
 ```
 
-### Use cases phá»• biáº¿n
+### Use cases phổ biến
 
-| Use case          | CĂ¡ch dĂ¹ng                             |
+| Use case          | Cách dùng                             |
 | ----------------- | ------------------------------------- |
-| **Cache**         | Cache API response, giáº£m load DB      |
-| **Session store** | LÆ°u session thay vĂ¬ file/memory       |
-| **Rate limiting** | Äáº¿m request per IP báº±ng INCR + EXPIRE |
-| **Queue**         | Task queue Ä‘Æ¡n giáº£n (LPUSH/RPOP)      |
+| **Cache**         | Cache API response, giảm load DB      |
+| **Session store** | Lưu session thay vì file/memory       |
+| **Rate limiting** | Đếm request per IP bằng INCR + EXPIRE |
+| **Queue**         | Task queue đơn giản (LPUSH/RPOP)      |
 | **Real-time**     | Pub/Sub cho notifications             |
 
 ---
 
-## Lá»—i thÆ°á»ng gáº·p
+## Lỗi thường gặp
 
-| Lá»—i                                       | NguyĂªn nhĂ¢n                    | CĂ¡ch sá»­a                      |
+| Lỗi                                       | Nguyên nhân                    | Cách sửa                      |
 | ----------------------------------------- | ------------------------------ | ----------------------------- |
-| `MongoServerError: Authentication failed` | Sai user/password              | Kiá»ƒm tra biáº¿n MONGO_INITDB    |
-| `WRONGTYPE Operation` (Redis)             | DĂ¹ng sai command cho data type | Kiá»ƒm tra type báº±ng `TYPE key` |
-| Data máº¥t sau restart                      | KhĂ´ng mount volume             | ThĂªm `-v` khi `docker run`    |
+| `MongoServerError: Authentication failed` | Sai user/password              | Kiểm tra biến MONGO_INITDB    |
+| `WRONGTYPE Operation` (Redis)             | Dùng sai command cho data type | Kiểm tra type bằng `TYPE key` |
+| Data mất sau restart                      | Không mount volume             | Thêm `-v` khi `docker run`    |
 
 ---
 
-## TĂ i liá»‡u tham kháº£o
+## Tài liệu tham khảo
 
 - [MongoDB Manual](https://www.mongodb.com/docs/manual/)
 - [Redis Commands](https://redis.io/commands)

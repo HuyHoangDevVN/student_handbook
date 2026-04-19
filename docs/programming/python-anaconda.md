@@ -1,34 +1,34 @@
 ﻿# Python & Anaconda
 
-Trang nĂ y hÆ°á»›ng dáº«n cĂ¡ch **quáº£n lĂ½ mĂ´i trÆ°á»ng Python vĂ  package dependencies**.
+Trang này hướng dẫn cách **quản lý môi trường Python và package dependencies**.
 
-Python projects thÆ°á»ng sá»­ dá»¥ng **virtual environments** Ä‘á»ƒ:
+Python projects thường sử dụng **virtual environments** để:
 
-- trĂ¡nh conflict package
-- quáº£n lĂ½ dependency theo project
-- Ä‘áº£m báº£o reproducible environment
-
----
-
-## Má»¥c tiĂªu
-
-Sau bĂ i nĂ y báº¡n cĂ³ thá»ƒ:
-
-- táº¡o **virtual environment**
-- quáº£n lĂ½ package báº±ng **pip** hoáº·c **conda**
-- cháº¡y **Jupyter Notebook**
-- xá»­ lĂ½ lá»—i phá»• biáº¿n khi cĂ i package
+- tránh conflict package
+- quản lý dependency theo project
+- đảm bảo reproducible environment
 
 ---
 
-## YĂªu cáº§u
+## Mục tiêu
 
-Báº¡n cáº§n cĂ i:
+Sau bài này bạn có thể:
+
+- tạo **virtual environment**
+- quản lý package bằng **pip** hoặc **conda**
+- chạy **Jupyter Notebook**
+- xử lý lỗi phổ biến khi cài package
+
+---
+
+## Yêu cầu
+
+Bạn cần cài:
 
 - **Python 3.9+**
-- hoáº·c **Anaconda**
+- hoặc **Anaconda**
 
-Náº¿u chÆ°a cĂ i mĂ´i trÆ°á»ng, xem:
+Nếu chưa cài môi trường, xem:
 
 ```text
 Quickstart
@@ -40,29 +40,29 @@ Quickstart
 
 |             | pip               | conda                     |
 | ----------- | ----------------- | ------------------------- |
-| Quáº£n lĂ½     | Python packages   | Python + system libraries |
-| Nguá»“n       | PyPI              | Anaconda / conda-forge    |
+| Quản lý     | Python packages   | Python + system libraries |
+| Nguồn       | PyPI              | Anaconda / conda-forge    |
 | Environment | venv / virtualenv | conda env                 |
 | Lock file   | requirements.txt  | environment.yml           |
 
 ---
 
-!!! tip "Quy táº¯c quan trá»ng"
-Trong má»™t environment nĂªn **chá»‰ dĂ¹ng pip hoáº·c conda lĂ m package manager chĂ­nh** Ä‘á»ƒ trĂ¡nh conflict.
+!!! tip "Quy tắc quan trọng"
+Trong một environment nên **chỉ dùng pip hoặc conda làm package manager chính** để tránh conflict.
 
 ---
 
 ## Virtual Environment
 
-Virtual environment giĂºp má»—i project cĂ³ **dependencies riĂªng biá»‡t**.
+Virtual environment giúp mỗi project có **dependencies riêng biệt**.
 
 ---
 
-## Táº¡o environment vá»›i conda
+## Tạo environment với conda
 
 ---
 
-### Táº¡o env
+### Tạo env
 
 ```bash
 conda create -n myproject python=3.11 -y
@@ -70,7 +70,7 @@ conda create -n myproject python=3.11 -y
 
 ---
 
-### KĂ­ch hoáº¡t
+### Kích hoạt
 
 ```bash
 conda activate myproject
@@ -78,7 +78,7 @@ conda activate myproject
 
 ---
 
-### Xem danh sĂ¡ch env
+### Xem danh sách env
 
 ```bash
 conda env list
@@ -86,7 +86,7 @@ conda env list
 
 ---
 
-### CĂ i package
+### Cài package
 
 ```bash
 conda install numpy pandas flask
@@ -102,7 +102,7 @@ conda env export > environment.yml
 
 ---
 
-### Táº¡o env tá»« file
+### Tạo env từ file
 
 ```bash
 conda env create -f environment.yml
@@ -110,7 +110,7 @@ conda env create -f environment.yml
 
 ---
 
-### XoĂ¡ env
+### Xoá env
 
 ```bash
 conda env remove -n myproject
@@ -118,13 +118,13 @@ conda env remove -n myproject
 
 ---
 
-## Virtual Environment vá»›i venv
+## Virtual Environment với venv
 
-Python tĂ­ch há»£p sáºµn **venv**.
+Python tích hợp sẵn **venv**.
 
 ---
 
-### Táº¡o environment
+### Tạo environment
 
 ```bash
 python -m venv .venv
@@ -132,7 +132,7 @@ python -m venv .venv
 
 ---
 
-### KĂ­ch hoáº¡t env
+### Kích hoạt env
 
 Linux / macOS:
 
@@ -148,7 +148,7 @@ Windows:
 
 ---
 
-### CĂ i package
+### Cài package
 
 ```bash
 pip install flask sqlalchemy
@@ -164,7 +164,7 @@ pip freeze > requirements.txt
 
 ---
 
-### CĂ i tá»« file
+### Cài từ file
 
 ```bash
 pip install -r requirements.txt
@@ -172,7 +172,7 @@ pip install -r requirements.txt
 
 ---
 
-### ThoĂ¡t environment
+### Thoát environment
 
 ```bash
 deactivate
@@ -180,40 +180,40 @@ deactivate
 
 ---
 
-## Cáº¥u trĂºc project Python
+## Cấu trúc project Python
 
-Má»™t project Python thÆ°á»ng cĂ³ cáº¥u trĂºc:
+Một project Python thường có cấu trúc:
 
 ```text
 myproject/
-â”œâ”€â”€ .venv/
-â”œâ”€â”€ src/
-â”‚   â””â”€â”€ myproject/
-â”‚       â”œâ”€â”€ __init__.py
-â”‚       â”œâ”€â”€ main.py
-â”‚       â””â”€â”€ utils.py
-â”œâ”€â”€ tests/
-â”‚   â””â”€â”€ test_utils.py
-â”œâ”€â”€ requirements.txt
-â”œâ”€â”€ pyproject.toml
-â””â”€â”€ README.md
+├── .venv/
+├── src/
+│   └── myproject/
+│       ├── __init__.py
+│       ├── main.py
+│       └── utils.py
+├── tests/
+│   └── test_utils.py
+├── requirements.txt
+├── pyproject.toml
+└── README.md
 ```
 
 ---
 
 ## Jupyter Notebook
 
-Jupyter cho phĂ©p cháº¡y code Python **tá»«ng cell**.
+Jupyter cho phép chạy code Python **từng cell**.
 
 ---
 
-### CĂ i Jupyter
+### Cài Jupyter
 
 ```bash
 pip install jupyter
 ```
 
-hoáº·c:
+hoặc:
 
 ```bash
 conda install jupyter
@@ -221,7 +221,7 @@ conda install jupyter
 
 ---
 
-### Cháº¡y Jupyter
+### Chạy Jupyter
 
 ```bash
 jupyter notebook
@@ -229,7 +229,7 @@ jupyter notebook
 
 ---
 
-### JupyterLab (giao diá»‡n má»›i)
+### JupyterLab (giao diện mới)
 
 ```bash
 pip install jupyterlab
@@ -240,11 +240,11 @@ jupyter lab
 
 ## Kernel cho virtual environment
 
-Äá»ƒ Jupyter nháº­n environment:
+Để Jupyter nhận environment:
 
 ---
 
-### CĂ i ipykernel
+### Cài ipykernel
 
 ```bash
 pip install ipykernel
@@ -252,7 +252,7 @@ pip install ipykernel
 
 ---
 
-### ÄÄƒng kĂ½ kernel
+### Đăng ký kernel
 
 ```bash
 python -m ipykernel install --user --name myproject --display-name "Python (myproject)"
@@ -260,7 +260,7 @@ python -m ipykernel install --user --name myproject --display-name "Python (mypr
 
 ---
 
-### Xem danh sĂ¡ch kernel
+### Xem danh sách kernel
 
 ```bash
 jupyter kernelspec list
@@ -268,7 +268,7 @@ jupyter kernelspec list
 
 ---
 
-### XoĂ¡ kernel
+### Xoá kernel
 
 ```bash
 jupyter kernelspec remove myproject
@@ -299,8 +299,8 @@ build/
 
 ---
 
-!!! danger "Quan trá»ng"
-KhĂ´ng commit:
+!!! danger "Quan trọng"
+Không commit:
 
 ```text
 .env
@@ -311,29 +311,29 @@ password
 
 ---
 
-## Lá»—i thÆ°á»ng gáº·p
+## Lỗi thường gặp
 
-| Lá»—i                         | NguyĂªn nhĂ¢n           | CĂ¡ch sá»­a            |
+| Lỗi                         | Nguyên nhân           | Cách sửa            |
 | --------------------------- | --------------------- | ------------------- |
-| ModuleNotFoundError         | package chÆ°a cĂ i      | kiá»ƒm tra env        |
-| conda: command not found    | chÆ°a init conda       | cháº¡y `conda init`   |
-| Could not build wheels      | thiáº¿u build tools     | cĂ i build-essential |
-| Solving environment ráº¥t lĂ¢u | conflict dependencies | dĂ¹ng conda-forge    |
-| Jupyter kernel sai          | env chÆ°a Ä‘Äƒng kĂ½      | cĂ i ipykernel       |
+| ModuleNotFoundError         | package chưa cài      | kiểm tra env        |
+| conda: command not found    | chưa init conda       | chạy `conda init`   |
+| Could not build wheels      | thiếu build tools     | cài build-essential |
+| Solving environment rất lâu | conflict dependencies | dùng conda-forge    |
+| Jupyter kernel sai          | env chưa đăng ký      | cài ipykernel       |
 
 ---
 
-## BĂ i táº­p
+## Bài tập
 
-### BĂ i 1
+### Bài 1
 
-Táº¡o conda env:
+Tạo conda env:
 
 ```text
 practice
 ```
 
-CĂ i:
+Cài:
 
 ```text
 pandas
@@ -348,25 +348,25 @@ environment.yml
 
 ---
 
-### BĂ i 2
+### Bài 2
 
-Viáº¿t script Python:
+Viết script Python:
 
-- Ä‘á»c file CSV
-- in 5 dĂ²ng Ä‘áº§u
+- đọc file CSV
+- in 5 dòng đầu
 
 ---
 
-### BĂ i 3
+### Bài 3
 
-Táº¡o Jupyter Notebook:
+Tạo Jupyter Notebook:
 
 - import `matplotlib`
-- váº½ biá»ƒu Ä‘á»“ Ä‘Æ¡n giáº£n
+- vẽ biểu đồ đơn giản
 
 ---
 
-## TĂ i liá»‡u tham kháº£o
+## Tài liệu tham khảo
 
 ```text
 https://packaging.python.org/

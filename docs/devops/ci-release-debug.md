@@ -6,9 +6,9 @@ Phần này tập trung vào secrets, release pipeline, debug và phần tự lu
 
 ## Secrets
 
-Secrets dĂ¹ng cho token, password, credentials.
+Secrets dùng cho token, password, credentials.
 
-VĂ­ dá»¥ dĂ¹ng secret trong step:
+Ví dụ dùng secret trong step:
 
 ```yaml
 - name: Deploy
@@ -17,20 +17,20 @@ VĂ­ dá»¥ dĂ¹ng secret trong step:
   run: ./deploy.sh
 ```
 
-CĂ¡ch thĂªm secret:
+Cách thêm secret:
 
-- Repo â†’ **Settings**
-- **Secrets and variables** â†’ **Actions**
+- Repo → **Settings**
+- **Secrets and variables** → **Actions**
 - **New repository secret**
 
-!!! danger "Quan trá»ng"
-KhĂ´ng hardcode secrets trong YAML hoáº·c code. KhĂ´ng commit `.env` lĂªn Git.
+!!! danger "Quan trọng"
+Không hardcode secrets trong YAML hoặc code. Không commit `.env` lên Git.
 
 ---
 
 ## Build & Push Docker Image (theo tag)
 
-Workflow: push tag `v*` â†’ build â†’ push Docker Hub (hoáº·c GHCR).
+Workflow: push tag `v*` → build → push Docker Hub (hoặc GHCR).
 
 ```yaml
 # .github/workflows/docker.yml
@@ -68,14 +68,14 @@ jobs:
 
 **Best practice**
 
-- chá»‰ build/push khi **tag** hoáº·c **merge main**
-- tag theo version Ä‘á»ƒ rollback dá»…
+- chỉ build/push khi **tag** hoặc **merge main**
+- tag theo version để rollback dễ
 
 ---
 
 ## Debugging workflow
 
-## 1) In thĂ´ng tin runner/event
+## 1) In thông tin runner/event
 
 ```yaml
 - name: Debug info
@@ -88,55 +88,55 @@ jobs:
 
 ## 2) Xem log
 
-- Repo â†’ tab **Actions** â†’ chá»n run â†’ chá»n job/step bá»‹ fail
+- Repo → tab **Actions** → chọn run → chọn job/step bị fail
 
 ## 3) Re-run
 
-- **Re-run jobs** khi lá»—i do network/flake
+- **Re-run jobs** khi lỗi do network/flake
 
-## 4) SSH debug (chá»‰ khi tháº­t cáº§n)
+## 4) SSH debug (chỉ khi thật cần)
 
-CĂ³ thá»ƒ dĂ¹ng `mxschmitt/action-tmate` Ä‘á»ƒ má»Ÿ session debug (cáº©n tháº­n quyá»n vĂ  secrets).
+Có thể dùng `mxschmitt/action-tmate` để mở session debug (cẩn thận quyền và secrets).
 
 ---
 
-## Lá»—i thÆ°á»ng gáº·p
+## Lỗi thường gặp
 
-| Lá»—i                  | NguyĂªn nhĂ¢n                       | CĂ¡ch sá»­a                                           |
+| Lỗi                  | Nguyên nhân                       | Cách sửa                                           |
 | -------------------- | --------------------------------- | -------------------------------------------------- |
-| Workflow khĂ´ng cháº¡y  | sai `on:` hoáº·c filter branch/path | kiá»ƒm tra trigger, branch, YAML                     |
-| `npm ci` fail        | lockfile lá»‡ch                     | cháº¡y `npm install`, commit `package-lock.json`     |
-| Test DB fail         | service DB chÆ°a ready             | dĂ¹ng healthcheck hoáº·c retry                        |
-| Secret rá»—ng          | sai tĂªn secret / chÆ°a set         | kiá»ƒm tra Settings â†’ Secrets                        |
-| Cache khĂ´ng hiá»‡u quáº£ | cache key khĂ´ng Ä‘Ăºng              | dĂ¹ng cache built-in (`setup-node`, `setup-python`) |
+| Workflow không chạy  | sai `on:` hoặc filter branch/path | kiểm tra trigger, branch, YAML                     |
+| `npm ci` fail        | lockfile lệch                     | chạy `npm install`, commit `package-lock.json`     |
+| Test DB fail         | service DB chưa ready             | dùng healthcheck hoặc retry                        |
+| Secret rỗng          | sai tên secret / chưa set         | kiểm tra Settings → Secrets                        |
+| Cache không hiệu quả | cache key không đúng              | dùng cache built-in (`setup-node`, `setup-python`) |
 
 ---
 
-## Checklist pipeline â€œÄ‘Ăºng chuáº©nâ€
+## Checklist pipeline “đúng chuẩnâ€
 
-- [ ] CI cháº¡y trĂªn **pull_request**
-- [ ] dĂ¹ng `npm ci` / lockfile
-- [ ] lint cháº¡y trÆ°á»›c test
-- [ ] cache báº­t (npm/pip)
-- [ ] khĂ´ng hardcode secrets
-- [ ] PR nhá» â†’ CI nhanh
+- [ ] CI chạy trên **pull_request**
+- [ ] dùng `npm ci` / lockfile
+- [ ] lint chạy trước test
+- [ ] cache bật (npm/pip)
+- [ ] không hardcode secrets
+- [ ] PR nhỏ → CI nhanh
 
 ---
 
-## BĂ i táº­p
+## Bài tập
 
-1. Táº¡o workflow CI cho Node.js: **lint â†’ test â†’ build**
-2. ThĂªm badge CI vĂ o README:
+1. Tạo workflow CI cho Node.js: **lint → test → build**
+2. Thêm badge CI vào README:
 
 ```markdown
 ![CI](https://github.com/<user>/<repo>/actions/workflows/ci.yml/badge.svg)
 ```
 
-3. ThĂªm matrix build test Node.js 18 vĂ  20
+3. Thêm matrix build test Node.js 18 và 20
 
 ---
 
-## TĂ i liá»‡u tham kháº£o
+## Tài liệu tham khảo
 
 - [https://docs.github.com/en/actions](https://docs.github.com/en/actions)
 - [https://github.com/sdras/awesome-actions](https://github.com/sdras/awesome-actions)

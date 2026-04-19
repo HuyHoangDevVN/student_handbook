@@ -1,46 +1,46 @@
 # Linux (WSL / Ubuntu)
 
-Trang nay la muc luc cho cum bai Linux co ban. Noi dung da duoc tach thanh cac bai nho de de hoc
-va de dua vao ban PDF handbook.
+Trang này là mục lục cho cụm bài Linux cơ bản. Nội dung đã được tách thành các bài nhỏ để dễ học
+và dễ đưa vào bản PDF handbook.
 
 ---
 
-## Muc tieu
+## Mục tiêu
 
-Sau cum bai nay, ban co the:
+Sau cụm bài này, bạn có thể:
 
-- cai WSL 2 va lam quen voi Ubuntu tren Windows
-- quan ly package va permissions tren Linux
-- theo doi process, port va cac lenh network can ban
-- van hanh service voi `systemd`
+- cài WSL 2 và làm quen với Ubuntu trên Windows
+- quản lý package và permissions trên Linux
+- theo dõi process, port và các lệnh network căn bản
+- vận hành service với `systemd`
 
 ---
 
 ## Prerequisites
 
-- Da hoan thanh: [Quickstart](../getting-started/quickstart.md)
-- Da biet cac thao tac terminal co ban: [Terminal & Shell](terminal.md)
+- Đã hoàn thành: [Quickstart](../getting-started/quickstart.md)
+- Đã biết các thao tác terminal cơ bản: [Terminal & Shell](terminal.md)
 
 ---
 
-## Lo trinh hoc
+## Lộ trình học
 
-1. [Cai Dat WSL Va Lam Quen Linux](linux-wsl.md)
-2. [Package Va Permissions Tren Linux](linux-packages-permissions.md)
-3. [Process Va Network Co Ban](linux-process-network.md)
-4. [Systemd Va Van Hanh Service](linux-services.md)
-
----
-
-## Goi y hoc
-
-- Neu ban dung Windows, nen hoc WSL truoc roi moi hoc sang package va permissions
-- Vua doc vua mo terminal Ubuntu de thuc hanh tung lenh
-- Giu mot file note rieng cho cac lenh hay dung khi debug
+1. [Cài Đặt WSL Và Làm Quen Linux](linux-wsl.md)
+2. [Package Và Permissions Trên Linux](linux-packages-permissions.md)
+3. [Process Và Network Cơ Bản](linux-process-network.md)
+4. [Systemd Và Vận Hành Service](linux-services.md)
 
 ---
 
-## Tai lieu lien quan
+## Gợi ý học
+
+- Nếu bạn dùng Windows, nên học WSL trước rồi mới học sang package và permissions
+- Vừa đọc vừa mở terminal Ubuntu để thực hành từng lệnh
+- Giữ một file note riêng cho các lệnh hay dùng khi debug
+
+---
+
+## Tài liệu liên quan
 
 - [Terminal & Shell](terminal.md)
 - [Loi thuong gap](../troubleshooting/common-errors.md)

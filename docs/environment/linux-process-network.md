@@ -4,7 +4,7 @@ Phần này tập trung vào process, port và các lệnh network thiết yếu
 
 ---
 
-## 4. Quáº£n lĂ½ process
+## 4. Quản lý process
 
 ---
 
@@ -16,7 +16,7 @@ ps aux
 
 ---
 
-### TĂ¬m process
+### Tìm process
 
 ```bash
 ps aux | grep python
@@ -30,7 +30,7 @@ ps aux | grep python
 htop
 ```
 
-hoáº·c
+hoặc
 
 ```bash
 top
@@ -52,7 +52,7 @@ kill -9 12345
 
 ---
 
-### Kill theo tĂªn
+### Kill theo tên
 
 ```bash
 pkill -f "node server.js"
@@ -60,7 +60,7 @@ pkill -f "node server.js"
 
 ---
 
-### Cháº¡y process background
+### Chạy process background
 
 ```bash
 python app.py &
@@ -68,7 +68,7 @@ python app.py &
 
 ---
 
-### ÄÆ°a process vá» foreground
+### Đưa process về foreground
 
 ```bash
 fg
@@ -76,7 +76,7 @@ fg
 
 ---
 
-## 5. Network cÆ¡ báº£n
+## 5. Network cơ bản
 
 ---
 
@@ -96,7 +96,7 @@ ifconfig
 
 ---
 
-### Kiá»ƒm tra káº¿t ná»‘i
+### Kiểm tra kết nối
 
 ```bash
 ping google.com -c 4
@@ -104,7 +104,7 @@ ping google.com -c 4
 
 ---
 
-### Xem port Ä‘ang má»Ÿ
+### Xem port đang mở
 
 Linux:
 
@@ -120,7 +120,7 @@ lsof -i :8080
 
 ---
 
-### Kiá»ƒm tra service
+### Kiểm tra service
 
 ```bash
 curl -I http://localhost:3000
@@ -134,7 +134,7 @@ curl -I http://localhost:3000
 nslookup example.com
 ```
 
-hoáº·c
+hoặc
 
 ```bash
 dig example.com
@@ -148,7 +148,7 @@ dig example.com
 wget https://example.com/file.zip
 ```
 
-hoáº·c
+hoặc
 
 ```bash
 curl -O https://example.com/file.zip

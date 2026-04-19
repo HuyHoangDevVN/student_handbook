@@ -2662,10 +2662,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#matrix-builds-test-nhiau-phiaan-baon" class="md-nav__link">
+  <a href="#matrix-builds-test-nhieu-phien-ban" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Matrix builds (test nhiá»u phiĂªn báº£n)
+        Matrix builds (test nhiều phiên bản)
       
     </span>
   </a>
@@ -2684,10 +2684,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#multi-os-matrix-khi-thaot-sa-caon" class="md-nav__link">
+  <a href="#multi-os-matrix-khi-that-su-can" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Multi-OS matrix (khi tháº­t sá»± cáº§n)
+        Multi-OS matrix (khi thật sự cần)
       
     </span>
   </a>
@@ -3155,10 +3155,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#matrix-builds-test-nhiau-phiaan-baon" class="md-nav__link">
+  <a href="#matrix-builds-test-nhieu-phien-ban" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Matrix builds (test nhiá»u phiĂªn báº£n)
+        Matrix builds (test nhiều phiên bản)
       
     </span>
   </a>
@@ -3177,10 +3177,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#multi-os-matrix-khi-thaot-sa-caon" class="md-nav__link">
+  <a href="#multi-os-matrix-khi-that-su-can" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Multi-OS matrix (khi tháº­t sá»± cáº§n)
+        Multi-OS matrix (khi thật sự cần)
       
     </span>
   </a>
@@ -3211,7 +3211,7 @@
 <p>Phần này gom workflow tối thiểu, pipeline Node.js, Python và matrix builds.</p>
 <hr />
 <h2 id="ci-cho-nodejs">CI cho Node.js<a class="headerlink" href="#ci-cho-nodejs" title="Permanent link">&para;</a></h2>
-<p>Má»¥c tiĂªu: <strong>install â†’ lint â†’ test â†’ build</strong> (dĂ¹ng <code>npm ci</code> vĂ  cache).</p>
+<p>Mục tiêu: <strong>install → lint → test → build</strong> (dùng <code>npm ci</code> và cache).</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># .github/workflows/ci.yml</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI (Node.js)</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -3250,14 +3250,14 @@
 </span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build</span>
 </span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm run build --if-present</span>
 </span></code></pre></div>
-<p><strong>Gá»£i Ă½ chuáº©n repo Node.js</strong></p>
+<p><strong>Gợi ý chuẩn repo Node.js</strong></p>
 <ul>
-<li><code>npm ci</code> (dĂ¹ng lockfile) â†’ build â€œreproducibleâ€</li>
-<li>dĂ¹ng <code>--if-present</code> Ä‘á»ƒ workflow khĂ´ng fail náº¿u repo chÆ°a cĂ³ script Ä‘Ă³</li>
+<li><code>npm ci</code> (dùng lockfile) → build “reproducibleâ€</li>
+<li>dùng <code>--if-present</code> để workflow không fail nếu repo chưa có script đó</li>
 </ul>
 <hr />
 <h2 id="ci-cho-python">CI cho Python<a class="headerlink" href="#ci-cho-python" title="Permanent link">&para;</a></h2>
-<p>Má»¥c tiĂªu: <strong>install â†’ lint â†’ test</strong>, cĂ³ thá»ƒ cháº¡y kĂ¨m PostgreSQL service.</p>
+<p>Mục tiêu: <strong>install → lint → test</strong>, có thể chạy kèm PostgreSQL service.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># .github/workflows/ci-python.yml</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI (Python)</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
@@ -3303,12 +3303,12 @@
 </span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
 </span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="w">          </span><span class="no">python -m pip install --upgrade pip</span>
 </span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="w">          </span><span class="no">pip install -r requirements.txt</span>
-</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="w">          </span><span class="no"># náº¿u cĂ³ file dev:</span>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="w">          </span><span class="no"># nếu có file dev:</span>
 </span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="w">          </span><span class="no"># pip install -r requirements-dev.txt</span>
 </span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>
 </span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lint</span>
 </span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="w">          </span><span class="no"># vĂ­ dá»¥ (tuá»³ project)</span>
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="w">          </span><span class="no"># ví dụ (tuỳ project)</span>
 </span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="w">          </span><span class="no"># ruff check .</span>
 </span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="w">          </span><span class="no"># black --check .</span>
 </span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="w">          </span><span class="no">echo &quot;Lint step&quot;</span>
@@ -3317,14 +3317,14 @@
 </span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="w">        </span><span class="nt">env</span><span class="p">:</span>
 </span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="w">          </span><span class="nt">DATABASE_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres://test:test@localhost:5432/testdb</span>
 </span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="w">          </span><span class="no"># vĂ­ dá»¥:</span>
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="w">          </span><span class="no"># ví dụ:</span>
 </span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a><span class="w">          </span><span class="no"># pytest -q</span>
 </span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="w">          </span><span class="no">echo &quot;Test step&quot;</span>
 </span></code></pre></div>
-<p><strong>Gá»£i Ă½:</strong> Vá»›i Python hiá»‡n Ä‘áº¡i, team hay dĂ¹ng <code>ruff + black + pytest</code>.</p>
+<p><strong>Gợi ý:</strong> Với Python hiện đại, team hay dùng <code>ruff + black + pytest</code>.</p>
 <hr />
-<h2 id="matrix-builds-test-nhiau-phiaan-baon">Matrix builds (test nhiá»u phiĂªn báº£n)<a class="headerlink" href="#matrix-builds-test-nhiau-phiaan-baon" title="Permanent link">&para;</a></h2>
-<p>Khi team cáº§n há»— trá»£ nhiá»u Node/Python versions hoáº·c nhiá»u OS.</p>
+<h2 id="matrix-builds-test-nhieu-phien-ban">Matrix builds (test nhiều phiên bản)<a class="headerlink" href="#matrix-builds-test-nhieu-phien-ban" title="Permanent link">&para;</a></h2>
+<p>Khi team cần hỗ trợ nhiều Node/Python versions hoặc nhiều OS.</p>
 <h2 id="nodejs-matrix-182022">Node.js matrix (18/20/22)<a class="headerlink" href="#nodejs-matrix-182022" title="Permanent link">&para;</a></h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI (Node matrix)</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
@@ -3352,7 +3352,7 @@
 </span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm ci</span>
 </span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm test --if-present</span>
 </span></code></pre></div>
-<h2 id="multi-os-matrix-khi-thaot-sa-caon">Multi-OS matrix (khi tháº­t sá»± cáº§n)<a class="headerlink" href="#multi-os-matrix-khi-thaot-sa-caon" title="Permanent link">&para;</a></h2>
+<h2 id="multi-os-matrix-khi-that-su-can">Multi-OS matrix (khi thật sự cần)<a class="headerlink" href="#multi-os-matrix-khi-that-su-can" title="Permanent link">&para;</a></h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">strategy</span><span class="p">:</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">matrix</span><span class="p">:</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">os</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">ubuntu-latest</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">windows-latest</span><span class="p p-Indicator">]</span>
@@ -3360,7 +3360,7 @@
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.os }}</span>
 </span></code></pre></div>
 <blockquote>
-<p>LÆ°u Ă½: Multi-OS lĂ m CI cháº­m vĂ  tá»‘n runner minutes â€” chá»‰ dĂ¹ng khi dá»± Ă¡n cáº§n.</p>
+<p>Lưu ý: Multi-OS làm CI chậm và tốn runner minutes — chỉ dùng khi dự án cần.</p>
 </blockquote>
 <hr />
 

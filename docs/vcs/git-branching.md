@@ -6,7 +6,7 @@ Phần này tập trung vào branch workflow, merge, rebase và xử lý conflic
 
 ## Branch
 
-Branch giĂºp phĂ¡t triá»ƒn **nhiá»u tĂ­nh nÄƒng song song**.
+Branch giúp phát triển **nhiều tính năng song song**.
 
 ---
 
@@ -18,7 +18,7 @@ git branch
 
 ---
 
-### Táº¡o branch
+### Tạo branch
 
 ```bash
 git branch feature/login
@@ -26,13 +26,13 @@ git branch feature/login
 
 ---
 
-### Chuyá»ƒn branch
+### Chuyển branch
 
 ```bash
 git checkout feature/login
 ```
 
-hoáº·c:
+hoặc:
 
 ```bash
 git switch feature/login
@@ -40,13 +40,13 @@ git switch feature/login
 
 ---
 
-### Táº¡o + chuyá»ƒn branch
+### Tạo + chuyển branch
 
 ```bash
 git checkout -b feature/login
 ```
 
-hoáº·c:
+hoặc:
 
 ```bash
 git switch -c feature/login
@@ -54,7 +54,7 @@ git switch -c feature/login
 
 ---
 
-### XoĂ¡ branch
+### Xoá branch
 
 ```bash
 git branch -d feature/login
@@ -68,19 +68,19 @@ git branch -D feature/login
 
 ---
 
-## Quy táº¯c Ä‘áº·t tĂªn branch
+## Quy tắc đặt tên branch
 
-| Prefix    | Má»¥c Ä‘Ă­ch           |
+| Prefix    | Mục đích           |
 | --------- | ------------------ |
-| feature/  | tĂ­nh nÄƒng má»›i      |
-| bugfix/   | sá»­a bug            |
-| hotfix/   | sá»­a lá»—i production |
-| docs/     | thay Ä‘á»•i docs      |
-| refactor/ | tĂ¡i cáº¥u trĂºc code  |
+| feature/  | tính năng mới      |
+| bugfix/   | sửa bug            |
+| hotfix/   | sửa lỗi production |
+| docs/     | thay đổi docs      |
+| refactor/ | tái cấu trúc code  |
 
 ---
 
-### VĂ­ dá»¥
+### Ví dụ
 
 ```
 feature/user-auth
@@ -114,7 +114,7 @@ gitGraph
     merge feature
 ```
 
-Merge táº¡o **merge commit**.
+Merge tạo **merge commit**.
 
 ---
 
@@ -125,7 +125,7 @@ git checkout feature/login
 git rebase main
 ```
 
-Sau Ä‘Ă³:
+Sau đó:
 
 ```bash
 git checkout main
@@ -134,43 +134,43 @@ git merge feature/login
 
 ---
 
-!!! warning "LÆ°u Ă½"
-KhĂ´ng nĂªn **rebase branch Ä‘Ă£ push vĂ  Ä‘ang Ä‘Æ°á»£c nhiá»u ngÆ°á»i sá»­ dá»¥ng**.
+!!! warning "Lưu ý"
+Không nên **rebase branch đã push và đang được nhiều người sử dụng**.
 
 ---
 
-## Giáº£i quyáº¿t conflict
+## Giải quyết conflict
 
-Git sáº½ Ä‘Ă¡nh dáº¥u:
+Git sẽ đánh dấu:
 
 ```
 <<<<<<< HEAD
-Code branch hiá»‡n táº¡i
+Code branch hiện tại
 =======
-Code branch khĂ¡c
+Code branch khác
 >>>>>>> feature/login
 ```
 
 ---
 
-### CĂ¡ch xá»­ lĂ½
+### Cách xử lý
 
-1. Má»Ÿ file bá»‹ conflict
-2. Chá»n code Ä‘Ăºng
-3. XoĂ¡ marker conflict
+1. Mở file bị conflict
+2. Chọn code đúng
+3. Xoá marker conflict
 4. Stage file
 
 ```bash
 git add file.txt
 ```
 
-5. Tiáº¿p tá»¥c
+5. Tiếp tục
 
 ```bash
 git merge --continue
 ```
 
-hoáº·c
+hoặc
 
 ```bash
 git rebase --continue
@@ -178,9 +178,9 @@ git rebase --continue
 
 ---
 
-## Commit message chuáº©n
+## Commit message chuẩn
 
-NĂªn dĂ¹ng **Conventional Commits**.
+Nên dùng **Conventional Commits**.
 
 ---
 
@@ -192,13 +192,13 @@ type(scope): description
 
 ---
 
-### CĂ¡c type phá»• biáº¿n
+### Các type phổ biến
 
-| Type     | Ă nghÄ©a        |
+| Type     | Ă nghĩa        |
 | -------- | -------------- |
-| feat     | thĂªm feature   |
-| fix      | sá»­a bug        |
-| docs     | thay Ä‘á»•i docs  |
+| feat     | thêm feature   |
+| fix      | sửa bug        |
+| docs     | thay đổi docs  |
 | style    | format code    |
 | refactor | refactor code  |
 | test     | test           |
@@ -206,7 +206,7 @@ type(scope): description
 
 ---
 
-### VĂ­ dá»¥
+### Ví dụ
 
 ```
 feat(auth): add JWT refresh token endpoint

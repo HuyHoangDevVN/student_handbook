@@ -1,41 +1,41 @@
 ﻿# HTTP & REST API
 
-HTTP lĂ  giao thá»©c ná»n táº£ng cá»§a web.
-REST API lĂ  cĂ¡ch phá»• biáº¿n Ä‘á»ƒ xĂ¢y dá»±ng **backend services** cho web vĂ  mobile applications.
+HTTP là giao thức nền tảng của web.
+REST API là cách phổ biến để xây dựng **backend services** cho web và mobile applications.
 
-Trang nĂ y giá»›i thiá»‡u:
+Trang này giới thiệu:
 
 - HTTP request / response
-- HTTP methods vĂ  status codes
-- nguyĂªn táº¯c thiáº¿t káº¿ REST API
-- cĂ¡ch gá»i API báº±ng `curl`
+- HTTP methods và status codes
+- nguyên tắc thiết kế REST API
+- cách gọi API bằng `curl`
 
 ---
 
-## Má»¥c tiĂªu
+## Mục tiêu
 
-Sau bĂ i nĂ y báº¡n cĂ³ thá»ƒ:
+Sau bài này bạn có thể:
 
-- hiá»ƒu cĂ¡ch **HTTP hoáº¡t Ä‘á»™ng**
-- sá»­ dá»¥ng cĂ¡c HTTP methods phá»• biáº¿n
-- thiáº¿t káº¿ **REST API endpoints**
-- test API báº±ng **curl**
+- hiểu cách **HTTP hoạt động**
+- sử dụng các HTTP methods phổ biến
+- thiết kế **REST API endpoints**
+- test API bằng **curl**
 
 ---
 
-## YĂªu cáº§u
+## Yêu cầu
 
-Báº¡n cáº§n cĂ³ **terminal**.
+Bạn cần có **terminal**.
 
-Náº¿u chÆ°a quen command line:
+Nếu chưa quen command line:
 
 ```text
-Terminal cÆ¡ báº£n
+Terminal cơ bản
 ```
 
 ---
 
-## HTTP hoáº¡t Ä‘á»™ng tháº¿ nĂ o
+## HTTP hoạt động thế nào
 
 ```mermaid
 sequenceDiagram
@@ -45,9 +45,9 @@ sequenceDiagram
 
 ---
 
-## Cáº¥u trĂºc HTTP Request
+## Cấu trúc HTTP Request
 
-Má»™t request HTTP gá»“m:
+Một request HTTP gồm:
 
 ```text
 Method
@@ -56,7 +56,7 @@ Headers
 Body
 ```
 
-VĂ­ dá»¥:
+Ví dụ:
 
 ```http
 POST /api/users HTTP/1.1
@@ -78,17 +78,17 @@ Body:
 
 ## HTTP Methods
 
-| Method | Má»¥c Ä‘Ă­ch          | Idempotent |
+| Method | Mục đích          | Idempotent |
 | ------ | ----------------- | ---------- |
-| GET    | láº¥y dá»¯ liá»‡u       | CĂ³         |
-| POST   | táº¡o má»›i           | KhĂ´ng      |
-| PUT    | cáº­p nháº­t toĂ n bá»™  | CĂ³         |
-| PATCH  | cáº­p nháº­t má»™t pháº§n | CĂ³         |
-| DELETE | xoĂ¡               | CĂ³         |
+| GET    | lấy dữ liệu       | Có         |
+| POST   | tạo mới           | Không      |
+| PUT    | cập nhật toàn bộ  | Có         |
+| PATCH  | cập nhật một phần | Có         |
+| DELETE | xoá               | Có         |
 
 ---
 
-### VĂ­ dá»¥
+### Ví dụ
 
 ```text
 GET    /api/users
@@ -102,13 +102,13 @@ DELETE /api/users/1
 
 ## HTTP Status Codes
 
-HTTP response luĂ´n cĂ³ **status code**.
+HTTP response luôn có **status code**.
 
 ---
 
-## 2xx â€“ Success
+## 2xx – Success
 
-| Code | Ă nghÄ©a    |
+| Code | Ă nghĩa    |
 | ---- | ---------- |
 | 200  | OK         |
 | 201  | Created    |
@@ -116,18 +116,18 @@ HTTP response luĂ´n cĂ³ **status code**.
 
 ---
 
-## 3xx â€“ Redirect
+## 3xx – Redirect
 
-| Code | Ă nghÄ©a           |
+| Code | Ă nghĩa           |
 | ---- | ----------------- |
 | 301  | Moved Permanently |
 | 304  | Not Modified      |
 
 ---
 
-## 4xx â€“ Client Error
+## 4xx – Client Error
 
-| Code | Ă nghÄ©a      |
+| Code | Ă nghĩa      |
 | ---- | ------------ |
 | 400  | Bad Request  |
 | 401  | Unauthorized |
@@ -136,9 +136,9 @@ HTTP response luĂ´n cĂ³ **status code**.
 
 ---
 
-## 5xx â€“ Server Error
+## 5xx – Server Error
 
-| Code | Ă nghÄ©a               |
+| Code | Ă nghĩa               |
 | ---- | --------------------- |
 | 500  | Internal Server Error |
 | 503  | Service Unavailable   |
@@ -147,11 +147,11 @@ HTTP response luĂ´n cĂ³ **status code**.
 
 ## REST API Design
 
-REST API sá»­ dá»¥ng **resource-based URLs**.
+REST API sử dụng **resource-based URLs**.
 
 ---
 
-## Endpoint chuáº©n
+## Endpoint chuẩn
 
 ```text
 GET    /api/users
@@ -171,9 +171,9 @@ GET /api/users/42/posts
 
 ---
 
-## Quy táº¯c thiáº¿t káº¿ API
+## Quy tắc thiết kế API
 
-- dĂ¹ng **danh tá»« sá»‘ nhiá»u**
+- dùng **danh từ số nhiều**
 
 ```text
 /users
@@ -183,7 +183,7 @@ GET /api/users/42/posts
 
 ---
 
-- dĂ¹ng **kebab-case**
+- dùng **kebab-case**
 
 ```text
 /order-items
@@ -191,7 +191,7 @@ GET /api/users/42/posts
 
 ---
 
-- khĂ´ng dĂ¹ng Ä‘á»™ng tá»« trong URL
+- không dùng động từ trong URL
 
 âŒ Sai:
 
@@ -202,9 +202,9 @@ GET /api/users/42/posts
 
 ---
 
-## Gá»i API báº±ng curl
+## Gọi API bằng curl
 
-`curl` lĂ  cĂ´ng cá»¥ CLI Ä‘á»ƒ gá»i HTTP API.
+`curl` là công cụ CLI để gọi HTTP API.
 
 ---
 
@@ -216,7 +216,7 @@ curl http://localhost:3000/api/users
 
 ---
 
-## GET vá»›i header
+## GET với header
 
 ```bash
 curl -H "Authorization: Bearer <token>" \
@@ -277,7 +277,7 @@ curl -v http://localhost:3000/api/users
 
 ```json
 {
-  "name": "Nguyá»…n VÄƒn A",
+  "name": "Nguyễn Văn A",
   "email": "a.nguyen@example.com",
   "role": "intern"
 }
@@ -290,7 +290,7 @@ curl -v http://localhost:3000/api/users
 ```json
 {
   "id": 42,
-  "name": "Nguyá»…n VÄƒn A",
+  "name": "Nguyễn Văn A",
   "email": "a.nguyen@example.com",
   "role": "intern",
   "createdAt": "2025-01-15T10:30:00Z"
@@ -301,7 +301,7 @@ curl -v http://localhost:3000/api/users
 
 ## Error Response
 
-Má»™t API tá»‘t nĂªn tráº£ lá»—i theo format thá»‘ng nháº¥t.
+Một API tốt nên trả lỗi theo format thống nhất.
 
 ---
 
@@ -322,22 +322,22 @@ Má»™t API tá»‘t nĂªn tráº£ lá»—i theo format thá»‘ng nháº
 
 ---
 
-## Lá»—i thÆ°á»ng gáº·p
+## Lỗi thường gặp
 
-| Lá»—i                | NguyĂªn nhĂ¢n             | CĂ¡ch sá»­a        |
+| Lỗi                | Nguyên nhân             | Cách sửa        |
 | ------------------ | ----------------------- | --------------- |
-| connection refused | server chÆ°a cháº¡y        | kiá»ƒm tra port   |
-| 401 Unauthorized   | thiáº¿u token             | kiá»ƒm tra header |
-| 404 Not Found      | endpoint sai            | kiá»ƒm tra URL    |
-| CORS error         | server chÆ°a enable CORS | thĂªm middleware |
+| connection refused | server chưa chạy        | kiểm tra port   |
+| 401 Unauthorized   | thiếu token             | kiểm tra header |
+| 404 Not Found      | endpoint sai            | kiểm tra URL    |
+| CORS error         | server chưa enable CORS | thêm middleware |
 
 ---
 
-## BĂ i táº­p
+## Bài tập
 
-### BĂ i 1
+### Bài 1
 
-DĂ¹ng `curl` gá»i API:
+Dùng `curl` gọi API:
 
 ```text
 GET /api/users
@@ -345,9 +345,9 @@ GET /api/users
 
 ---
 
-### BĂ i 2
+### Bài 2
 
-Táº¡o request POST:
+Tạo request POST:
 
 ```text
 POST /api/users
@@ -363,9 +363,9 @@ Body:
 
 ---
 
-### BĂ i 3
+### Bài 3
 
-Test cĂ¡c status codes:
+Test các status codes:
 
 ```text
 200
@@ -375,7 +375,7 @@ Test cĂ¡c status codes:
 
 ---
 
-## TĂ i liá»‡u tham kháº£o
+## Tài liệu tham khảo
 
 ```
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Status

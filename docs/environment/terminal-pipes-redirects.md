@@ -6,13 +6,13 @@ Phần này giải thích cách kết hợp lệnh và điều hướng output t
 
 ## Pipe
 
-Pipe cho phĂ©p **káº¿t ná»‘i output cá»§a lá»‡nh nĂ y sang input lá»‡nh khĂ¡c**.
+Pipe cho phép **kết nối output của lệnh này sang input lệnh khác**.
 
 ---
 
-### VĂ­ dá»¥
+### Ví dụ
 
-TĂ¬m process node:
+Tìm process node:
 
 ```bash
 ps aux | grep node
@@ -20,7 +20,7 @@ ps aux | grep node
 
 ---
 
-Äáº¿m file Python:
+Đếm file Python:
 
 ```bash
 find . -name "*.py" | wc -l
@@ -28,7 +28,7 @@ find . -name "*.py" | wc -l
 
 ---
 
-Sort vĂ  loáº¡i trĂ¹ng:
+Sort và loại trùng:
 
 ```bash
 cat names.txt | sort | uniq
@@ -38,11 +38,11 @@ cat names.txt | sort | uniq
 
 ## Redirect
 
-Redirect cho phĂ©p **ghi output vĂ o file**.
+Redirect cho phép **ghi output vào file**.
 
 ---
 
-### Ghi Ä‘Ă¨ file
+### Ghi đè file
 
 ```bash
 echo "Hello" > output.txt
@@ -50,7 +50,7 @@ echo "Hello" > output.txt
 
 ---
 
-### Ghi thĂªm vĂ o file
+### Ghi thêm vào file
 
 ```bash
 echo "World" >> output.txt
@@ -58,7 +58,7 @@ echo "World" >> output.txt
 
 ---
 
-### LÆ°u lá»—i
+### Lưu lỗi
 
 ```bash
 command 2> error.log
@@ -66,7 +66,7 @@ command 2> error.log
 
 ---
 
-### LÆ°u cáº£ output vĂ  error
+### Lưu cả output và error
 
 ```bash
 command > all.log 2>&1

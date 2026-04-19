@@ -6,7 +6,7 @@ Phần này gom workflow tối thiểu, pipeline Node.js, Python và matrix buil
 
 ## CI cho Node.js
 
-Má»¥c tiĂªu: **install â†’ lint â†’ test â†’ build** (dĂ¹ng `npm ci` vĂ  cache).
+Mục tiêu: **install → lint → test → build** (dùng `npm ci` và cache).
 
 ```yaml
 # .github/workflows/ci.yml
@@ -48,16 +48,16 @@ jobs:
         run: npm run build --if-present
 ```
 
-**Gá»£i Ă½ chuáº©n repo Node.js**
+**Gợi ý chuẩn repo Node.js**
 
-- `npm ci` (dĂ¹ng lockfile) â†’ build â€œreproducibleâ€
-- dĂ¹ng `--if-present` Ä‘á»ƒ workflow khĂ´ng fail náº¿u repo chÆ°a cĂ³ script Ä‘Ă³
+- `npm ci` (dùng lockfile) → build “reproducibleâ€
+- dùng `--if-present` để workflow không fail nếu repo chưa có script đó
 
 ---
 
 ## CI cho Python
 
-Má»¥c tiĂªu: **install â†’ lint â†’ test**, cĂ³ thá»ƒ cháº¡y kĂ¨m PostgreSQL service.
+Mục tiêu: **install → lint → test**, có thể chạy kèm PostgreSQL service.
 
 ```yaml
 # .github/workflows/ci-python.yml
@@ -105,12 +105,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          # náº¿u cĂ³ file dev:
+          # nếu có file dev:
           # pip install -r requirements-dev.txt
 
       - name: Lint
         run: |
-          # vĂ­ dá»¥ (tuá»³ project)
+          # ví dụ (tuỳ project)
           # ruff check .
           # black --check .
           echo "Lint step"
@@ -119,18 +119,18 @@ jobs:
         env:
           DATABASE_URL: postgres://test:test@localhost:5432/testdb
         run: |
-          # vĂ­ dá»¥:
+          # ví dụ:
           # pytest -q
           echo "Test step"
 ```
 
-**Gá»£i Ă½:** Vá»›i Python hiá»‡n Ä‘áº¡i, team hay dĂ¹ng `ruff + black + pytest`.
+**Gợi ý:** Với Python hiện đại, team hay dùng `ruff + black + pytest`.
 
 ---
 
-## Matrix builds (test nhiá»u phiĂªn báº£n)
+## Matrix builds (test nhiều phiên bản)
 
-Khi team cáº§n há»— trá»£ nhiá»u Node/Python versions hoáº·c nhiá»u OS.
+Khi team cần hỗ trợ nhiều Node/Python versions hoặc nhiều OS.
 
 ## Node.js matrix (18/20/22)
 
@@ -162,7 +162,7 @@ jobs:
       - run: npm test --if-present
 ```
 
-## Multi-OS matrix (khi tháº­t sá»± cáº§n)
+## Multi-OS matrix (khi thật sự cần)
 
 ```yaml
 strategy:
@@ -172,7 +172,7 @@ strategy:
 runs-on: ${{ matrix.os }}
 ```
 
-> LÆ°u Ă½: Multi-OS lĂ m CI cháº­m vĂ  tá»‘n runner minutes â€” chá»‰ dĂ¹ng khi dá»± Ă¡n cáº§n.
+> Lưu ý: Multi-OS làm CI chậm và tốn runner minutes — chỉ dùng khi dự án cần.
 
 ---
 

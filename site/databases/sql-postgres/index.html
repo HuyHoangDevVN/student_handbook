@@ -2025,7 +2025,7 @@
   <a href="#muc-tieu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Muc tieu
+        Mục tiêu
       
     </span>
   </a>
@@ -2047,7 +2047,7 @@
   <a href="#lo-trinh-hoc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lo trinh hoc
+        Lộ trình học
       
     </span>
   </a>
@@ -2058,7 +2058,7 @@
   <a href="#goi-y-hoc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Goi y hoc
+        Gợi ý học
       
     </span>
   </a>
@@ -2069,7 +2069,7 @@
   <a href="#tai-lieu-lien-quan" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tai lieu lien quan
+        Tài liệu liên quan
       
     </span>
   </a>
@@ -3136,7 +3136,7 @@
   <a href="#muc-tieu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Muc tieu
+        Mục tiêu
       
     </span>
   </a>
@@ -3158,7 +3158,7 @@
   <a href="#lo-trinh-hoc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lo trinh hoc
+        Lộ trình học
       
     </span>
   </a>
@@ -3169,7 +3169,7 @@
   <a href="#goi-y-hoc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Goi y hoc
+        Gợi ý học
       
     </span>
   </a>
@@ -3180,7 +3180,7 @@
   <a href="#tai-lieu-lien-quan" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tai lieu lien quan
+        Tài liệu liên quan
       
     </span>
   </a>
@@ -3208,42 +3208,42 @@
 
 
 <h1 id="sql-postgresql">SQL &amp; PostgreSQL<a class="headerlink" href="#sql-postgresql" title="Permanent link">&para;</a></h1>
-<p>Trang nay la muc luc cho cum bai SQL/PostgreSQL. Noi dung da duoc tach thanh 3 bai de phan biet
-ro setup, CRUD va toi uu/co che giao dich.</p>
+<p>Trang này là mục lục cho cụm bài SQL/PostgreSQL. Nội dung đã được tách thành 3 bài để phân biệt
+rõ setup, CRUD và tối ưu/cơ chế giao dịch.</p>
 <hr />
-<h2 id="muc-tieu">Muc tieu<a class="headerlink" href="#muc-tieu" title="Permanent link">&para;</a></h2>
-<p>Sau cum bai nay, ban co the:</p>
+<h2 id="muc-tieu">Mục tiêu<a class="headerlink" href="#muc-tieu" title="Permanent link">&para;</a></h2>
+<p>Sau cụm bài này, bạn có thể:</p>
 <ul>
-<li>chay PostgreSQL bang Docker va ket noi bang CLI/GUI</li>
-<li>viet truy van CRUD co ban</li>
-<li>hieu index, transaction va mot so cong cu <code>psql</code></li>
+<li>chạy PostgreSQL bằng Docker và kết nối bằng CLI/GUI</li>
+<li>viết truy vấn CRUD cơ bản</li>
+<li>hiểu index, transaction và một số công cụ <code>psql</code></li>
 </ul>
 <hr />
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Da hoan thanh: <a href="../../getting-started/quickstart/">Quickstart</a></li>
-<li>Da biet Docker co ban: <a href="../../containers/docker/">Docker co ban</a></li>
+<li>Đã hoàn thành: <a href="../../getting-started/quickstart/">Quickstart</a></li>
+<li>Đã biết Docker cơ bản: <a href="../../containers/docker/">Docker cơ bản</a></li>
 </ul>
 <hr />
-<h2 id="lo-trinh-hoc">Lo trinh hoc<a class="headerlink" href="#lo-trinh-hoc" title="Permanent link">&para;</a></h2>
+<h2 id="lo-trinh-hoc">Lộ trình học<a class="headerlink" href="#lo-trinh-hoc" title="Permanent link">&para;</a></h2>
 <ol>
-<li><a href="../postgres-setup/">Cai Dat Va Ket Noi PostgreSQL</a></li>
-<li><a href="../sql-crud/">SQL CRUD Co Ban</a></li>
-<li><a href="../sql-advanced/">Index, Transaction Va Toi Uu SQL</a></li>
+<li><a href="../postgres-setup/">Cài Đặt Và Kết Nối PostgreSQL</a></li>
+<li><a href="../sql-crud/">SQL CRUD Cơ Bản</a></li>
+<li><a href="../sql-advanced/">Index, Transaction Và Tối Ưu SQL</a></li>
 </ol>
 <hr />
-<h2 id="goi-y-hoc">Goi y hoc<a class="headerlink" href="#goi-y-hoc" title="Permanent link">&para;</a></h2>
+<h2 id="goi-y-hoc">Gợi ý học<a class="headerlink" href="#goi-y-hoc" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Chay database mau truoc khi hoc CRUD</li>
-<li>Tu go lai truy van thay vi chi copy/paste</li>
-<li>Dung <code>EXPLAIN ANALYZE</code> o phan nang cao de tap doc execution plan</li>
+<li>Chạy database mẫu trước khi học CRUD</li>
+<li>Tự gõ lại truy vấn thay vì chỉ copy/paste</li>
+<li>Dùng <code>EXPLAIN ANALYZE</code> ở phần nâng cao để tập đọc execution plan</li>
 </ul>
 <hr />
-<h2 id="tai-lieu-lien-quan">Tai lieu lien quan<a class="headerlink" href="#tai-lieu-lien-quan" title="Permanent link">&para;</a></h2>
+<h2 id="tai-lieu-lien-quan">Tài liệu liên quan<a class="headerlink" href="#tai-lieu-lien-quan" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../mongodb-redis/">MongoDB &amp; Redis</a></li>
 <li><a href="../../cheatsheets/sql/">SQL Cheat Sheet</a></li>
-<li>File mau trong repo: <code>resources/database/sample-schema.sql</code></li>
+<li>File mẫu trong repo: <code>resources/database/sample-schema.sql</code></li>
 </ul>
 
 
