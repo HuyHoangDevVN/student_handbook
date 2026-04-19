@@ -1,7 +1,3 @@
-param(
-    [string]$ConfigFile = "mkdocs-pdf.yml"
-)
-
 $ErrorActionPreference = "Stop"
 $PythonExe = Join-Path $PSScriptRoot "..\.venv\Scripts\python.exe"
 
@@ -9,22 +5,18 @@ if (-not (Test-Path $PythonExe)) {
     $PythonExe = "python"
 }
 
-if (-not (Test-Path $ConfigFile)) {
-    throw "Khong tim thay file cau hinh PDF: $ConfigFile"
-}
-
 Write-Host "Generating PDF bundle ..."
 & $PythonExe ./scripts/generate_pdf_bundle.py
 
-Write-Host "Building PDF site with config $ConfigFile ..."
-& $PythonExe -m mkdocs build -f $ConfigFile
+Write-Host "Building standalone PDF HTML ..."
+& $PythonExe ./scripts/build_pdf_html.py
 if ($LASTEXITCODE -ne 0) {
-    throw "PDF site build failed."
+    throw "PDF HTML build failed."
 }
 
 Write-Host "Rendering PDF with Chromium ..."
 try {
-    & $PythonExe ./scripts/render_pdf.py --site-dir site --page _generated/handbook-pdf/ --output site/pdf/student-it-handbook.pdf
+    & $PythonExe ./scripts/render_pdf.py --site-dir site --page pdf/handbook.html --output site/pdf/student-it-handbook.pdf
 
     if ($LASTEXITCODE -ne 0) {
         throw "PDF render failed."

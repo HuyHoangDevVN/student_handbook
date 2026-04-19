@@ -34,8 +34,8 @@ def serve_directory(directory: Path):
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Render a built MkDocs page to PDF with Chromium.")
-    parser.add_argument("--site-dir", default="site", help="Built MkDocs site directory.")
-    parser.add_argument("--page", default="_generated/handbook-pdf/", help="Route to print, relative to site root.")
+    parser.add_argument("--site-dir", default="site", help="Directory containing the generated PDF HTML.")
+    parser.add_argument("--page", default="pdf/handbook.html", help="Route to print, relative to site root.")
     parser.add_argument("--output", default="site/pdf/student-it-handbook.pdf", help="Output PDF path.")
     args = parser.parse_args()
 
@@ -61,8 +61,9 @@ def main() -> None:
         page.pdf(
             path=str(output_path),
             format="A4",
-            print_background=True,
-            margin={"top": "16mm", "right": "14mm", "bottom": "16mm", "left": "14mm"},
+            print_background=False,
+            prefer_css_page_size=True,
+            margin={"top": "0", "right": "0", "bottom": "0", "left": "0"},
         )
         browser.close()
 
